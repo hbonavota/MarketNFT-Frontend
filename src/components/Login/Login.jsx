@@ -59,7 +59,7 @@ export default function Login({ invalidEmail, handleChange, handleSubmit }) {
         </form>
 
         <Button className='LoginDiv' variant='contained' color='secondary'>
-          <a href='http://localhost:8001/auth/google'>Log in with Google</a>
+          <a href='https://nft-e-commerce11.herokuapp.com/auth/google'>Log in with Google</a>
         </Button>
       </header>
     </div>

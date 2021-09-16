@@ -4,7 +4,7 @@ import axios from "axios";
 export function verifyAdmin(token) {
   return async function (dispatch) {
     try {
-      const verify = await axios.post('http://localhost:8001/admin/verify',token);
+      const verify = await axios.post('https://nft-e-commerce11.herokuapp.com/admin/verify',token);
             // return dispatch({
             //         type: "VERIFY",
             //         payload: verify.data
@@ -14,4 +14,4 @@ export function verifyAdmin(token) {
       console.log(error);
     }
   };
-};
+}
