@@ -1,0 +1,15 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: blueviolet;
+}
+.box2 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(116, 226, 43);
+}
+.box3 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(226, 43, 186);
+}

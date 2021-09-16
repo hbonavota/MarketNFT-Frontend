@@ -1,0 +1,115 @@
+.text {
+    /* position: relative;
+    margin-left: 80px;
+    margin-top: 40px; */
+}
+.slider {
+    margin-top: 3rem;
+}
+.color1 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    background-color: #F0D9FF;
+    margin: 10px;
+    border-radius: 10%;
+}
+.color2 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    background-color: #B5FFD9;
+    margin: 10px;
+    border-radius: 10%;
+}
+.color3 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 10%;
+}
+
+.color4 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    color: #FDE49C;
+    margin: 10px;
+    border-radius: 10%;
+}
+.color5 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    color: #F08FC0;
+    margin: 10px;
+    border-radius: 10%;
+}
+
+.color6 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    color: #B980F0;
+    /* margin: 10px; */
+    border-radius: 10%;
+}
+.color7 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    color: #F5E79D;
+    /* margin: 10px; */
+    border-radius: 10%;
+}
+
+.color8 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+   color: #93D9A3;
+    /* margin: 10px; */
+    border-radius: 10%;
+}
+.color9 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    background-color: #96BAFF;
+    /* margin: 10px; */
+    border-radius: 10%;
+}
+.color0 {
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+    max-width: 200px;
+    background-color: #FFADAD;
+    /* margin: 10px; */
+    border-radius: 10%;
+}
+
+.button {
+    padding: 0px;
+}

@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container .aside {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 700px;
+    margin: 20px;
+    margin-top: 40px;
+    border-right: 1px solid black;
+}
+
+.container .aside .infoProfile {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .aside .infoProfile img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 100px;
+}
+
+.container .aside .accesos {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-top: 40px;
+}

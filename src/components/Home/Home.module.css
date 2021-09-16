@@ -1,0 +1,23 @@
+.container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: grid;
+    justify-content:center;
+    justify-items: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.title {
+    width: 40px;
+    margin-top: 10rem;
+    margin-right: 10rem;
+    margin-left: 8rem;
+}
+
+.title2 {
+    margin-top: 3rem;
+    margin-left: 12rem;
+}
+
+

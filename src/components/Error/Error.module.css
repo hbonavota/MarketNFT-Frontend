@@ -1,0 +1,28 @@
+.div {
+    opacity: 1;
+    background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title {
+    color: white;
+    background-color: black;
+    margin-top: 24%;
+}
+
+.btn {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    font-size: 30px;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color:rgba(241, 22, 186, 0.795);
+}
