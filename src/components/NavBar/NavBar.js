@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import logout from '../../actions/logout'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/ToolBar'
-/* import { Toolbar } from '@mui/material'; */
-/* import Toolbar from '@mui/material/Toolbar'; */
+/* import { ToolBar } from '@material-ui/core'; */
+/* import ToolBar from '@mui/material/ToolBar'; */
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/styles'
