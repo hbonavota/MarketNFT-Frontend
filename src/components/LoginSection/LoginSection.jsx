@@ -32,24 +32,28 @@ export default function LoginSection() {
           handleChange={handleChange}
           invalidPassword={validatePassword}
           handleSubmit={handleSubmit}
+          buttonchange={ <Button
+            onClick={() => setSignup(!signup)}
+            variant='outlined'
+            color='primary'
+          >
+            {signup ? 'I already have an account' : "I don't have an account"}
+          </Button> }
         />
       ) : (
         <Login
           invalidEmail={validateEmail}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          buttonchange={ <Button
+            onClick={() => setSignup(!signup)}
+            variant='outlined'
+            color='primary'
+          >
+            {signup ? 'I already have an account' : "I don't have an account"}
+          </Button> }
         />
       )}
-
-      <div>
-        <Button
-          onClick={() => setSignup(!signup)}
-          variant='contained'
-          color='secondary'
-        >
-          {signup ? 'I already have an account' : "I don't have an account"}
-        </Button>
-      </div>
     </div>
   )
 }

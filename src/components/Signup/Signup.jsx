@@ -1,13 +1,42 @@
-import NavBar from '../NavBar/NavBar'
 import React, { useState } from 'react'
-import { TextField, Button } from '@material-ui/core'
+import { TextField, Button, Grid, Container, Paper, Avatar, Typography } from '@material-ui/core'
 import localSignup from '../../actions/signup'
+import { makeStyles } from "@material-ui/core/styles";
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import "../Login/Login.css"
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    backgroundPosition: "center"
+  },
+  container: {
+    height: "85%",
+    marginTop: theme.spacing(10)
+  },
+  center: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+  },
+  button: {
+    marginRight: "65px",
+  }
+  
+}));
+
 
 export default function Signup({
   invalidEmail,
   invalidPassword,
   handleChange,
   handleSubmit,
+  buttonchange
 }) {
   const [inputs, setInputs] = useState({
     username: '',
@@ -15,18 +44,22 @@ export default function Signup({
     lastName: '',
     password: '',
   })
+  const classes = useStyles();
 
   return (
-    <div className='App'>
-      <NavBar />
-      <header className='App-header'>
+    <Grid component="main" className={classes.root}> 
+      <Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
+        <div className={classes.center}>
+          <Avatar className={classes.avatar}>
+        <LockOutlinedIcon/>
+        </Avatar>
+        <Typography component="h1" variant="h5">Create Account</Typography>
         <form
           action=''
           noValidate
           autoComplete='off'
           onSubmit={(e) => handleSubmit(e, localSignup, inputs)}
         >
-          <div>
             <TextField
               onChange={(e) => handleChange(e, inputs, setInputs)}
               error={inputs.username && invalidEmail(inputs.username)}
@@ -35,9 +68,10 @@ export default function Signup({
               label='E-mail'
               value={inputs.username}
               variant='outlined'
+              fullWidth
+              autoFocus
+              margin="normal"
             />
-          </div>
-          <div>
             <TextField
               onChange={(e) => handleChange(e, inputs, setInputs)}
               id='firstName'
@@ -45,9 +79,10 @@ export default function Signup({
               label='First name'
               value={inputs.firstName}
               variant='outlined'
+              fullWidth
+              autoFocus
+              margin="normal"
             />
-          </div>
-          <div>
             <TextField
               onChange={(e) => handleChange(e, inputs, setInputs)}
               id='lastName'
@@ -56,9 +91,10 @@ export default function Signup({
               value={inputs.lastName}
               variant='outlined'
               type='text'
+              fullWidth
+              autoFocus
+              margin="normal"
             />
-          </div>
-          <div>
             <TextField
               onChange={(e) => handleChange(e, inputs, setInputs)}
               error={inputs.password && invalidPassword(inputs.password)}
@@ -68,25 +104,32 @@ export default function Signup({
               value={inputs.password}
               variant='outlined'
               type='password'
+              fullWidth
+              autoFocus
+              margin="normal"
             />
-          </div>
-
-          <div>
             <Button
               variant='contained'
               color='primary'
               type='submit'
+              className={classes.button}
               disabled={!inputs.firstName && !inputs.email && !inputs.password}
             >
               Sign up
             </Button>
-          </div>
+            {buttonchange}
+
         </form>
 
-        <Button className='LoginDiv' variant='contained' color='secondary'>
-          <a href='http://localhost:8001/auth/google'>Sign up with Google</a>
-        </Button>
-      </header>
+       <div id="SignInWrapper">
+    <span className="label">Sign up with  </span>
+    <div id="customBtn" className="customGPlusSignIn">
+      <span className="icon"></span>
+      <span className="buttonText"><a style={{textDecoration: "none"}} href='http://localhost:8001/auth/google'>Google</a></span>
     </div>
+  </div>
+        </div>
+      </Container>
+    </Grid>
   )
 }
