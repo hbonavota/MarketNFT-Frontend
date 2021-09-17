@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import logout from '../../actions/logout'
 import AppBar from '@material-ui/core/AppBar'
-import ToolBar from '@material-ui/core/ToolBar'
+/* import ToolBar from '@material-ui/core/ToolBar' */
 /* import { ToolBar } from '@material-ui/core'; */
 /* import ToolBar from '@mui/material/ToolBar'; */
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
@@ -368,12 +368,12 @@ export default function NavBar() {
     <React.Fragment>
       <ElevationScroll>
         <AppBar position='fixed'>
-          <ToolBar>
+          <div>
             <Typography color='white' variant='h5'>
               NFT MARKET
             </Typography>
             {matches ? null : tabs}
-          </ToolBar>
+          </div>
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolbarMargin} />
