@@ -4,7 +4,7 @@ import postCategorie from "../../actions/admin/postCategorie"
 import { getCategories } from '../../actions/getCategories'
 import {deleteCategory} from '../../actions/admin/deleteCategory'
 import { Link } from 'react-router-dom'
-
+import { Button } from '@material-ui/core'
 
 export default function AdminCategories() {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export default function AdminCategories() {
       
     return ( <div> 
       <Link to='/admin'>
-      <button>Back</button> 
+      <Button variant='contained' size='large'>Back</Button>  
       </Link>              
               <h3>Modify categories </h3>
               <h4>Add</h4>

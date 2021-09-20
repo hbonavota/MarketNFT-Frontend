@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getNFTs } from '../../actions/getNFTs'
 import {deleteNFT} from '../../actions/admin/deleteNFT'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 export default function Admi0Nfts() {   
     const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function Admi0Nfts() {
     
     return ( <div> 
          <Link to='/admin'>
-      <button>Back</button> 
+         <Button variant='contained' size='large'>Back</Button> 
       </Link>          
              <h2>NFTs</h2>
              <form name="deleteNFT" onSubmit={(e)=>handleDeleteNFT(e)}>

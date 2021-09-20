@@ -4,6 +4,7 @@ import usersToAdmin from '../../actions/admin/usersToAdmin'
 import { getUsers } from '../../actions/admin/getUsers';
 import { Link } from 'react-router-dom';
 import {deleteUser} from '../../actions/admin/deleteNFT'
+import { Button } from '@material-ui/core'
 
 export default function AdminUser() {   
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export default function AdminUser() {
     
     return ( <div>
        <Link to='/admin'>
-      <button>Back</button> 
+      <Button variant='contained' size='large'>Back</Button> 
       </Link>   
              <h2>Users</h2>
 
