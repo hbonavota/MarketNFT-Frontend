@@ -131,7 +131,7 @@ export default function Signup({
     <span className="label">Sign up with  </span>
     <div id="customBtn" className="customGPlusSignIn">
       <span className="icon"></span>
-      <span className="buttonText"><a style={{textDecoration: "none"}} href='http://localhost:8001/auth/google'>Google</a></span>
+      <span className="buttonText"><a style={{textDecoration: "none"}} href='https://nft-e-commerce11.herokuapp.com/auth/google'>Google</a></span>
     </div>
   </div>
         </div>

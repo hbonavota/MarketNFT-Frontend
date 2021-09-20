@@ -5,7 +5,7 @@ export function TransactionStripe(amount) {
     return async function(dispatch) {
          try {
 
-            const response = await axios.post(`http://localhost:8001/transactionStripe`, amount)
+            const response = await axios.post(`https://nft-e-commerce11.herokuapp.com/transactionStripe`, amount)
             console.log("Action Transaction Metamask:",response.data)
             return dispatch({type: TRANSACTION_STRIPE, payload: response.data})
 
