@@ -1,0 +1,15 @@
+.navbar {
+    display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+}
+
+.toolbar{
+    min-height: 4.5rem;
+    display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+}

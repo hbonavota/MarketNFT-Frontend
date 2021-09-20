@@ -9,16 +9,17 @@ export default function Home() {
 
   return (
     <React.Fragment>
+      <div className={style.title2}>
+      <h1>Keep Track of The New NFTs Releases</h1>
+      </div>
+      <ImageSlider />
       <Grid container spacing={6}>
         <div className={style.title}>
           <h1>Explore The NFTs Universe</h1>
         </div>
         <CollectionHome/>
       </Grid>
-      <div className={style.title2}>
-      <h1>Keep Track of The New NFTs Releases</h1>
-      </div>
-      <ImageSlider />
+      
     </React.Fragment>
   )
 }

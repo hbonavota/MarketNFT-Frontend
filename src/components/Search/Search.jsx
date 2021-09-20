@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
     right: "15px",
     marginBottom: "15px",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
-    },
+    // backgroundColor: theme.palette.primary.main,
+    // '&:hover': {
+    //   backgroundColor: theme.palette.secondary.main,
+    // },
     marginRight: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchIcon: {
     top: "3px",
-    color: "white",
+    color: "primary",
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -106,7 +106,7 @@ export default function Search() {
           selectOnFocus={true}
           options={optionsAllNFTs?.map((option) => option.name)}
           renderInput={(params) => (
-            <TextField className={classes.inputRoot}{...params} label="Search..." margin="dense" variant="standard" />
+            <TextField className={classes.inputRoot}{...params} label="Search..." margin="dense" variant="outlined" />
           )}
         />
       </div>

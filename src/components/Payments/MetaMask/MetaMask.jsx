@@ -1,129 +1,71 @@
 import React,{ useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import './MetaMask.css'
-import { TransactionMetaMask } from "../../../actions/MetaMaskTransaction";
+import { Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 const Web3 = require('web3');
 const web3 = new Web3(window.ethereum);
 
+const useStyle = makeStyles({
+  button: {
+    margin: '5px',
+  }
+})
+
+
 function PaymentMetaMask() {
-  const stateTransaction = useSelector((state) => state.transactions);
-  const dispatch = useDispatch();
-  console.log("State del reducer que trae la info de la transacción:", stateTransaction)
+  const classes = useStyle()
+  const allProductsCart = useSelector(state => state.shoppingTrolley)
+  console.log("Productos para metaMask: ", allProductsCart)
+  const dispatch = useDispatch()
 
-  const [myAddress, setMyAddress] = useState("");
-  const [transactionTo, setTransactionTo] = useState("");
-  const [moneyAmount, setMoneyAmount] = useState("");
+    const dataMetaMask = []
+    const pay = async function () {
 
-  const handleClick = async function (e) {
-    e.preventDefault();
-    if (window.ethereum) {
-      const eTargetName = e.target.name
-      switch (eTargetName) {
-        case 'myAddress':
-          let accounts = await web3.eth.getAccounts();
-          setMyAddress(e.target.value = accounts[0])
-          console.log(e.target.value)
-          break;
-
-        default:
-          break;
+      
+      if (window.ethereum) {
+        await window.ethereum.request({ method: 'eth_requestAccounts' })
+        let accounts = await web3.eth.getAccounts();
+        let myAddress = accounts[0];
+        dataMetaMask.push(myAddress)
       }
-    }
-  }
 
-  const handleInputChange = async function (e) {
-    e.preventDefault();
-    if (window.ethereum) {
-      const eTargetName = e.target.name
-      switch (eTargetName) {
-        case 'transactionTo':
-          if (!web3.utils.isAddress(e.target.value)) {
-            return alert("Dirección inválida")
-          }
-          if (e.target.value.length > 39 && e.target.value.length <= 41) {
-            return alert("Campo incompleto: falta 1 caracter")
-          }
-          setTransactionTo(e.target.value)
-          console.log(e.target.value)
-          break;
-
-        case 'moneyAmount':
-          setMoneyAmount(e.target.value); // Su nuevo State es el array con la info
-          console.log(e.target.value)
-          break;
-
-        default:
-          break;
+      for(let data of allProductsCart) {
+        let transactionTo = data.tokenId;
+        let moneyAmount = data.price;
+  
+        dataMetaMask.push(transactionTo)
+        dataMetaMask.push(moneyAmount)
       }
-    }
-  }
 
-  const handleSubmit = async function (e) {
-    e.preventDefault();
-    const dataTransaction = {
-      myAddress: myAddress,
-      transactionTo: transactionTo,
-      moneyAmount: moneyAmount
-    };
+      console.log("array con datos del carrito", dataMetaMask)
 
-    dispatch(TransactionMetaMask(dataTransaction));
-    e.target.reset();
-    setMyAddress('')
-    setTransactionTo('')
-    setMoneyAmount('')
-  };
-
-  const pay = async function () {
     return web3.eth.sendTransaction({
-      from: stateTransaction.myAddress,
-      to: stateTransaction.transactionTo,
-      value: stateTransaction.moneyAmount,
+      from: dataMetaMask[0],
+      to: dataMetaMask[1],
+      value: dataMetaMask[2],
     })
-  }
-  const [metaMaskOption, setMetaMaskOption] = useState(true);
-  return (
-    <div className="App">
+  } 
 
-      <button className="button" type="button" onClick={() => setMetaMaskOption(!metaMaskOption)} >
-        {metaMaskOption ? 'Metamask' : 'Metamask'}
-      </button>
+  const [metaMaskOption, setMetaMaskOption] = useState(true);
+
+  return (
+    <div>
+            <Button className={classes.button} type="button" onClick={() => setMetaMaskOption(!metaMaskOption)} 
+             color='primary' variant='contained'> {metaMaskOption ? 'Metamask' : 'Metamask'}
+            </Button>
 
       {metaMaskOption ? (
         <div >
 
         </div>
       ) : (
-
-        <div className="paymentOption">
-
-          <header className="App-header">
-
-            <div id="content">
-              <span id="account">
-              </span>
-              <form onChange={(e) => handleInputChange(e)} onSubmit={(e) => handleSubmit(e)}>
-                <br />
-                <button id="verWallet" name="myAddress" onClick={(e) => handleClick(e)}>Ver tu Address </button> <strong>{myAddress}</strong>
-                <br />
-                <label>Address Recipient</label>
-                <input type="text" name="transactionTo" placeholder="Quien recibe" value={transactionTo} />
-
-                <label>Cantidad</label>
-                <input type="number" name="moneyAmount" placeholder="Monto" value={moneyAmount} />
-
-                <button id="send" >
-                  Continuar
-                </button>
-              </form>
-              <button onClick={() => dispatch(pay)}>
+            <Button onClick={() => dispatch(pay)}
+                    color='primary'
+                    variant='contained'>
                 Enviar
-              </button>
-            </div>
-
-          </header>
-        </div>
+            </Button>
       )}
-    </div>
+  </div>
   );
 }
 

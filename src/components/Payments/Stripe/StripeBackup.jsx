@@ -37,7 +37,7 @@ const CheckoutForm = () => {
       const { id } = paymentMethod;
       try {
         const { data } = await axios.post(
-          "https://nft-e-commerce11.herokuapp.com/api/checkout",
+          "http://localhost:3001/api/checkout",
           {
             id,
             amount: 10000, //cents

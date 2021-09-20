@@ -12,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: "85%",
-    marginTop: theme.spacing(10)
+    marginTop: theme.spacing(10),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(-5),
+      width: "100%",
+      height: "100%"
+    }
   },
   center: {
     marginTop: theme.spacing(8),
@@ -25,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   button: {
+    maxHeight: "33px",
     marginRight: "65px",
   }
   

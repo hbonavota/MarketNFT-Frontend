@@ -4,7 +4,7 @@ import { GET_CATEGORIES } from "./constants";
 export function getCategories() {
   return async function (dispatch) {
     try {
-      let categories = await axios.get("https://nft-e-commerce11.herokuapp.com/categories");
+      let categories = await axios.get("http://localhost:8001/categories");
       return dispatch({
         type: GET_CATEGORIES,
         payload: categories.data,
@@ -13,5 +13,5 @@ export function getCategories() {
       console.log(error);
     }
   };
-}
+};
 

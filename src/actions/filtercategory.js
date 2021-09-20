@@ -3,9 +3,11 @@ import axios from "axios";
 export function filterByCategories(payload) {
   return async function (dispatch) {
     try {
-      let response = await axios.get("https://nft-e-commerce11.herokuapp.com/nfts");
-      const filterCat = await response.data.filter((i) => i.categories[0] === payload);
-        console.log(payload);
+      let response = await axios.get("http://localhost:8001/nfts");
+      const filterCat = await response.data.filter((i) =>
+        i.categories.includes(payload)
+      );
+      console.log(filterCat, "FILTEEER");
       return dispatch({
         type: "FILTER_BY_CATEGORY",
         payload: filterCat,
@@ -16,3 +18,13 @@ export function filterByCategories(payload) {
   };
 }
 
+// if(action.payload!=="all"){
+//                 for(let i = 0; i<arr.length; i++) {
+//                     if(arr[i].temperaments){
+//                        if(arr[i].temperaments.filter(e => e.toLowerCase().includes(action.payload.toLowerCase()) === true ).length > 0) {
+//                         aux.push(arr[i])
+//                    }
+//                 }
+//             }
+
+//         }
