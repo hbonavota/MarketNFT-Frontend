@@ -1,4 +1,3 @@
-import swal from 'sweetalert'
 import {
   GET_NFTs,
   GET_NFT_BY_NAME,
@@ -24,6 +23,8 @@ import {
   GET_PROFILE_USER,
   GET_USERS,
 } from '../actions/constants'
+
+import {alertOk , alertError} from '../actions/sweetAlert/alerts'
 
 const initialState = {
   allNFTs: [], // all NFTS from API openSea
@@ -165,7 +166,7 @@ function rootReducer(state = initialState, action) {
         userLogged: {
           email: action.payload.email,
           firstName: action.payload.firstName,
-        },
+        }
       }
     case SIGNUP_ERROR:
       return {
@@ -176,13 +177,7 @@ function rootReducer(state = initialState, action) {
       const myStorage = window.localStorage
       let getmyStorage = myStorage.getItem('user')
       let parsLocal = JSON.parse(getmyStorage)
-      swal({
-        title: '¡God Job!',
-        text: '¡ Your NFT was successfully added shopping cart !',
-        icon: 'success',
-        button: 'OK!',
-        timer: 1500,
-      })
+      alertOk()
       if (!parsLocal) {
         myStorage.setItem(
           'user',
@@ -196,21 +191,13 @@ function rootReducer(state = initialState, action) {
         }
       }
       if (parsLocal) {
-        console.log('aca')
         let productAction = action.payload
         let isrepeat = parsLocal
-          ? parsLocal.map((e) => e._id).includes(productAction)
+          ? parsLocal.includes(productAction)
           : null
 
         if (isrepeat) {
-          console.log(parsLocal)
-          swal({
-            title: '¡ Sorry =( !',
-            text: '¡ This NFT already exists in your shopping cart !',
-            icon: 'warning',
-            button: 'OK!',
-            timer: 1500,
-          })
+          alertError()
           return {
             ...state,
           }
@@ -271,7 +258,15 @@ function rootReducer(state = initialState, action) {
         allUsers: action.payload,
       }
       case "DB_SHOPPING_CART":
-        console.log(action.payload,'desde reducer')
+        return {
+          ...state,
+         shoppingTrolley: action.payload,
+        }
+           
+      case "CLICK_USER_LOGGED":
+        action.payload.forEach(e => {
+          state.shoppingTrolley.includes(e)? alertError() : alertOk()
+        })
       return {
         ...state,
        shoppingTrolley: action.payload,

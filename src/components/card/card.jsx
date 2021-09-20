@@ -68,7 +68,6 @@ export default function Cards({ ele }) {
     if(!userLogged){
       dispatch(addShoppingTrolley(ele._id));
     }else{
-      console.log(ele._id)
       dispatch(addToDB({id:ele._id,user:userLogged}))
     }
   }
