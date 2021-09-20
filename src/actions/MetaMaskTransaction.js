@@ -5,7 +5,7 @@ export function TransactionMetaMask(eth) {
     return async function(dispatch) {
          try {
 
-           const response = await axios.post(`http://localhost:8001/transactionMetamask`, eth)
+           const response = await axios.post(`https://nft-e-commerce11.herokuapp.com/transactionMetamask`, eth)
            console.log("Action Transaction Metamask:",response.data)
             return dispatch({type: TRANSACTION_METAMASK, payload: response.data})
 
