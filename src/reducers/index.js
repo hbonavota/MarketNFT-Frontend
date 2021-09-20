@@ -136,13 +136,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         role: role,
         userLogged: islogged,
+        shoppingTrolley:action.payload[2]
+        
       }
     case 'USER_SESSION':
       if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
           return {
           ...state,
           userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
-          role: JSON.parse(window.sessionStorage.getItem('role'))
+          role: JSON.parse(window.sessionStorage.getItem('role')),
+         
         }
       } else {
         return state
@@ -154,6 +157,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         role: null,
         userLogged: null,
+        shoppingTrolley:[]
       }
     case SIGNUP_SUCCESS:
       return {
@@ -192,12 +196,14 @@ function rootReducer(state = initialState, action) {
         }
       }
       if (parsLocal) {
-        let productAction = action.payload._id
+        console.log('aca')
+        let productAction = action.payload
         let isrepeat = parsLocal
           ? parsLocal.map((e) => e._id).includes(productAction)
           : null
 
         if (isrepeat) {
+          console.log(parsLocal)
           swal({
             title: '¡ Sorry =( !',
             text: '¡ This NFT already exists in your shopping cart !',
@@ -264,6 +270,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       }
+      case "DB_SHOPPING_CART":
+        console.log(action.payload,'desde reducer')
+      return {
+        ...state,
+       shoppingTrolley: action.payload,
+      }
+      
     default:
       return state
   }

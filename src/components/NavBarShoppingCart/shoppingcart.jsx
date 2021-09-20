@@ -1,72 +1,153 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderShoppingCart } from "../../actions/getOrderShoppingCart";
 import { removeLS } from "../../actions/removeLS";
 import { getLS } from "../../actions/getLS";
-import ShoppingCart from '../shoppingCart/shoppingCart'
 import Payments from '../Payments/PaymentsButton/PaymentsButton'
-import getClean from "../../actions/getClean"
-import { Tooltip, IconButton } from '@material-ui/core';
+import { IconButton, Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import './shoppingcart.css'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import cartDB  from '../../actions/shoppingCart/cartDB.js';
+import { getNFTs } from '../../actions/getNFTs';
+import removeItem from '../../actions/shoppingCart/removeItem'
 
-export default function NavBarShoppingCart() {
-    const dispatch = useDispatch();
-    /*     useEffect(() => {
-            dispatch(getOrderShoppingCart())
-         }, [dispatch]) */
-    useEffect(() => {
-        dispatch(getLS())
-    }, [dispatch])
-
-    const handleCartClick = function (e) {
-        /*         dispatch(getOrderShoppingCart()) */
-        dispatch(removeLS(e))
-       /*  window.location.reload() */
+const useStyle = makeStyles({
+    div: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    titles: {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 10,
+        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+        background: 'white',
+        borderRadius: '10px',
+    },
+    cart: {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 10,
+        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+        background: 'white',
+        borderRadius: '10px',
+    },
+    data: {
+        display: 'flex',
+        flexDirection: 'row',
+        margin: '5px',
+        padding: 5,
+        background: 'white',
+        borderRadius: '10px',
     }
 
+   })
+
+export default function NavBarShoppingCart() {
+    const classes = useStyle()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(!userLogged){
+            dispatch(getLS())
+            dispatch(getNFTs())
+        }else{           
+            dispatch(cartDB({user:userLogged}))
+            dispatch(getNFTs())
+        }
+    }, [dispatch]);
+    const userLogged=JSON.parse(window.sessionStorage.getItem('userLogged'))
+    const allNfts= useSelector(state => state.allNFTs)
     const allProductsCart = useSelector(state => state.shoppingTrolley)
 
+    function userCartNfts(allNfts,ids){
+        var cartNfts=[]       
+        for (let i=0; i <=ids.length; i++){
+          allNfts.filter((e)=>{if(e._id === ids[i])return cartNfts.push(e)})
+          
+        }
+        return cartNfts
+    }
+    
+        const handleCartClick = function (e) {
+            if(!userLogged){
+                dispatch(removeLS(e))
+            }else{            
+                dispatch(removeItem({user:userLogged,item:e}))
+            }
+        }
+    const nftsData= userCartNfts(allNfts, allProductsCart)
+    
+
     return (
-        <div>
-            <ShoppingCart />
+        <div className={classes.div}>
+            
+            
+        <Grid container>
+            <Grid className={classes.titles} item xs={12} sm={12} md={8} lg={8} xl={8}>
 
+                <Grid className={classes.data} marginLeft="20px" item xs={12} sm={12} md={12} lg={12} xl={12}>
 
-            <div className="divOrder">
-                <h6>Nombre</h6>
-                <h6>Dueño</h6>
-                <h6>Producto</h6>
-                <h6> Precio </h6>
-                <h6>Eliminar</h6>
-            </div>
+                    <Grid item xs={0} sm={0} md={3} lg={3} xl={3} className="content">
+                        <Typography color="white" variant='h6'>Nombre</Typography>
+                    </Grid>
+
+                    <Grid item xs={0} sm={0} md={3} lg={3} xl={3} className="content">
+                        <Typography color="white" variant='h6'>Dueño</Typography>
+                    </Grid>
+
+                    <Grid item xs={4} sm={0} md={4} lg={3} xl={3} className="content">
+                        <Typography color="white" variant='h6'>Producto</Typography>
+                    </Grid>
+
+                    <Grid item xs={4} sm={0} md={1} lg={3} xl={3} className="content">
+                        <Typography color="white" variant='h6'>Precio</Typography>
+                    </Grid>
+
+                    <Grid item xs={4} sm={0} md={1} lg={3} xl={3} className="content">
+                        <Typography color="white" variant='h6'>Eliminar</Typography>
+                    </Grid>
+
+                </Grid>
             {
                 allProductsCart?.map(e => (
-                    <div className="divOrder">
-                        <div className="divData">
-                            <h5>{e ? e.name : null}</h5>
-                        </div>
-                        <div className="divData">
-                            <h5>{e ? e.owner : null}</h5>
-                        </div>
-                        <div className="divData">
-                            <img src={e ? e.image : null} width="80px" height="80px" />
-                        </div>
-                        <div className="divData">
-                            <h4>{e ? e.price : null}</h4>
-                        </div>
-                        <div className="divData">
-                            <Tooltip title="Delete">
-                                <IconButton aria-label="delete">
-                                <DeleteIcon
-                                onClick={() => handleCartClick(e)}
-                                />
+
+                    <Grid className={classes.data} item xs={12} sm={12} md={12} lg={12} xl={12}>
+
+                        <Grid item xs={0} sm={3} md={3} lg={3} xl={3} className="content">
+                            <Typography variant='subtitle1'>{e ? e.name : null}</Typography>
+                        </Grid>
+
+                        <Grid item xs={0} sm={3} md={3} lg={3} xl={3} className="content">
+                            <Typography variant='subtitle1'>{e ? e.owner : null}</Typography>
+                        </Grid>
+
+                        <Grid item xs={6} sm={3} md={3} lg={3} xl={3} className="content">    
+                            <img src={e ? e.image : null} width="75px" height="75px" />
+                        </Grid >
+
+                        <Grid  item xs={3} sm={2} md={3} lg={3} xl={3} className="content">
+                            <Typography variant='subtitle1'>{e ? e.price : null}</Typography>
+                        </Grid >
+
+                        <Grid  item xs={3} sm={2} md={3} lg={3} xl={3} className="content">
+                                <IconButton aria-label="delete"> 
+                                    <DeleteIcon onClick={() => handleCartClick(e)} /> 
                                 </IconButton>
-                            </Tooltip>
-                        </div>
-                    </div>
+                        </Grid>
+
+                    </Grid>
                 ))
             }
-            <Payments />
+      
+
+            </Grid>
+            <Grid className={classes.cart} item xs={12} sm={12} md={3} lg={3} xl={3}>
+                <Payments />
+            </Grid>
+
+        </Grid>
+
         </div>
     )
 }

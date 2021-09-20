@@ -10,7 +10,7 @@ import SortBy from "../Sortby/Sortby.jsx"
 const useStyles = makeStyles((theme) => ({
     
     gridContainer: {
-      marginTop: "40px"
+      marginTop: "70px"
     }
   }));
 

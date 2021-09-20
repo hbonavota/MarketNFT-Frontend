@@ -5,10 +5,6 @@ import localLogin from '../../actions/login'
 import { makeStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-
-
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -16,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: "60%",
-    marginTop: theme.spacing(10)
+    marginTop: theme.spacing(10),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(-5),
+      width: "100%",
+      height: "100%"
+    }
   },
   center: {
     marginTop: theme.spacing(8),
@@ -29,16 +30,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   button: {
+    maxHeight: "33px",
     marginRight: "100px",
   }
   
 }));
 
+
 export default function Login({ invalidEmail, handleChange, handleSubmit, buttonchange }) {
-  const [inputs, setInputs] = useState({ username: '', password: '' })
   const classes = useStyles();
-
-
+  const myStorage = window.localStorage
+  let cart= JSON.parse(myStorage.getItem('user'))
+  
+  const [inputs, setInputs] = useState({ username: '', password: '', cart:cart })
   return (
      <Grid component="main" className={classes.root}> 
       <Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
@@ -96,7 +100,7 @@ export default function Login({ invalidEmail, handleChange, handleSubmit, button
     <span className="label">Login with  </span>
     <div id="customBtn" className="customGPlusSignIn">
       <span className="icon"></span>
-      <span className="buttonText"><a style={{textDecoration: "none"}} href='https://nft-e-commerce11.herokuapp.com/auth/google'>Google</a></span>
+      <span className="buttonText"><a style={{textDecoration: "none"}} href='http://localhost:8001/auth/google'>Google</a></span>
     </div>
   </div>
         </div>

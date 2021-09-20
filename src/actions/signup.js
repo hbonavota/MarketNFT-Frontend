@@ -5,7 +5,7 @@ export default function localSignup(payload) {
   return async function (dispatch) {
     console.log("si",payload);
     return await axios
-      .post('https://nft-e-commerce11.herokuapp.com/register', payload)
+      .post('http://localhost:8001/register', payload)
       .then((data) => {
         console.log("data", data.data);
         dispatch({
