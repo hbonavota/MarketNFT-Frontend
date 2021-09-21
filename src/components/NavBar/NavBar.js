@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import logout from '../../actions/logout'
 import AppBar from '@material-ui/core/AppBar'
-// import ToolBar from '@material-ui/core/ToolBar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/styles'
@@ -233,15 +232,6 @@ export default function NavBar() {
         label='Admin'
         />
       )}
-        {/* ADD */}
-        {userLogged && (
-          <Tab
-            className={classes.tab}
-            component={Link}
-            to='/create'
-            label='Create'
-          />
-        )}
       </Tabs>
       {
         <Menu
