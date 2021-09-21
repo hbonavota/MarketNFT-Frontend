@@ -6,7 +6,7 @@ export default function getProfileUser() {
     return async function(dispatch) {
          try {
 
-           const response = await axios.get(`https://nft-e-commerce11.herokuapp.com/profile`)
+           const response = await axios.get(`/profile`)
 
            console.log("Action GET_PROFILE_USER: ",response.data)
 
