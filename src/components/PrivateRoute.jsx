@@ -1,9 +1,10 @@
 import { Redirect, Route } from "react-router";
+import Cookies from 'js-cookie';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-   
-  const usuario = JSON.parse(window.sessionStorage.getItem('role'))
+  const usuario = Cookies.get('role')
+  // const usuario = JSON.parse(window.sessionStorage.getItem('role'))
  
     let auth=null
    
