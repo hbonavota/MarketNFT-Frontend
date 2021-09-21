@@ -26,6 +26,8 @@ import {
 } from '../actions/constants'
 
 import {alertOk , alertError} from '../actions/sweetAlert/alerts'
+import Cookies from 'js-cookie';
+
 
 const initialState = {
   allNFTs: [], // all NFTS from API openSea
@@ -132,29 +134,38 @@ function rootReducer(state = initialState, action) {
     case TRANSACTION_STRIPE:
       return state
     case LOGIN_SUCCESS:
-      let role= JSON.parse(window.sessionStorage.getItem('role'))
-      let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
+      // let role= JSON.parse(window.sessionStorage.getItem('role'))
+      let role = Cookies.get('role')
+      // let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
+      let islogged = Cookies.get('token')
+
       return {
         ...state,
         role: role,
         userLogged: islogged,
-        shoppingTrolley:action.payload[2]
+        // shoppingTrolley:action.payload[2]
         
       }
     case 'USER_SESSION':
-      if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
+      // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
+        let token = Cookies.get('token');
+        if (token) {
           return {
           ...state,
-          userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
-          role: JSON.parse(window.sessionStorage.getItem('role')),
-         
+          // userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
+          userLogged: Cookies.get('token'),
+          // role: JSON.parse(window.sessionStorage.getItem('role')),
+          role: Cookies.get('role')
+
         }
       } else {
         return state
       }
     case LOGOUT:
-      window.sessionStorage.removeItem('userLogged')
-      window.sessionStorage.removeItem('role')
+      // window.sessionStorage.removeItem('userLogged')
+      // window.sessionStorage.removeItem('role')
+      Cookies.remove('token')
+      Cookies.remove('role')
       return {
         ...state,
         role: null,
@@ -268,7 +279,13 @@ function rootReducer(state = initialState, action) {
           ...state,
          shoppingTrolley: action.payload,
         }
-           
+        
+        case "JOIN_SHOPPING_CART":
+          return {
+            ...state,
+           shoppingTrolley: action.payload,
+          }
+   
       case "CLICK_USER_LOGGED":
         action.payload.forEach(e => {
           state.shoppingTrolley.includes(e)? alertError() : alertOk()
