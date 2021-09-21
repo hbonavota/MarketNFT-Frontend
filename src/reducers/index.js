@@ -22,6 +22,7 @@ import {
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
+  UPDATE_PROFILE,
 } from '../actions/constants'
 
 import {alertOk , alertError} from '../actions/sweetAlert/alerts'
@@ -256,6 +257,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload,
+      }
+    case UPDATE_PROFILE:
+      return {
+        ...state, 
+        profileUserData: action.payload,
       }
       case "DB_SHOPPING_CART":
         return {
