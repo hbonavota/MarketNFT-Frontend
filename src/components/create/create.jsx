@@ -1,48 +1,65 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { postNFT } from "../../actions/postNft";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getCategories } from "../../actions/getCategories";
-import { getNFTs } from "../../actions/getNFTs";
+import React, { useEffect, useState } from 'react'
+import Sidebar from '../Sidebar/sidebar'
+import { useDispatch, useSelector } from 'react-redux'
+import { postNFT } from '../../actions/postNft'
+import { getCategories } from '../../actions/getCategories'
+import { getNFTs } from '../../actions/getNFTs'
+import Typography from '@material-ui/core/Typography'
+import styles from '../create/create.module.css'
+import { makeStyles } from '@material-ui/core/styles'
+import { Box, Button, Checkbox, Grid } from '@material-ui/core'
 
-//categorias
+const useStyle = makeStyles({
+  contentSection: {
+    display: 'flex',
+    marginTop: '20px',
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    borderRadius: '10px',
+    padding: '15px',
+    boxShadow: '0 1px 4px rgba(0,0,0,0.16), 0 1px 4px rgba(0,0,0,0.23)',
+  },
+  link: {
+    textDecoration: 'none',
+  },
+})
+
 export default function Create() {
+  const classes = useStyle()
   function validateNft(nft) {
-    let errorsNft = {};
+    let errorsNft = {}
     if (nft.price < 1) {
-      errorsNft.price = "Price is required";
+      errorsNft.price = 'Price is required'
     }
 
-    return errorsNft;
+    return errorsNft
   }
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-  const [errorsFromNft, setErrorsFromNft] = useState({});
-  const categories = useSelector((state) => state.categories);
+    dispatch(getCategories())
+  }, [dispatch])
+  const [errorsFromNft, setErrorsFromNft] = useState({})
+  const categories = useSelector((state) => state.categories)
 
   const [nft, setNft] = useState({
-    name: "",
-    description: "",
-    price: "",
-    image: "",
+    name: '',
+    description: '',
+    price: '',
+    image: '',
     categories: [],
-    artist: "",
-    adress: "",
-    reviews: "",
-    collection: "",
-    currency: "",
-  });
+    artist: '',
+    adress: '',
+    reviews: '',
+    collection: '',
+    currency: '',
+  })
 
   function onInputCategory(e) {
     setNft({
       ...nft,
       categories: [...nft.categories, e.target.value],
-    });
+    })
   }
 
   function onInputChange(e) {
@@ -51,18 +68,12 @@ export default function Create() {
         ...nft,
         [e.target.name]: e.target.value,
       })
-    );
+    )
     setNft({
       ...nft,
       [e.target.name]: e.target.value,
-    });
+    })
   }
-
-  //   async function handleCategory(e) {
-  //     e.preventDefault();
-  //     dispatch(getCategories());
-  //     setNft({ categories: [""] });
-  //   }
 
   async function handleSubmit(e) {
     const newNft = {
@@ -76,151 +87,190 @@ export default function Create() {
       currency: nft.currency,
       artist: nft.artist,
       collection: nft.collection,
-    };
-    e.preventDefault();
-    console.log("nft", newNft);
-    dispatch(postNFT(newNft));
-    alert("Nft created");
-    dispatch(getNFTs());
+    }
+    e.preventDefault()
+    console.log('nft', newNft)
+    dispatch(postNFT(newNft))
+    alert('Nft created')
+    dispatch(getNFTs())
     setNft({
-      name: "",
-      image: "",
+      name: '',
+      image: '',
       categories: [],
-      description: "",
-      reviews: "",
-      currency: "",
-      adress: "",
-      artist: "",
-      price: "",
-      collection: "",
-    });
+      description: '',
+      reviews: '',
+      currency: '',
+      adress: '',
+      artist: '',
+      price: '',
+      collection: '',
+    })
     setErrorsFromNft({
-      price: "",
-    });
+      price: '',
+    })
   }
 
   return (
-    <div>
-      <Link to="/">
-        <button>HOME</button>
-      </Link>
+    <Grid container>
+      <Grid>
+        <Sidebar item xs={12} sm={12} md={3} lg={3} xl={3} />
+      </Grid>
 
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <p>
-          <label htmlFor="">Name </label>
-          <input
-            required
-            type="text"
-            name="name"
-            value={nft.name}
-            placeholder="Nft name"
-            onChange={(e) => onInputChange(e)}
-          />
-        </p>
+      <Grid
+        className={classes.contentSection}
+        item
+        xs={12}
+        sm={12}
+        md={9}
+        lg={9}
+        xl={9}
+      >
+        <Box
+          component='form'
+          className={styles.form}
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Image/GIF</Typography>
+            <input
+              required
+              className={styles.input}
+              type='text'
+              name='image'
+              value={nft.image}
+              placeholder='URL'
+              onChange={(e) => onInputChange(e)}
+            />
+          </div>
 
-        <p>
-          <label htmlFor="">Image </label>
-          <input
-            required
-            type="text"
-            name="image"
-            value={nft.image}
-            placeholder="Nft url image"
-            onChange={(e) => onInputChange(e)}
-          />
-        </p>
-        <p>
-          <label htmlFor="">Price(usd)</label>
-          <input
-            required
-            type="number"
-            name="price"
-            value={nft.price}
-            placeholder="Price usd"
-            onChange={(e) => onInputChange(e)}
-          />
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Name</Typography>
+            <input
+              required
+              className={styles.input}
+              type='text'
+              name='name'
+              value={nft.name}
+              placeholder='Nft name'
+              onChange={(e) => onInputChange(e)}
+            />
+          </div>
 
-          <label htmlFor="">Description</label>
-          <input
-            required
-            type="text"
-            name="description"
-            value={nft.description}
-            placeholder="Description"
-            onChange={(e) => onInputChange(e)}
-          />
-        </p>
-        {errorsFromNft.price && <p>{errorsFromNft.price}</p>}
-        <p>
-          <label htmlFor="">Artist</label>
-          <input
-            type="text"
-            name="artist"
-            value={nft.artist}
-            onChange={(e) => onInputChange(e)}
-            placeholder="Artist"
-          />
-        </p>
-        <label htmlFor="">Adress</label>
-        <input
-          type="text"
-          name="adress"
-          value={nft.adress}
-          placeholder="Adress"
-          onChange={(e) => onInputChange(e)}
-        />
-        <label htmlFor="">Review</label>
-        <input
-          type="text"
-          name="reviews"
-          value={nft.reviews}
-          placeholder="Review"
-          onChange={(e) => onInputChange(e)}
-        />
-        <label htmlFor="">Currency</label>
-        <input
-          require
-          type="text"
-          name="currency"
-          value={nft.currency}
-          placeholder="Currency"
-          onChange={(e) => onInputChange(e)}
-        />
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Description</Typography>
+            <input
+              required
+              className={styles.input}
+              type='text'
+              name='description'
+              value={nft.description}
+              placeholder='Description'
+              onChange={(e) => onInputChange(e)}
+            />
+          </div>
 
-        {/* <label htmlFor="">Categories</label> 
-        <select required name="categories" onChange={(e)=>onInputChange(e)} defaultValue="">
-            <option value="">Choose categories</option>
-            {categories.map((cat)=>(
-                <option key={cat._id} name={cat.name} value={cat._id}>{cat.name?.charAt(0).toUpperCase()+cat.name?.slice(1)}</option>
-            ))}
-        </select> */}
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Artist</Typography>
+            <input
+              className={styles.input}
+              type='text'
+              name='artist'
+              value={nft.artist}
+              onChange={(e) => onInputChange(e)}
+              placeholder='Artist'
+            />
+          </div>
 
-        <h3>Choose Category</h3>
-        <div>
-          {categories.map((u) => (
-            <div key={u._id}>
-              <input
-                require
-                type="checkbox"
-                name="categories"
-                value={u._id}
-                onChange={(e) => onInputCategory(e)}
-              ></input>
-              <div>
-                <label name={u.name}> {u.name} </label>
-              </div>
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Category</Typography>
+
+            <div className={styles.checkboxContainer}>
+              {categories.map((u) => (
+                <div key={u._id}>
+                  <Checkbox
+                    required
+                    labelPlacement='end'
+                    className={styles.checkbox}
+                    name='categories'
+                    value={u._id}
+                    onChange={(e) => onInputCategory(e)}
+                  ></Checkbox>
+
+                  <Typography
+                    className={styles.checkbox}
+                    variant='body2'
+                    display='inline'
+                    name={u.name}
+                  >
+                    {u.name}
+                  </Typography>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <button className="inputSubmit" type="submit">
-          Create NFT!
-        </button>
-      </form>
-      {/* {nft.categories.map((e) => (
-        <p key={e.name} value={e.name}> {e.name}
-          {e.charAt(0).toUpperCase() + e.slice(1) + "  "} {e.name}
-        </p>
-      ))} */}
-    </div>
-  );
+          </div>
+
+          <div className={styles.formGroup}>
+            <Typography htmlFor=''>Address</Typography>
+            <input
+              className={styles.input}
+              type='text'
+              name='adress'
+              value={nft.adress}
+              placeholder='Address'
+              onChange={(e) => onInputChange(e)}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <div className={styles.priceContainer}>
+              <Typography className={styles.priceLabel}>Price</Typography>
+              <input
+                required
+                className={styles.priceInput}
+                type='number'
+                name='price'
+                value={nft.price}
+                placeholder='Price usd'
+                onChange={(e) => onInputChange(e)}
+              />
+              {errorsFromNft.price && <p>{errorsFromNft.price}</p>}
+            </div>
+
+            <div className={styles.priceContainer}>
+              <Typography className={styles.priceLabel}>Currency</Typography>
+              <input
+                required
+                className={styles.priceInput}
+                type='text'
+                name='currency'
+                value={nft.currency}
+                placeholder='Currency'
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+          </div>
+
+          <div className={styles.btnContainer}>
+            <Button
+              size='large'
+              className={styles.homeBtn}
+              variant='outlined'
+              href='/'
+            >
+              Cancel
+            </Button>
+            <Button
+              size='large'
+              color='primary'
+              variant='contained'
+              className={styles.inputSubmit}
+              type='submit'
+            >
+              Create NFT!
+            </Button>
+          </div>
+        </Box>
+      </Grid>
+    </Grid>
+  )
 }
