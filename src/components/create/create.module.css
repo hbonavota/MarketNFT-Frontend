@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1.5em 3em;
+  margin-bottom: 0;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.checkboxContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 82%;
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-right: 2em;
+}
+
+.priceContainer:last-of-type {
+  padding-left: 4em;
+  margin-right: 0;
+}
+
+.input {
+  width: 80%;
+}
+
+.priceInput {
+  width: 58.5%;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.inputSubmit {
+  width: 75%;
+}
+
+.homeBtn {
+  width: 24%;
+}
