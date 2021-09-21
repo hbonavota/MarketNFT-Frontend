@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getNFTs } from "../../actions/getNFTs.js";
 import { filterByCategories } from "../../actions/filtercategory.js";
@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import Search from "../Search/Search.jsx"
 import SortBy from "../Sortby/Sortby.jsx"
 import Slider from 'react-slick'
-import { useTheme } from '@material-ui/core/styles'
 import "./categories.css"
 
 const useStyles = makeStyles((theme) => ({
@@ -38,15 +37,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Categories() {
   const classes = useStyles();
-  const theme = useTheme();
   const stateCategories = useSelector((state) => state.categories)
   const stateAllNFTs = useSelector((state) => state.allNFTs);
+
+  const [loading, setloading] = useState(true);
+  let [IndexOfTheLastPost, setIndexOfTheLastPost] = useState(12) ;
+  const observer = useRef();
+
+  const lastCardElementRef = useCallback(node => {
+    if(observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting && IndexOfTheLastPost < stateAllNFTs.length) {
+        setIndexOfTheLastPost(IndexOfTheLastPost+12)
+        setloading(false)
+      }
+    })
+    if(node) observer.current.observe(node)
+  },[IndexOfTheLastPost, stateAllNFTs.length]);
 
 
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNFTs());
+    setloading(false)
   }, [dispatch]);
 
   const handleclick = (e) => {
@@ -109,7 +123,7 @@ export default function Categories() {
       <Slider {...settings} className="slider">
         {stateCategories.length > 0
           ? stateCategories.map((ele) => (
-            <Button variant="outlined" onClick={(e) => handleclick(e)} value={ele._id}
+            <Button key={ele._id} variant="outlined" onClick={(e) => handleclick(e)} value={ele._id}
               className={classes.button0}
             //  className={`color${Math.floor(Math.random() * 10)}` }
             >
@@ -119,20 +133,25 @@ export default function Categories() {
           ))
           : null}
       </Slider>
-      <Grid container spacing={6} justify="center" className={classes.gridContainer}>
-        {
-          stateAllNFTs ? stateAllNFTs.map(ele => {
-            return (
-              ele !== null && (
-                <div>
+      <Grid container spacing={6} justify="center"  className={classes.gridContainer}>
+              {
+                  stateAllNFTs.slice(0, IndexOfTheLastPost).length > 0 && stateAllNFTs.slice(0, IndexOfTheLastPost).map((ele, index) => {
+                   if(stateAllNFTs.slice(0, IndexOfTheLastPost).length  === index+1) { return (
+                       
+                        <div key={ele._id} ref={lastCardElementRef}>
+                          <Cards ele={ele} />
+                        </div>)
+                      
+              } else return (
+                       
+                <div key={ele._id}>
                   <Cards ele={ele} />
-                </div>
-              )
-            )
-
-          }) : <h1>Loading</h1>
-        }
-      </Grid>
+                </div>)
+            
+            })
+              }
+              <h1>{loading && "Loading..."}</h1>
+          </Grid>
     </React.Fragment>
   )
 }

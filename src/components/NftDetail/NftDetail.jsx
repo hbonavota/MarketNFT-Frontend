@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom'
 import getNftDetail from "../../actions/getNftDetail"
 import { useSelector, useDispatch } from "react-redux"
 import getClean from "../../actions/getClean"
-import Payments from "../Payments/PaymentsButton/PaymentsButton"
 import styled from "styled-components";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import IconButton from "@material-ui/core/IconButton";
@@ -64,11 +63,6 @@ const useStyles = makeStyles({
           color: "#FF0000",
         },
       },
-      favoriteIconButton: {
-        "&:hover":  {
-          backgroundColor: "transparent"
-        }
-      }
   });
 export default function NftDetail() {
     const { id } = useParams();
@@ -98,7 +92,7 @@ export default function NftDetail() {
          <InfoContainer>
              <TitleContainer>
                  <Title>{nftDetail.name}</Title>
-                 <IconButton className={classes.favoriteIconButton}>
+                 <IconButton>
               {userLogged? <FavoriteBorderIcon  className={classes.favorite} />
               :null}
               
