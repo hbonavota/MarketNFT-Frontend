@@ -260,6 +260,7 @@ function rootReducer(state = initialState, action) {
       }
 
     case GET_PROFILE_USER:
+      console.log(action.payload)
       return {
         ...state,
         profileUserData: action.payload,
