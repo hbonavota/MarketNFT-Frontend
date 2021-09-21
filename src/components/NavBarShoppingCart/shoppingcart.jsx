@@ -10,7 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import cartDB from '../../actions/shoppingCart/cartDB.js';
 import { getNFTs } from '../../actions/getNFTs';
 import removeItem from '../../actions/shoppingCart/removeItem'
+import joinTrolley from '../../actions/shoppingCart/joinTrolley'
 import { alertDeleted } from '../../actions/sweetAlert/alerts';
+import Cookies from 'js-cookie'
 
 const useStyle = makeStyles({
     div: {
@@ -57,10 +59,22 @@ export default function NavBarShoppingCart() {
             dispatch(getNFTs())
         }
     }, [dispatch]);
-    const userLogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
-    const allNfts = useSelector(state => state.allNFTs)
-    const allProductsCart = useSelector(state => state.shoppingTrolley)
 
+    const userLogged = Cookies.get('token');
+    const allNfts= useSelector(state => state.allNFTs)
+    const allProductsCart = useSelector(state => state.shoppingTrolley)
+    let carrito = JSON.parse(window.localStorage.getItem('user'));
+
+    if(userLogged && carrito) {
+        console.log('HOLIS', allProductsCart)
+        dispatch(joinTrolley({user: userLogged, cart: allProductsCart}))
+        .then(e=> {
+            carrito = window.localStorage.removeItem('user')
+
+        })
+    }
+
+    
     function userCartNfts(allNfts, ids) {
         var cartNfts = []
         for (let i = 0; i <= ids.length; i++) {
