@@ -10,7 +10,7 @@ import { getNFTs } from "../../actions/getNFTs.js";
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    marginTop: "30px",
+    marginTop: "45px",
   },
 }));
 
@@ -31,7 +31,7 @@ export default function FilterCategory() {
     <React.Fragment>
       {/* <SortBy></SortBy> */}
       <Search></Search>
-      <Grid container spacing={6} className={classes.gridContainer}>
+      <Grid container spacing={6} justify="center" className={classes.gridContainer}>
         {filtered.length > 0 ? (
           filtered.map((ele) => {
             return (
