@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/index';
 import reportWebVitals from './reportWebVitals';
+import axios from "axios";
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:8001'
 
 ReactDOM.render(
   // wrap everything in the provider so that the store can be accessed

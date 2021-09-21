@@ -5,7 +5,7 @@ export function getOrderShoppingCart() {
     return async function(dispatch) {
          try {
 
-           const response = await axios.get(`https://nft-e-commerce11.herokuapp.com/orderCart`)
+           const response = await axios.get(`/orderCart`)
            console.log("Action GET_ORDER_SHOPPING_CART:",response.data)
             return dispatch({type: GET_ORDER_SHOPPING_CART, payload: response.data})
 

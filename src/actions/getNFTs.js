@@ -4,7 +4,7 @@ import { GET_NFTs } from "./constants";
 export const getNFTs = () => {
   return async function (dispatch) {
     try {
-      let response = await axios.get("https://nft-e-commerce11.herokuapp.com/nfts");
+      let response = await axios.get("/nfts");
       return dispatch({
         type: GET_NFTs,
         payload: response.data,
