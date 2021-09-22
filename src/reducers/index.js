@@ -23,6 +23,7 @@ import {
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
+  UPDATE_PROFILE,
   DB_SHOPPING_HISTORY
 } from '../actions/constants'
 
@@ -264,6 +265,7 @@ function rootReducer(state = initialState, action) {
       }
 
     case GET_PROFILE_USER:
+      console.log(action.payload)
       return {
         ...state,
         profileUserData: action.payload,
@@ -273,6 +275,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       }
+    case UPDATE_PROFILE:
+      return {
+        ...state, 
+        profileUserData: action.payload,
+      }
+      case "DB_SHOPPING_CART":
+        return {
+          ...state,
+         shoppingTrolley: action.payload,
+        }
+           
+      case "CLICK_USER_LOGGED":
+        action.payload.forEach(e => {
+          state.shoppingTrolley.includes(e)? alertError() : alertOk()
+        })
     case 'DB_SHOPPING_CART':
       return {
         ...state,
