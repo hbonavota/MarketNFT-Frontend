@@ -406,15 +406,15 @@ export default function NavBar() {
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer
-        anchor='right'
-        disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}
-        open={openDrawer}
-        onClose={() => setopenDrawer(false)}
-        onOpen={() => setopenDrawer(true)}
-        classes={{ paper: classes.drawer }}
-      >
+      <IconButton component={Link} to='/shoppingcart'>
+        <Badge badgeContent={numberOfItems} color='error'>
+          <ShoppingCartIcon className={classes.shoppingcart} />
+        </Badge>
+      </IconButton>
+      <SwipeableDrawer anchor="right" disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} 
+      onClose={()=> setopenDrawer(false)} onOpen={()=> setopenDrawer(true)}
+      classes={{paper: classes.drawer}}>
+
         <List disablePadding>
           <ListItem
             onClick={() => {

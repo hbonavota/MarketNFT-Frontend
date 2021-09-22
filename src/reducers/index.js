@@ -19,9 +19,11 @@ import {
   CONECT_LS,
   POST_ORDER_SHOPPING_CART,
   GET_ORDER_SHOPPING_CART,
+  SHOPPING_CART_PAYMENT,
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
+  DB_SHOPPING_HISTORY
 } from '../actions/constants'
 
 import { alertOk, alertError } from '../actions/sweetAlert/alerts'
@@ -39,11 +41,14 @@ const initialState = {
   categories: [],
   shoppingTrolley: [],
   shoppingCart: [],
+  shoppingCartPayment: [],
   profileUserData: [],
   allUsers: [],
   role: '',
+  shoppingHistoryDB:[],
   alert: false,
-}
+};
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -137,7 +142,6 @@ function rootReducer(state = initialState, action) {
       let role = Cookies.get('role')
       // let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
       let islogged = Cookies.get('token')
-
       return {
         ...state,
         role: role,
@@ -248,6 +252,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingCart: action.payload,
       }
+    case SHOPPING_CART_PAYMENT:
+      return {
+        ...state,
+        shoppingCartPayment: action.payload,
+      }  
     case POST_PROFILE_USER:
       return {
         ...state,
@@ -288,6 +297,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         alert: action.payload,
+      }
+      case DB_SHOPPING_HISTORY:
+      return {
+        ...state,
+        shoppingHistoryDB: action.payload,
       }
     default:
       return state
