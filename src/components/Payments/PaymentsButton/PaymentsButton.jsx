@@ -4,7 +4,6 @@ import MercadoPago from '../MercadoPago/MercadoPago';
 import MetaMask from '../MetaMask/MetaMask';
 import Stripe from '../Stripe/Stripe';
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
 import {getLS} from '../../../actions/getLS'
 import cartDB from '../../../actions/shoppingCart/cartDB.js'
 import  { useEffect } from 'react'
@@ -42,7 +41,7 @@ function Payments() {
             <MercadoPago />
             <MetaMask />
               <div disabled={!userLogged}>
-                Please log in to make the purchase
+                 Please log in to make the purchase
               </div>
         </div>
   );
