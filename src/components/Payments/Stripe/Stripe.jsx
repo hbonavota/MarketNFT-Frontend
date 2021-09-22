@@ -22,7 +22,7 @@ function Stripe() {
   const userLogged= useSelector((state) => state.userLogged);
   const stripePromise = loadStripe("pk_test_51JW0tcIjGDmG2UQfAkI8szNjoLv5Ub72nxET50aEEsFKFgGGAZECrupO2Uxgp13JtpxGxSD2mtunzeSYWvK3WrJy00al1P3DwN");
   const dispatch = useDispatch();
-  const purchaseOrder = useSelector((state) => state.shoppingTrolley);
+  const purchaseOrder = useSelector((state) => state.shoppingCartPayment);
   useEffect(() => {
     if(!userLogged){
         dispatch(getLS())
@@ -72,7 +72,7 @@ const CheckoutForm = () => {
  
   return (
     <div>
-      <Button className={classes.button} type="button" onClick={() => setStripeOption(!StripeOption)} 
+      <Button className={classes.button} type="button" disabled={!userLogged} onClick={() => setStripeOption(!StripeOption)} 
                     color='primary' variant='contained'> {StripeOption ? 'Stripe' : 'Stripe'}
       </Button>
 

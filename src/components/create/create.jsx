@@ -188,7 +188,6 @@ export default function Create() {
               {categories.map((u) => (
                 <div key={u._id}>
                   <Checkbox
-                    required
                     labelPlacement='end'
                     className={styles.checkbox}
                     name='categories'

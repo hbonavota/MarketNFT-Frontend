@@ -2,6 +2,9 @@ import React,{ useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import {getLS} from '../../../actions/getLS'
+import cartDB from '../../../actions/shoppingCart/cartDB.js'
+import  { useEffect } from 'react'
 const Web3 = require('web3');
 const web3 = new Web3(window.ethereum);
 
@@ -14,9 +17,19 @@ const useStyle = makeStyles({
 
 function PaymentMetaMask() {
   const classes = useStyle()
-  const allProductsCart = useSelector(state => state.shoppingTrolley)
+  const allProductsCart = useSelector(state => state.shoppingCartPayment)
+  const userLogged= useSelector((state) => state.userLogged);
   console.log("Productos para metaMask: ", allProductsCart)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(!userLogged){
+        dispatch(getLS())
+    }else{
+        
+        dispatch (cartDB(userLogged))
+    }
+  }, [dispatch])
 
     const dataMetaMask = []
     const pay = async function () {
@@ -50,7 +63,7 @@ function PaymentMetaMask() {
 
   return (
     <div>
-            <Button className={classes.button} type="button" onClick={() => setMetaMaskOption(!metaMaskOption)} 
+            <Button className={classes.button} type="button" disabled={!userLogged} onClick={() => setMetaMaskOption(!metaMaskOption)} 
              color='primary' variant='contained'> {metaMaskOption ? 'Metamask' : 'Metamask'}
             </Button>
 
