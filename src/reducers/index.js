@@ -19,15 +19,16 @@ import {
   CONECT_LS,
   POST_ORDER_SHOPPING_CART,
   GET_ORDER_SHOPPING_CART,
+  SHOPPING_CART_PAYMENT,
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
+  UPDATE_PROFILE,
   DB_SHOPPING_HISTORY
 } from '../actions/constants'
 
 import { alertOk, alertError } from '../actions/sweetAlert/alerts'
-import Cookies from 'js-cookie';
-
+import Cookies from 'js-cookie'
 
 const initialState = {
   allNFTs: [], // all NFTS from API openSea
@@ -41,11 +42,14 @@ const initialState = {
   categories: [],
   shoppingTrolley: [],
   shoppingCart: [],
+  shoppingCartPayment: [],
   profileUserData: [],
   allUsers: [],
-  role: "",
-  shoppingHistoryDB:[]
+  role: '',
+  shoppingHistoryDB:[],
+  alert: false,
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -70,21 +74,21 @@ function rootReducer(state = initialState, action) {
       const ascDescFilter =
         action.payload === 'za'
           ? state.allNFTs.sort((a, b) => {
-            if (
-              a.name?.charAt(0).toLowerCase() <
-              b.name?.charAt(0).toLowerCase()
-            )
-              return 1
-            return -1
-          })
+              if (
+                a.name?.charAt(0).toLowerCase() <
+                b.name?.charAt(0).toLowerCase()
+              )
+                return 1
+              return -1
+            })
           : state.allNFTs.sort((a, b) => {
-            if (
-              a.name?.charAt(0).toLowerCase() >
-              b.name?.charAt(0).toLowerCase()
-            )
-              return 1
-            return -1
-          })
+              if (
+                a.name?.charAt(0).toLowerCase() >
+                b.name?.charAt(0).toLowerCase()
+              )
+                return 1
+              return -1
+            })
       return {
         ...state,
         allNFTs: [...ascDescFilter],
@@ -105,11 +109,11 @@ function rootReducer(state = initialState, action) {
       const priceFilter =
         action.payload === 'max'
           ? [...state.Nfts].sort(
-            (b, a) => parseInt(a.price) - parseInt(b.price)
-          )
+              (b, a) => parseInt(a.price) - parseInt(b.price)
+            )
           : [...state.Nfts].sort(
-            (b, a) => parseInt(b.price) - parseInt(a.price)
-          )
+              (b, a) => parseInt(b.price) - parseInt(a.price)
+            )
       console.log(priceFilter, priceFilter.length)
       return {
         ...state,
@@ -139,25 +143,22 @@ function rootReducer(state = initialState, action) {
       let role = Cookies.get('role')
       // let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
       let islogged = Cookies.get('token')
-
       return {
         ...state,
         role: role,
         userLogged: islogged,
         // shoppingTrolley:action.payload[2]
-
       }
     case 'USER_SESSION':
       // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
-      let token = Cookies.get('token');
+      let token = Cookies.get('token')
       if (token) {
         return {
           ...state,
           // userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
           userLogged: Cookies.get('token'),
           // role: JSON.parse(window.sessionStorage.getItem('role')),
-          role: Cookies.get('role')
-
+          role: Cookies.get('role'),
         }
       } else {
         return state
@@ -171,7 +172,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         role: null,
         userLogged: null,
-        shoppingTrolley: []
+        shoppingTrolley: [],
       }
     case SIGNUP_SUCCESS:
       return {
@@ -179,7 +180,7 @@ function rootReducer(state = initialState, action) {
         userLogged: {
           email: action.payload.email,
           firstName: action.payload.firstName,
-        }
+        },
       }
     case SIGNUP_ERROR:
       return {
@@ -205,9 +206,7 @@ function rootReducer(state = initialState, action) {
       }
       if (parsLocal) {
         let productAction = action.payload
-        let isrepeat = parsLocal
-          ? parsLocal.includes(productAction)
-          : null
+        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null
 
         if (isrepeat) {
           alertError()
@@ -254,6 +253,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingCart: action.payload,
       }
+    case SHOPPING_CART_PAYMENT:
+      return {
+        ...state,
+        shoppingCartPayment: action.payload,
+      }  
     case POST_PROFILE_USER:
       return {
         ...state,
@@ -261,6 +265,7 @@ function rootReducer(state = initialState, action) {
       }
 
     case GET_PROFILE_USER:
+      console.log(action.payload)
       return {
         ...state,
         profileUserData: action.payload,
@@ -270,32 +275,51 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       }
-    case "DB_SHOPPING_CART":
+    case UPDATE_PROFILE:
+      return {
+        ...state, 
+        profileUserData: action.payload,
+      }
+      case "DB_SHOPPING_CART":
+        return {
+          ...state,
+         shoppingTrolley: action.payload,
+        }
+           
+      case "CLICK_USER_LOGGED":
+        action.payload.forEach(e => {
+          state.shoppingTrolley.includes(e)? alertError() : alertOk()
+        })
+    case 'DB_SHOPPING_CART':
       return {
         ...state,
         shoppingTrolley: action.payload,
       }
 
-    case "JOIN_SHOPPING_CART":
+    case 'JOIN_SHOPPING_CART':
       return {
         ...state,
         shoppingTrolley: action.payload,
       }
 
-    case "CLICK_USER_LOGGED":
-      action.payload.forEach(e => {
+    case 'CLICK_USER_LOGGED':
+      action.payload.forEach((e) => {
         state.shoppingTrolley.includes(e) ? alertError() : alertOk()
       })
       return {
         ...state,
         shoppingTrolley: action.payload,
       }
-    case DB_SHOPPING_HISTORY:
+    case 'ALERT':
+      return {
+        ...state,
+        alert: action.payload,
+      }
+      case DB_SHOPPING_HISTORY:
       return {
         ...state,
         shoppingHistoryDB: action.payload,
       }
-
     default:
       return state
   }

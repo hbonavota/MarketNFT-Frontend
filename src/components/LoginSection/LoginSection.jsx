@@ -20,7 +20,6 @@ export default function LoginSection() {
   function handleSubmit(event, action, state) {
     event.preventDefault()
     dispatch(action(state))
-    console.log('funciona el handleSubmit')
     history.push('/')
   }
 
