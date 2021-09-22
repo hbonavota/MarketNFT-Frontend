@@ -3,7 +3,7 @@ import axios from "axios";
 export default function getShoppingHistoryDB(payload) {
     return async function (dispatch) {
       try {
-        let response = await axios.post("//",payload);
+        let response = await axios.post("/purchase",payload);
         return dispatch({
             type: "DB_SHOPPING_HISTORY",
             payload: response.data,
