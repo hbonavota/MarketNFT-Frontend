@@ -26,9 +26,8 @@ import {
   DB_SHOPPING_HISTORY
 } from '../actions/constants'
 
-import {alertOk , alertError} from '../actions/sweetAlert/alerts'
-import Cookies from 'js-cookie';
-
+import { alertOk, alertError } from '../actions/sweetAlert/alerts'
+import Cookies from 'js-cookie'
 
 const initialState = {
   allNFTs: [], // all NFTS from API openSea
@@ -44,10 +43,12 @@ const initialState = {
   shoppingCart: [],
   shoppingCartPayment: [],
   profileUserData: [],
-  allUsers:[],
-  role:"",
-  shoppingHistoryDB:[]
+  allUsers: [],
+  role: '',
+  shoppingHistoryDB:[],
+  alert: false,
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -146,19 +147,17 @@ function rootReducer(state = initialState, action) {
         role: role,
         userLogged: islogged,
         // shoppingTrolley:action.payload[2]
-        
       }
     case 'USER_SESSION':
       // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
-        let token = Cookies.get('token');
-        if (token) {
-          return {
+      let token = Cookies.get('token')
+      if (token) {
+        return {
           ...state,
           // userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
           userLogged: Cookies.get('token'),
           // role: JSON.parse(window.sessionStorage.getItem('role')),
-          role: Cookies.get('role')
-         
+          role: Cookies.get('role'),
         }
       } else {
         return state
@@ -172,7 +171,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         role: null,
         userLogged: null,
-        shoppingTrolley:[]
+        shoppingTrolley: [],
       }
     case SIGNUP_SUCCESS:
       return {
@@ -180,7 +179,7 @@ function rootReducer(state = initialState, action) {
         userLogged: {
           email: action.payload.email,
           firstName: action.payload.firstName,
-        }
+        },
       }
     case SIGNUP_ERROR:
       return {
@@ -206,9 +205,7 @@ function rootReducer(state = initialState, action) {
       }
       if (parsLocal) {
         let productAction = action.payload
-        let isrepeat = parsLocal
-          ? parsLocal.includes(productAction)
-          : null
+        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null
 
         if (isrepeat) {
           alertError()
@@ -276,26 +273,36 @@ function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload,
       }
-      case "DB_SHOPPING_CART":
-        return {
-          ...state,
-         shoppingTrolley: action.payload,
-        }
-           
-      case "CLICK_USER_LOGGED":
-        action.payload.forEach(e => {
-          state.shoppingTrolley.includes(e)? alertError() : alertOk()
-        })
+    case 'DB_SHOPPING_CART':
       return {
         ...state,
-       shoppingTrolley: action.payload,
+        shoppingTrolley: action.payload,
+      }
+
+    case 'JOIN_SHOPPING_CART':
+      return {
+        ...state,
+        shoppingTrolley: action.payload,
+      }
+
+    case 'CLICK_USER_LOGGED':
+      action.payload.forEach((e) => {
+        state.shoppingTrolley.includes(e) ? alertError() : alertOk()
+      })
+      return {
+        ...state,
+        shoppingTrolley: action.payload,
+      }
+    case 'ALERT':
+      return {
+        ...state,
+        alert: action.payload,
       }
       case DB_SHOPPING_HISTORY:
       return {
         ...state,
         shoppingHistoryDB: action.payload,
       }
-      
     default:
       return state
   }
