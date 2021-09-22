@@ -89,6 +89,7 @@ export default function NavBarShoppingCart() {
             alertDeleted()
         } else {
             dispatch(removeItem({ user: userLogged, item: e }))
+            alertDeleted()
         }
     }
     const nftsData = userCartNfts(allNfts, allProductsCart)
