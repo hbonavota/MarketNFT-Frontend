@@ -11,6 +11,7 @@ import cartDB  from '../../actions/shoppingCart/cartDB.js';
 import { getNFTs } from '../../actions/getNFTs';
 import removeItem from '../../actions/shoppingCart/removeItem'
 import ShoppingCartPayment from '../../actions/ShoppingCartPayment'; 
+import joinTrolley from '../../actions/shoppingCart/joinTrolley'
 import { alertDeleted } from '../../actions/sweetAlert/alerts';
 import Cookies from 'js-cookie'
 
@@ -50,6 +51,7 @@ export default function NavBarShoppingCart() {
     var NftShoppingCart = [];
     const classes = useStyle()
     const dispatch = useDispatch();
+    const userLogged = Cookies.get('token');
 
     useEffect(() => {
         if(!userLogged){
@@ -65,10 +67,17 @@ export default function NavBarShoppingCart() {
         dispatch(ShoppingCartPayment(NftShoppingCart))
     }, [dispatch ,NftShoppingCart]);
 
-    // const userLogged=JSON.parse(window.sessionStorage.getItem('userLogged'))
-    const userLogged = Cookies.get('token');
     const allNfts= useSelector(state => state.allNFTs)
     const allProductsCart = useSelector(state => state.shoppingTrolley)
+    let carrito = JSON.parse(window.localStorage.getItem('user'));
+
+    if(userLogged && carrito) {
+        dispatch(joinTrolley({user: userLogged, cart: carrito}))
+        .then(e=> {
+            carrito = window.localStorage.removeItem('user')
+
+        })
+    }
 
     function userCartNfts(allNfts,ids){
         var cartNfts=[]       
