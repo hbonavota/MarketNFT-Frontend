@@ -78,7 +78,7 @@ export default function NavBarShoppingCart() {
 
         })
     }
-
+ 
     function userCartNfts(allNfts,ids){
         var cartNfts=[]       
         for (let i=0; i <=ids.length; i++){
