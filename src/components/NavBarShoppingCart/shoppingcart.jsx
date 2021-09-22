@@ -13,6 +13,8 @@ import removeItem from '../../actions/shoppingCart/removeItem'
 import joinTrolley from '../../actions/shoppingCart/joinTrolley'
 import { alertDeleted } from '../../actions/sweetAlert/alerts';
 import Cookies from 'js-cookie'
+import { identifyById } from '../../actions/functionIdentifyId';
+
 
 const useStyle = makeStyles({
     div: {
@@ -74,14 +76,14 @@ export default function NavBarShoppingCart() {
     }
 
     
-    function userCartNfts(allNfts, ids) {
-        var cartNfts = []
-        for (let i = 0; i <= ids.length; i++) {
-            allNfts.filter((e) => { if (e._id === ids[i]) return cartNfts.push(e) })
+    // function userCartNfts(allNfts, ids) {
+    //     var cartNfts = []
+    //     for (let i = 0; i <= ids.length; i++) {
+    //         allNfts.filter((e) => { if (e._id === ids[i]) return cartNfts.push(e) })
 
-        }
-        return cartNfts
-    }
+    //     }
+    //     return cartNfts
+    // }
 
     const handleCartClick = function (e) {
         if (!userLogged) {
@@ -92,7 +94,8 @@ export default function NavBarShoppingCart() {
             alertDeleted()
         }
     }
-    const nftsData = userCartNfts(allNfts, allProductsCart)
+
+    const nftsData = identifyById(allNfts, allProductsCart)
 
 
     return (
