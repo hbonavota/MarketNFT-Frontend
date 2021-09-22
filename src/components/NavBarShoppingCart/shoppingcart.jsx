@@ -49,7 +49,8 @@ const useStyle = makeStyles({
 export default function NavBarShoppingCart() {
     const classes = useStyle()
     const dispatch = useDispatch();
-
+    
+    const userLogged = Cookies.get('token');
     useEffect(() => {
         if (!userLogged) {
             dispatch(getLS())
@@ -60,14 +61,12 @@ export default function NavBarShoppingCart() {
         }
     }, [dispatch]);
 
-    const userLogged = Cookies.get('token');
     const allNfts= useSelector(state => state.allNFTs)
     const allProductsCart = useSelector(state => state.shoppingTrolley)
     let carrito = JSON.parse(window.localStorage.getItem('user'));
 
     if(userLogged && carrito) {
-        console.log('HOLIS', allProductsCart)
-        dispatch(joinTrolley({user: userLogged, cart: allProductsCart}))
+        dispatch(joinTrolley({user: userLogged, cart: carrito}))
         .then(e=> {
             carrito = window.localStorage.removeItem('user')
 
