@@ -7,6 +7,7 @@ import { Box, Button, Checkbox, Grid } from '@material-ui/core'
 import getShoppingHistoryDB from '../../../actions/shoppingHistory/getShoppingHistoryDB';
 import { getNFTs } from '../../../actions/getNFTs';
 import Cookies from 'js-cookie'
+import { identifyById } from '../../../actions/functionIdentifyId'
 
 const useStyle = makeStyles({
     div: {
@@ -67,20 +68,8 @@ function ShoppingHistory() {
 
     const shoppingHistoryDB = useSelector(state => state.shoppingHistoryDB)
     const allNfts = useSelector(state => state.allNFTs)
-    
-    //EXPORTAR FUNCION
-function userHistory(allNfts, shoppingHistoryDB) {
-    var historyNfts = []
-    for (let i = 0; i <= shoppingHistoryDB.length; i++) {
-        allNfts.filter((e) => { if (e._id === shoppingHistoryDB[i]) return historyNfts.push(e) })
+    const nftsPurchase = identifyById(allNfts,shoppingHistoryDB)
 
-    }
-    return historyNfts
-}
-
-const nftsPurchase = userHistory(allNfts,shoppingHistoryDB)
-
-console.log(nftsPurchase,'lo que compro')
 
 
 
