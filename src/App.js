@@ -22,6 +22,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin";
 import AdminUser from "./components/Admin/AdminUser";
 import AdminNfts from "./components/Admin/AdminNfts";
 import AdminCategories from "./components/Admin/AdminCategories";
+import ShoppingHistory from "./components/profile/ShoppingHistory/ShoppingHistory.jsx";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path="/categories/:id" component={FilterCategory}></Route>
         {/* <Route exact path='/admin'component={AdminProfile}></Route> */}
         <Route exact path="/profile" component={Profile}></Route>
-        <Route path="/profile/history" component={Profile}></Route>
+        <Route path="/profile/history" component={ShoppingHistory}></Route>
         <Route path="/profile/reviews" component={Profile}></Route>
         <Route path="/profile/createNFT" component={Create}></Route>
         <Route path="/profile/configuration" component={Profile}></Route>

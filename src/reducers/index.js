@@ -19,6 +19,7 @@ import {
   CONECT_LS,
   POST_ORDER_SHOPPING_CART,
   GET_ORDER_SHOPPING_CART,
+  SHOPPING_CART_PAYMENT,
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
@@ -41,6 +42,7 @@ const initialState = {
   categories: [],
   shoppingTrolley: [],
   shoppingCart: [],
+  shoppingCartPayment: [],
   profileUserData: [],
   allUsers:[],
   role:""
@@ -138,7 +140,6 @@ function rootReducer(state = initialState, action) {
       let role = Cookies.get('role')
       // let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
       let islogged = Cookies.get('token')
-
       return {
         ...state,
         role: role,
@@ -156,7 +157,7 @@ function rootReducer(state = initialState, action) {
           userLogged: Cookies.get('token'),
           // role: JSON.parse(window.sessionStorage.getItem('role')),
           role: Cookies.get('role')
-
+         
         }
       } else {
         return state
@@ -253,6 +254,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingCart: action.payload,
       }
+    case SHOPPING_CART_PAYMENT:
+      return {
+        ...state,
+        shoppingCartPayment: action.payload,
+      }  
     case POST_PROFILE_USER:
       return {
         ...state,
@@ -280,13 +286,7 @@ function rootReducer(state = initialState, action) {
           ...state,
          shoppingTrolley: action.payload,
         }
-        
-        case "JOIN_SHOPPING_CART":
-          return {
-            ...state,
-           shoppingTrolley: action.payload,
-          }
-   
+           
       case "CLICK_USER_LOGGED":
         action.payload.forEach(e => {
           state.shoppingTrolley.includes(e)? alertError() : alertOk()
