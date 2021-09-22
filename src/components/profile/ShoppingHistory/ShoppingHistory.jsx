@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Box, Button, Checkbox, Grid } from '@material-ui/core'
 import getShoppingHistoryDB from '../../../actions/shoppingHistory/getShoppingHistoryDB';
+import { getNFTs } from '../../../actions/getNFTs';
 import Cookies from 'js-cookie'
 
 const useStyle = makeStyles({
@@ -59,11 +60,29 @@ function ShoppingHistory() {
 
     useEffect(() => {
         if (userToken) {
+            dispatch(getNFTs())
             dispatch(getShoppingHistoryDB({ user: userToken }))
         }
     }, [dispatch]);
 
     const shoppingHistoryDB = useSelector(state => state.shoppingHistoryDB)
+    const allNfts = useSelector(state => state.allNFTs)
+    
+    //EXPORTAR FUNCION
+function userHistory(allNfts, shoppingHistoryDB) {
+    var historyNfts = []
+    for (let i = 0; i <= shoppingHistoryDB.length; i++) {
+        allNfts.filter((e) => { if (e._id === shoppingHistoryDB[i]) return historyNfts.push(e) })
+
+    }
+    return historyNfts
+}
+
+const nftsPurchase = userHistory(allNfts,shoppingHistoryDB)
+
+console.log(nftsPurchase,'lo que compro')
+
+
 
     return (
         <div>
@@ -105,11 +124,8 @@ function ShoppingHistory() {
 
                             </Grid>
 
-                        </Grid>
-
-                    </Grid>
                     {
-                        shoppingHistoryDB?.map(e => (
+                        nftsPurchase?.map(e => (
 
                             <Grid className={classes.data} item xs={12} sm={12} md={12} lg={12} xl={12}>
 
@@ -132,6 +148,9 @@ function ShoppingHistory() {
                             </Grid>
                         ))
                     }
+                        </Grid>
+
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
