@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from "../services/axios";
 import { SIGNUP_SUCCESS } from "./constants";
 
 export default function localSignup(payload) {
   return async function (dispatch) {
     console.log("si",payload);
-    return await axios
+    return await axios()
       .post('/register', payload)
       .then((data) => {
         console.log("data", data.data);
