@@ -72,6 +72,7 @@ export default function NavBarShoppingCart() {
 
         })
     }
+    //PRUEBA
 
     
     function userCartNfts(allNfts, ids) {

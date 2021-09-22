@@ -5,6 +5,7 @@ export default function localSignup(payload) {
   return async function (dispatch) {
     console.log("si",payload);
     return await axios()
+    //aver
       .post('/register', payload)
       .then((data) => {
         console.log("data", data.data);
