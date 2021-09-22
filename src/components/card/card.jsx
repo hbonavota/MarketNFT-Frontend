@@ -32,7 +32,8 @@ const useStyles = makeStyles({
     },
   },
   head: {
-    maxHeight: "12px",
+
+    maxHeight: "40px"
   },
   cardContent: {
     display: "flex",
@@ -48,17 +49,28 @@ const useStyles = makeStyles({
     margin: "5px",
   },
   favorite: {
+    padding: 0,
+    position: "absolute",
+    top: "0px",
+    right: "5px",
     opacity: 0.7,
     color: "error",
     "&:hover": {
       color: "#FF0000",
     },
   },
-  favoriteIconButton: {
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
+
+  cart: {
+    '&:hover': {
+      color: "#6ECB63",
+    }
   },
+  IconButton: {
+    "&:hover":  {
+      backgroundColor: "transparent"
+    }
+  }
+
 });
 
 export default function Cards({ ele }) {
@@ -96,13 +108,12 @@ export default function Cards({ ele }) {
         <CardHeader
           className={classes.head}
           action={
-            <IconButton className={classes.favoriteIconButton}>
-              {userLogged ? (
-                <FavoriteBorderIcon
-                  onClick={() => handleFav(ele)}
-                  className={classes.favorite}
-                />
-              ) : null}
+
+            <IconButton disableRipple="true" className={classes.IconButton}>
+              {userLogged? 
+              <FavoriteBorderIcon onClick={() => handleFav(ele)} className={classes.favorite} />
+              :null}
+              
             </IconButton>
           }
         />
@@ -114,9 +125,11 @@ export default function Cards({ ele }) {
           title={ele.name}
         />
         <CardContent className={classes.cardContent}>
-          <Typography>{ele.name}</Typography>
+          <Typography variant="h6" color="primary">{ele.name}</Typography>
           <Typography>Price: {ele.price}ETH</Typography>
-          <AddShoppingCartIcon onClick={() => handleClick(ele)} />
+          <IconButton className={classes.IconButton}>
+          <AddShoppingCartIcon className={classes.cart} onClick={() => handleClick(ele)} />
+          </IconButton>
         </CardContent>
       </Card>
     </div>
