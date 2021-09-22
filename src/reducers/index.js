@@ -23,6 +23,7 @@ import {
   POST_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
+  DB_SHOPPING_HISTORY
 } from '../actions/constants'
 
 import {alertOk , alertError} from '../actions/sweetAlert/alerts'
@@ -44,7 +45,8 @@ const initialState = {
   shoppingCartPayment: [],
   profileUserData: [],
   allUsers:[],
-  role:""
+  role:"",
+  shoppingHistoryDB:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -287,6 +289,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
        shoppingTrolley: action.payload,
+      }
+      case DB_SHOPPING_HISTORY:
+      return {
+        ...state,
+        shoppingHistoryDB: action.payload,
       }
       
     default:
