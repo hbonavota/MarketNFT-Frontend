@@ -1,15 +1,30 @@
 .navbar {
-    display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  display: flex;
+flex-flow: row wrap;
+align-items: center;
 
 }
 
 .toolbar{
-    min-height: 4.5rem;
-    display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: auto;
+  min-height: 4.5rem;
+  display: flex;
+flex-flow: row wrap;
+justify-content: flex-end;
+align-items: center;
+margin-left: auto;
+}
+
+.imagecontainer {
+position: fixed;
+}
+.image {
+opacity: 80%;
+}
+
+.title {
+  color: aliceblue;
+position: fixed;
+text-decoration: none;
+top: 20px;
+left: 20px;
 }

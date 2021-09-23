@@ -20,22 +20,24 @@ const useStyles = makeStyles((theme) => ({
   menulist: {
     zIndex: 999,
     position: 'absolute',
-    right: "18rem",
-    top: "5rem",
+    right: "19rem",
+    top: "5.5rem",
     maxWidth: "9.2rem",
     marginBottom: "15px",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.primary.main,
     [theme.breakpoints.down(600)]:
     {
-      top: "8rem",
-      right: "4rem",
-      marginBottom: "25px"
+      right: "11.3rem",
     }
   },
   sortByButton: {
     minHeight: "38px",
-    minWidth: "150px"
+    minWidth: "150px",
+    [theme.breakpoints.down(600)]:
+    {
+      minWidth: "130px",
+    }
   }
 }));
 

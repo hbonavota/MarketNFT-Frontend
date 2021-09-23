@@ -108,11 +108,11 @@ function rootReducer(state = initialState, action) {
     case SORT_BY_PRICE:
       const priceFilter =
         action.payload === 'max'
-          ? [...state.Nfts].sort(
-              (b, a) => parseInt(a.price) - parseInt(b.price)
+          ? [...state.allNFTs].sort(
+              (b, a) => a.price - b.price
             )
-          : [...state.Nfts].sort(
-              (b, a) => parseInt(b.price) - parseInt(a.price)
+          : [...state.allNFTs].sort(
+              (b, a) => b.price - a.price
             )
       console.log(priceFilter, priceFilter.length)
       return {
