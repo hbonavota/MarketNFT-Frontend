@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
 import addFavorite from "../../actions/favorite/addFavorite";
+import { conectLS } from "../../actions/conectLS";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -18,15 +19,12 @@ const Wrapper = styled.div`
   padding: 50px;
   display: flex;
 `;
-const ImgContainer = styled.div`
-  flex: 0.7;
-`;
-
+//preguntar a fer si el  border-radius: 5% va o no  
 const Image = styled.img`
   width: 94%;
   height: 90vh;
   object-fit: cover;
-
+  border-radius: 5%; 
 padding: 50px;
 display: flex;
 @media (max-width: 750px) {
@@ -39,14 +37,6 @@ flex: 0,7;
 @media (max-width: 700px) {
     flex: 1;
 }
-`;
-
-const Image = styled.img`
-width: 94%;
-border-radius: 5%;
-height: 90vh;
-object-fit: cover;
-
 `;
 
 const InfoContainer = styled.div`
@@ -105,7 +95,8 @@ export default function NftDetail() {
   };
 
   const handleClick = (ele) => {
-    dispatch(addShoppingTrolley(ele));
+    dispatch(addShoppingTrolley(ele._id));
+    dispatch(conectLS())
   };
   const nftDetail = useSelector((state) => state.nftDetail);
 

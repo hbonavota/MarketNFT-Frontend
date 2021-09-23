@@ -81,11 +81,12 @@ export default function Cards({ ele }) {
   const handleClick = (ele) => {
     if (!userLogged) {
       dispatch(addShoppingTrolley(ele._id));
+      dispatch(conectLS());
+
     } else {
       dispatch(addToDB({ id: ele._id, user: userLogged }));
     }
   };
-  const carrito = useSelector((state) => state.shoppingTrolley);
 
   useEffect(() => {
     if (!userLogged) {

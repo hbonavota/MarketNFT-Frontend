@@ -130,6 +130,7 @@ export default function NavBar() {
   const userLogged = useSelector((state) => state.userLogged)
   const categories = useSelector((state) => state.categories)
   const number = useSelector((state) => state.shoppingTrolley)
+  const numberOfItemsLC = JSON.parse(window.localStorage.getItem("user"))?.length;
   const numberOfItems = number?.length
   const classes = useStyles()
   const theme = useTheme()
@@ -413,9 +414,19 @@ export default function NavBar() {
   const drawer = (
     <React.Fragment>
       <IconButton component={Link} to='/shoppingcart'>
-        <Badge badgeContent={numberOfItems} color='error'>
+        {
+          userLogged?<Badge badgeContent={numberOfItems} color='error'>
           <ShoppingCartIcon className={classes.shoppingcart} />
-        </Badge>
+        </Badge> 
+        :
+        <Badge badgeContent={numberOfItemsLC} color='error'>
+          <ShoppingCartIcon className={classes.shoppingcart} />
+        </Badge> 
+        
+        }
+        {/* <Badge badgeContent={numberOfItems} color='error'>
+          <ShoppingCartIcon className={classes.shoppingcart} />
+        </Badge> */}
       </IconButton>
       <SwipeableDrawer anchor="right" disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} 
       onClose={()=> setopenDrawer(false)} onOpen={()=> setopenDrawer(true)}
