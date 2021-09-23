@@ -15,7 +15,7 @@ export default function SliderCategory() {
   const stateAllNFTs = useSelector((state) => state.allNFTs)
   const stateCategories = useSelector((state) => state.categories)
   
-  const selected = stateCategories.map(ele=> (
+  const selected = stateCategories && stateCategories.map(ele=> (
     {name:ele.name, id:ele._id, image: stateAllNFTs.filter((i) => i.categories.includes(ele._id))[0] !==undefined?
         stateAllNFTs.filter((i) => i.categories.includes(ele._id))[0]: {image:"https://i2.wp.com/criptotendencia.com/wp-content/uploads/2021/05/Cuanto-cuesta-crear-un-NFT-en-la-Blockchain.jpg?fit=1200%2C720&ssl=1"}}));
 
