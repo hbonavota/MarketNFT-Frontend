@@ -4,6 +4,7 @@ import { TextField, Button, Grid, Container, Paper, Avatar, Typography } from '@
 import localLogin from '../../actions/login'
 import { makeStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Forgot from '../Forgot/Forgot';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center"
   },
   container: {
-    height: "60%",
+    height: "80%",
     marginTop: theme.spacing(10),
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(-5),
@@ -43,6 +44,7 @@ export default function Login({ invalidEmail, handleChange, handleSubmit, button
   let cart= JSON.parse(myStorage.getItem('user'))
   
   const [inputs, setInputs] = useState({ username: '', password: '', cart:cart })
+  const [forgot, setForgot] = useState(false)
   return (
      <Grid component="main" className={classes.root}> 
       <Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
@@ -100,10 +102,19 @@ export default function Login({ invalidEmail, handleChange, handleSubmit, button
     <span className="label">Login with  </span>
     <div id="customBtn" className="customGPlusSignIn">
       <span className="icon"></span>
-      <span className="buttonText"><a style={{textDecoration: "none"}} href='https://nft-e-commerce11.herokuapp.com/auth/google'>Google</a></span>
+      <span className="buttonText"><a style={{textDecoration: "none"}} href='http://localhost:8001/auth/google'>Google</a></span>
     </div>
   </div>
         </div>
+        {!forgot ?<Button
+            onClick={() => setForgot(true)}
+            variant='outlined'
+            color='primary'
+          >
+             FORGOT MY PASSWORD 
+          </Button> : null}
+          {forgot ? <Forgot></Forgot> : null}
+      
         </Container>
       </Grid>
   )

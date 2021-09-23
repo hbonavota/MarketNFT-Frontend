@@ -8,7 +8,8 @@ const loginUser = async (user) => {
     });
     return data.data;
   } catch (error) {
-    return null;
+    // console.log('DALE MOSTRAME ESE ERROR POR FAVOR', error)
+    return 400;
   }
 };
 
