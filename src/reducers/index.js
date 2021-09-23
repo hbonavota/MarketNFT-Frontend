@@ -24,7 +24,8 @@ import {
   GET_PROFILE_USER,
   GET_USERS,
   UPDATE_PROFILE,
-  DB_SHOPPING_HISTORY
+  DB_SHOPPING_HISTORY,
+  POST_REVIEW,
 } from '../actions/constants'
 
 import { alertOk, alertError } from '../actions/sweetAlert/alerts'
@@ -35,7 +36,7 @@ const initialState = {
   filtered: [],
   userIsAuthenticated: [],
   userLogged: null,
-  nftDetail: [],
+  nftDetail: {},
   Nfts: [],
   filters: [],
   transactions: [],
@@ -46,10 +47,9 @@ const initialState = {
   profileUserData: [],
   allUsers: [],
   role: '',
-  shoppingHistoryDB:[],
+  shoppingHistoryDB: [],
   alert: false,
-};
-
+}
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -66,6 +66,7 @@ function rootReducer(state = initialState, action) {
         allNFTs: action.payload,
       }
     case GET_NFT_BY_ID:
+      console.log('NFT DETAIL', action.payload)
       return {
         ...state,
         nftDetail: action.payload,
@@ -257,7 +258,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         shoppingCartPayment: action.payload,
-      }  
+      }
     case POST_PROFILE_USER:
       return {
         ...state,
@@ -277,19 +278,19 @@ function rootReducer(state = initialState, action) {
       }
     case UPDATE_PROFILE:
       return {
-        ...state, 
+        ...state,
         profileUserData: action.payload,
       }
-      case "DB_SHOPPING_CART":
-        return {
-          ...state,
-         shoppingTrolley: action.payload,
-        }
-           
-      case "CLICK_USER_LOGGED":
-        action.payload.forEach(e => {
-          state.shoppingTrolley.includes(e)? alertError() : alertOk()
-        })
+    case 'DB_SHOPPING_CART':
+      return {
+        ...state,
+        shoppingTrolley: action.payload,
+      }
+
+    case 'CLICK_USER_LOGGED':
+      action.payload.forEach((e) => {
+        state.shoppingTrolley.includes(e) ? alertError() : alertOk()
+      })
     case 'DB_SHOPPING_CART':
       return {
         ...state,
@@ -315,10 +316,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         alert: action.payload,
       }
-      case DB_SHOPPING_HISTORY:
+    case DB_SHOPPING_HISTORY:
       return {
         ...state,
         shoppingHistoryDB: action.payload,
+      }
+    case POST_REVIEW:
+      console.log('PAYLOAD POST_REVIEW', action.payload)
+      return {
+        ...state,
+        nftDetail: {
+          ...state.nftDetail,
+          reviews: [...state.nftDetail.reviews, action.payload],
+        },
       }
     default:
       return state
