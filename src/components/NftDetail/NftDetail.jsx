@@ -15,22 +15,11 @@ import { conectLS } from "../../actions/conectLS";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-
-  padding: 50px;
-  display: flex;
-`;
-//preguntar a fer si el  border-radius: 5% va o no  
-const Image = styled.img`
-  width: 94%;
-  height: 90vh;
-  object-fit: cover;
-  border-radius: 5%; 
 padding: 50px;
 display: flex;
 @media (max-width: 750px) {
     flex-direction: column
 }
-
 `;
 const ImgContainer = styled.div`
 flex: 0,7;
@@ -39,33 +28,40 @@ flex: 0,7;
 }
 `;
 
+const Image = styled.img`
+width: 94%;
+border-radius: 5%;
+height: 90vh;
+object-fit: cover;
+`;
+
 const InfoContainer = styled.div`
-  flex: 1;
-  padding: 0px 50px;
+flex: 1;
+padding: 0px 50px;
 `;
 
 const TitleContainer = styled.div`
-  display: flex;
+display: flex;
 `;
 
 const Title = styled.h1`
-  font-weight: 100;
+font-weight: 100;
 `;
 
 const Owner = styled.h3`
-  margin: 0px 2px;
-  font-weight: 100;
-  font-size: 18px;
-  color: #368b85;
+margin: 0px 2px;
+font-weight: 100;
+font-size: 18px;
+color: #368B85;
 `;
 
 const Description = styled.p`
-  margin: 20px 0px;
+margin: 20px 0px;
 `;
 
 const Price = styled.h3`
-  font-weight: 100;
-  font-size: 30px;
+font-weight: 100;
+font-size: 30px;
 `;
 
 const useStyles = makeStyles({
