@@ -1,14 +1,21 @@
 import Cards from '../card/card.jsx'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React,{useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Slider from 'react-slick'
 import style from '../slider/slider.module.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { conectLS } from '../../actions/conectLS.js'
 
 export default function SliderImage() {
+  const dispatch = useDispatch();
   const stateAllNFTs = useSelector((state) => state.allNFTs)
   const selected = stateAllNFTs.slice(26, 40)
+  useEffect(() => {
+    dispatch(conectLS())
+ 
+  }, [dispatch])
+  
 
   var settings = {
     dots: true,
