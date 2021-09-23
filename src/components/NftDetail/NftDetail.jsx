@@ -71,6 +71,7 @@ export default function NftDetail() {
   const dispatch = useDispatch()
   const userLogged = useSelector((state) => state.userLogged)
   const classes = useStyles()
+  const nftDetail = useSelector((state) => state.nftDetail)
 
   useEffect(() => {
     dispatch(getNftDetail(id))
@@ -82,8 +83,6 @@ export default function NftDetail() {
   const handleClick = (ele) => {
     dispatch(addShoppingTrolley(ele))
   }
-
-  const nftDetail = useSelector((state) => state.nftDetail)
 
   return (
     <Container>

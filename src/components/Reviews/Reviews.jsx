@@ -27,7 +27,6 @@ export default function Reviews({ reviews }) {
           <form
             onSubmit={(e) => {
               e.preventDefault()
-              console.log('HANDLE SUBMIT--------- INPUT', input)
               dispatch(postReview(input))
               setInput({ review: '' })
             }}
