@@ -22,14 +22,18 @@ import {
   SHOPPING_CART_PAYMENT,
   POST_PROFILE_USER,
   GET_PROFILE_USER,
-  GET_USERS,  
+  GET_USERS,
   UPDATE_PROFILE,
-  DB_SHOPPING_HISTORY
+  DB_SHOPPING_HISTORY,
 } from "../actions/constants";
 
-import { alertOk, alertError } from '../actions/sweetAlert/alerts'
-import Cookies from 'js-cookie'
-
+import {
+  alertOk,
+  alertError,
+  favOk,
+  favError,
+} from "../actions/sweetAlert/alerts";
+import Cookies from "js-cookie";
 
 const initialState = {
   allNFTs: [], // all NFTS from API openSea
@@ -49,11 +53,10 @@ const initialState = {
   role: "",
   shoppingHistoryDB: [],
   favorites: [],
-  role: '',
-  shoppingHistoryDB:[],
+  role: "",
+  shoppingHistoryDB: [],
   alert: false,
 };
-
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -111,7 +114,6 @@ function rootReducer(state = initialState, action) {
 
     case SORT_BY_PRICE:
       const priceFilter =
-
         action.payload === "max"
           ? [...state.Nfts].sort(
               (b, a) => parseInt(a.price) - parseInt(b.price)
@@ -121,14 +123,10 @@ function rootReducer(state = initialState, action) {
             );
       console.log(priceFilter, priceFilter.length);
 
-        action.payload === 'max'
-          ? [...state.allNFTs].sort(
-              (b, a) => a.price - b.price
-            )
-          : [...state.allNFTs].sort(
-              (b, a) => b.price - a.price
-            )
-      console.log(priceFilter, priceFilter.length)
+      action.payload === "max"
+        ? [...state.allNFTs].sort((b, a) => a.price - b.price)
+        : [...state.allNFTs].sort((b, a) => b.price - a.price);
+      console.log(priceFilter, priceFilter.length);
 
       return {
         ...state,
@@ -163,7 +161,6 @@ function rootReducer(state = initialState, action) {
         role: role,
         userLogged: islogged,
         // shoppingTrolley:action.payload[2]
-
       };
     case "USER_SESSION":
       // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
@@ -177,8 +174,7 @@ function rootReducer(state = initialState, action) {
 
           role: Cookies.get("role"),
         };
-
-      }else {
+      } else {
         return state;
       }
 
@@ -192,7 +188,6 @@ function rootReducer(state = initialState, action) {
         role: null,
         userLogged: null,
         shoppingTrolley: [],
-
       };
 
     case SIGNUP_SUCCESS:
@@ -209,6 +204,9 @@ function rootReducer(state = initialState, action) {
         userLogged: null,
       };
     case "ADD_FAVORITE":
+      action.payload.forEach((e) => {
+        state.favorites.includes(e) ? favError() : favOk();
+      });
       return {
         ...state,
         favorites: action.payload,
@@ -241,9 +239,8 @@ function rootReducer(state = initialState, action) {
         };
       }
       if (parsLocal) {
-
         let productAction = action.payload;
-        let isrepeat = parsLocal? parsLocal.includes(productAction) : null;
+        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null;
         if (isrepeat) {
           alertError();
           return {
@@ -301,7 +298,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_PROFILE_USER:
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         profileUserData: action.payload,
@@ -310,7 +307,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload,
-
       };
 
     case "CLICK_USER_LOGGED":
@@ -323,46 +319,44 @@ function rootReducer(state = initialState, action) {
       };
     case UPDATE_PROFILE:
       return {
-        ...state, 
+        ...state,
         profileUserData: action.payload,
-      }
+      };
 
-    case 'DB_SHOPPING_CART':
+    case "DB_SHOPPING_CART":
       return {
         ...state,
         shoppingTrolley: action.payload,
-      }
+      };
 
-    case 'JOIN_SHOPPING_CART':
+    case "JOIN_SHOPPING_CART":
       return {
         ...state,
         shoppingTrolley: action.payload,
-      }
+      };
 
-    case 'CLICK_USER_LOGGED':
+    case "CLICK_USER_LOGGED":
       action.payload.forEach((e) => {
-        state.shoppingTrolley.includes(e) ? alertError() : alertOk()
-      })
+        state.shoppingTrolley.includes(e) ? alertError() : alertOk();
+      });
       return {
         ...state,
         shoppingTrolley: action.payload,
-      }
-    case 'ALERT':
+      };
+    case "ALERT":
       return {
         ...state,
         alert: action.payload,
-      }
-      case DB_SHOPPING_HISTORY:
+      };
+    case DB_SHOPPING_HISTORY:
       return {
         ...state,
         shoppingHistoryDB: action.payload,
-      }
+      };
 
     default:
       return state;
   }
 }
 
-
 export default rootReducer;
-
