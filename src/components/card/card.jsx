@@ -124,10 +124,6 @@ export default function Cards({ ele }) {
         />
         <CardContent className={classes.cardContent}>
 
-          <Typography variant="h6" color="primary">
-            {ele.name}
-          </Typography>
-
           <Typography variant="body" color="primary">{ele.name}</Typography>
 
           <Typography>Price: {ele.price}ETH</Typography>
