@@ -99,7 +99,6 @@ export default function Signup({
               value={inputs.firstName}
               variant='outlined'
               fullWidth
-              autoFocus
               margin='normal'
             />
             <TextField
@@ -111,7 +110,6 @@ export default function Signup({
               variant='outlined'
               type='text'
               fullWidth
-              autoFocus
               margin='normal'
             />
             <TextField
@@ -124,7 +122,6 @@ export default function Signup({
               variant='outlined'
               type='password'
               fullWidth
-              autoFocus
               margin='normal'
             />
             <Button

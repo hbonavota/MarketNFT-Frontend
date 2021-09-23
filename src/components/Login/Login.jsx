@@ -79,7 +79,6 @@ export default function Login({ invalidEmail, handleChange, handleSubmit, button
               variant='outlined'
               type='password'
               fullWidth
-              autoFocus
               margin="normal"
             />
 
