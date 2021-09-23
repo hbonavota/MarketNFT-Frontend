@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IconButton, Grid } from "@material-ui/core";
 import { removeLS } from "../../actions/removeLS";
 import { getLS } from "../../actions/getLS";
-import Payments from "../Payments/PaymentsButton/PaymentsButton";
-import { IconButton, Grid } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import cartDB from "../../actions/shoppingCart/cartDB.js";
 import { getNFTs } from "../../actions/getNFTs";
-import removeItem from "../../actions/shoppingCart/removeItem";
-import ShoppingCartPayment from "../../actions/ShoppingCartPayment";
 import { alertDeleted } from "../../actions/sweetAlert/alerts";
+import deleteFav from "../../actions/favorite/deleteFav";
 import Cookies from "js-cookie";
+import getFav from "../../actions/favorite/getFavorites";
 
 const useStyle = makeStyles({
   div: {
@@ -45,8 +43,7 @@ const useStyle = makeStyles({
   },
 });
 
-export default function NavBarShoppingCart() {
-  var NftShoppingCart = [];
+export default function Favorites() {
   const classes = useStyle();
   const dispatch = useDispatch();
 
@@ -55,41 +52,44 @@ export default function NavBarShoppingCart() {
       dispatch(getLS());
       dispatch(getNFTs());
     } else {
-      dispatch(cartDB({ user: userLogged }));
+      dispatch(getFav({ user: userLogged }));
       dispatch(getNFTs());
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(ShoppingCartPayment(NftShoppingCart));
-  }, [dispatch, NftShoppingCart]);
-
-  // const userLogged=JSON.parse(window.sessionStorage.getItem('userLogged'))
   const userLogged = Cookies.get("token");
   const allNfts = useSelector((state) => state.allNFTs);
-  const allProductsCart = useSelector((state) => state.shoppingTrolley);
+  const allFavorites = useSelector((state) => state.favorites);
+  // let fav = JSON.parse(window.localStorage.getItem("user"));
 
-  function userCartNfts(allNfts, ids) {
-    var cartNfts = [];
+  // // if (userLogged && fav) {
+  // //   console.log(allFavorites);
+  // //   dispatch(joinTrolley({ user: userLogged, cart: allFavorites })).then(
+  // //     (e) => {
+  // //       fav = window.localStorage.removeItem("user");
+  // //     }
+  // //   );
+  // // }
+
+  function userfavNfts(allNfts, ids) {
+    var favNfts = [];
     for (let i = 0; i <= ids.length; i++) {
       allNfts.filter((e) => {
-        if (e._id === ids[i]) return cartNfts.push(e);
+        if (e._id === ids[i]) return favNfts.push(e);
       });
     }
-    return cartNfts;
+    return favNfts;
   }
 
-  const handleCartClick = function (e) {
+  const handleDelete = function (e) {
     if (!userLogged) {
       dispatch(removeLS(e));
       alertDeleted();
     } else {
-      dispatch(removeItem({ user: userLogged, item: e }));
+      dispatch(deleteFav({ user: userLogged, item: e }));
     }
   };
-
-  const nftsData = userCartNfts(allNfts, allProductsCart);
-  NftShoppingCart = nftsData;
+  const nftsData = userfavNfts(allNfts, allFavorites);
 
   return (
     <div className={classes.div}>
@@ -127,16 +127,9 @@ export default function NavBarShoppingCart() {
 
             <Grid item xs={4} sm={0} md={4} lg={3} xl={3} className="content">
               <Typography color="white" variant="h6">
-                Product
+                NFT
               </Typography>
             </Grid>
-
-            <Grid item xs={4} sm={0} md={1} lg={3} xl={3} className="content">
-              <Typography color="white" variant="h6">
-                Price
-              </Typography>
-            </Grid>
-
             <Grid item xs={4} sm={0} md={1} lg={3} xl={3} className="content">
               <Typography color="white" variant="h6">
                 Delete
@@ -166,31 +159,13 @@ export default function NavBarShoppingCart() {
               <Grid item xs={6} sm={3} md={3} lg={3} xl={3} className="content">
                 <img src={e ? e.image : null} width="75px" height="75px" />
               </Grid>
-
-              <Grid item xs={3} sm={2} md={3} lg={3} xl={3} className="content">
-                <Typography variant="subtitle1">
-                  {e ? e.price : null}
-                </Typography>
-              </Grid>
-
               <Grid item xs={3} sm={2} md={3} lg={3} xl={3} className="content">
                 <IconButton aria-label="delete">
-                  <DeleteIcon onClick={() => handleCartClick(e._id)} />
+                  <DeleteIcon onClick={() => handleDelete(e._id)} />
                 </IconButton>
               </Grid>
             </Grid>
           ))}
-        </Grid>
-        <Grid
-          className={classes.cart}
-          item
-          xs={12}
-          sm={12}
-          md={3}
-          lg={3}
-          xl={3}
-        >
-          <Payments />
         </Grid>
       </Grid>
     </div>
