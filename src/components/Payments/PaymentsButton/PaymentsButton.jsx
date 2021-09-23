@@ -39,6 +39,7 @@ function Payments() {
 
   return (
         <div className={classes.pay}>
+          <h5>Direct payment</h5>
             <Stripe />
             <MercadoPago />
             <MetaMask />
