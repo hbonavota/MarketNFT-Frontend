@@ -23,6 +23,8 @@ import AdminUser from "./components/Admin/AdminUser";
 import AdminNfts from "./components/Admin/AdminNfts";
 import AdminCategories from "./components/Admin/AdminCategories";
 import ShoppingHistory from "./components/profile/ShoppingHistory/ShoppingHistory.jsx";
+import Forgot from "./components/Forgot/Forgot";
+import ResetPass from "./components/ResetPass/ResetPass";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Route path="/profile/configuration" component={Profile}></Route>
         <Route exact path="/contact" component={Contact}></Route>
         <Route exact path="/about" component={About}></Route>
+        <Route exact path='/forgot' component={Forgot}/>
+        <Route exact path='/reset/:token' component={ResetPass}/>
         <Route
           exact
           path="/shoppingcart"
