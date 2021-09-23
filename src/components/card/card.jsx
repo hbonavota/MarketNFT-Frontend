@@ -1,23 +1,25 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { Card,
-   CardHeader, 
-   CardMedia, 
-   Container, 
-   Paper,
-   Avatar, 
-   Typography } from '@material-ui/core'
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  Container,
+  Paper,
+  Avatar,
+  Typography,
+} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { conectLS } from "../../actions/conectLS.js";
 import React, { useEffect } from "react";
-import addToDB from '../../actions/shoppingCart/addToDB';
-import cartDB from '../../actions/shoppingCart/cartDB.js'
-
+import addToDB from "../../actions/shoppingCart/addToDB";
+import cartDB from "../../actions/shoppingCart/cartDB.js";
+import addFavorite from "../../actions/favorite/addFavorite";
 
 const useStyles = makeStyles({
   card: {
@@ -25,12 +27,12 @@ const useStyles = makeStyles({
     minHeight: "30rem",
     Width: "310px",
     maxWidth: "310px",
-    '&:hover': {
+    "&:hover": {
       elevation: 5,
-    }
+    },
   },
   head: {
-    maxHeight: "40px"
+    maxHeight: "40px",
   },
   cardContent: {
     display: "flex",
@@ -43,7 +45,7 @@ const useStyles = makeStyles({
     height: 300,
     borderRadius: "2%",
     width: "300px",
-    margin: "5px"
+    margin: "5px",
   },
   favorite: {
     padding: 0,
@@ -52,20 +54,20 @@ const useStyles = makeStyles({
     right: "5px",
     opacity: 0.7,
     color: "error",
-    '&:hover': {
+    "&:hover": {
       color: "#FF0000",
     },
   },
   cart: {
-    '&:hover': {
+    "&:hover": {
       color: "#6ECB63",
-    }
+    },
   },
   IconButton: {
-    "&:hover":  {
-      backgroundColor: "transparent"
-    }
-  }
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
 });
 
 export default function Cards({ ele }) {
@@ -73,21 +75,23 @@ export default function Cards({ ele }) {
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
 
-  const handleClick = (ele)=>{
-    if(!userLogged){
+  const handleFav = (ele) => {
+    dispatch(addFavorite({ item: ele._id, user: userLogged }));
+  };
+  const handleClick = (ele) => {
+    if (!userLogged) {
       dispatch(addShoppingTrolley(ele._id));
-    }else{
-      dispatch(addToDB({id:ele._id,user:userLogged}))
+    } else {
+      dispatch(addToDB({ id: ele._id, user: userLogged }));
     }
-  }
+  };
   const carrito = useSelector((state) => state.shoppingTrolley);
- 
+
   useEffect(() => {
-    if(!userLogged){
-      dispatch(conectLS())
-    }else{
-      dispatch(cartDB({user:userLogged}))
-     
+    if (!userLogged) {
+      dispatch(conectLS());
+    } else {
+      dispatch(cartDB({ user: userLogged }));
     }
     // return () => {
     //   dispatch(getNFTs());
@@ -96,30 +100,41 @@ export default function Cards({ ele }) {
 
   return (
     <div>
-      <Card component={Paper} elevation={1} className={classes.card}
-      >
-        <CardHeader className={classes.head}
+      <Card component={Paper} elevation={1} className={classes.card}>
+        <CardHeader
+          className={classes.head}
           action={
             <IconButton disableRipple="true" className={classes.IconButton}>
-              {userLogged? 
-              <FavoriteBorderIcon className={classes.favorite} />
-              :null}
-              
+              {userLogged ? (
+                <FavoriteBorderIcon
+                  onClick={() => handleFav(ele)}
+                  className={classes.favorite}
+                />
+              ) : null}
             </IconButton>
           }
-          />
+        />
         <CardMedia
           component={Link}
           to={`nft/${ele._id}`}
           className={classes.media}
-          image={ele.image ? ele.image : ele.images}         
+          image={ele.image ? ele.image : ele.images}
           title={ele.name}
-          />
+        />
         <CardContent className={classes.cardContent}>
+
+          <Typography variant="h6" color="primary">
+            {ele.name}
+          </Typography>
+
           <Typography variant="body" color="primary">{ele.name}</Typography>
+
           <Typography>Price: {ele.price}ETH</Typography>
           <IconButton className={classes.IconButton}>
-          <AddShoppingCartIcon className={classes.cart} onClick={() => handleClick(ele)} />
+            <AddShoppingCartIcon
+              className={classes.cart}
+              onClick={() => handleClick(ele)}
+            />
           </IconButton>
         </CardContent>
       </Card>

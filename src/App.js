@@ -14,6 +14,7 @@ import Profile from "./components/profile/profile.jsx";
 import Configuration from "./components/profile/configuration.jsx";
 import Contact from "./components/contact/contact.jsx";
 import About from "./components/about/about.jsx";
+import Favorites from "./components/Favorites/Favorites";
 import NftDetail from "./components/NftDetail/NftDetail";
 import NavBarShoppingCart from "./components/NavBarShoppingCart/shoppingcart.jsx";
 import "./App.css";
@@ -44,6 +45,7 @@ function App() {
         <Route path="/profile/configuration" component={Configuration}></Route>
         <Route exact path="/contact" component={Contact}></Route>
         <Route exact path="/about" component={About}></Route>
+        <Route exact path="/favorites" component={Favorites}></Route>
         <Route
           exact
           path="/shoppingcart"
