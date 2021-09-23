@@ -12,10 +12,10 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
 import addFavorite from "../../actions/favorite/addFavorite";
 import { conectLS } from "../../actions/conectLS";
+import Review from '../Reviews/Reviews'
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-
   padding: 50px;
   display: flex;
 `;
@@ -30,7 +30,6 @@ display: flex;
 @media (max-width: 750px) {
     flex-direction: column
 }
-
 `;
 const ImgContainer = styled.div`
 flex: 0,7;
@@ -78,12 +77,13 @@ const useStyles = makeStyles({
   },
 });
 export default function NftDetail() {
+  const nftdetalle = useSelector((state) => state.nftDetail)
   const { id } = useParams();
   const dispatch = useDispatch();
   const userLogged = useSelector((state) => state.userLogged);
   const classes = useStyles();
-
   useEffect(() => {
+    console.log("soy un detalle", nftdetalle)
     dispatch(getNftDetail(id));
     return () => {
       dispatch(getClean());
@@ -131,6 +131,7 @@ export default function NftDetail() {
               <AddShoppingCartIcon />
             </Button>
           </InfoContainer>
+          <Review />
         </Wrapper>
       ) : (
         <span>Loading...</span>
