@@ -118,8 +118,8 @@ export default function Categories() {
 
   return (
     <React.Fragment>
-      {/* <SortBy></SortBy> */}
-      <Search></Search>
+      <SortBy></SortBy>
+      <Search props={"justcategories"}></Search>
       <Slider {...settings} className="slider">
         {stateCategories.length > 0
           ? stateCategories.map((ele) => (
