@@ -2,7 +2,7 @@ import axios from "axios";
 import { GET_PROFILE_USER } from "./constants";
 
 
-export default function getProfileUser(token) {
+export default function getProfileUser() {
     return async function(dispatch) {
          try {
 

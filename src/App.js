@@ -11,6 +11,7 @@ import FilterCategory from "./components/categories/filtercategory.jsx";
 import All from "./components/categories/all.jsx";
 import Create from "./components/create/create.jsx";
 import Profile from "./components/profile/profile.jsx";
+import Configuration from "./components/profile/configuration.jsx";
 import Contact from "./components/contact/contact.jsx";
 import About from "./components/about/about.jsx";
 import NftDetail from "./components/NftDetail/NftDetail";
@@ -40,7 +41,7 @@ function App() {
         <Route path="/profile/history" component={ShoppingHistory}></Route>
         <Route path="/profile/reviews" component={Profile}></Route>
         <Route path="/profile/createNFT" component={Create}></Route>
-        <Route path="/profile/configuration" component={Profile}></Route>
+        <Route path="/profile/configuration" component={Configuration}></Route>
         <Route exact path="/contact" component={Contact}></Route>
         <Route exact path="/about" component={About}></Route>
         <Route

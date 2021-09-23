@@ -25,6 +25,7 @@ import  { useEffect } from 'react'
 
 function Payments() {
   const classes = useStyle()
+  const allProductsCart = useSelector(state => state.shoppingCartPayment)
   const dispatch = useDispatch()
   const userLogged= useSelector((state) => state.userLogged);
   useEffect(() => {
@@ -44,7 +45,11 @@ function Payments() {
               <div disabled={!userLogged}>
                 Please log in to make the purchase
               </div>
-        </div>
+    {/* {allProductsCart?.map((nft, i) => {
+            <h1 key={i}> {nft.address} </h1>                
+          }
+          )} */}
+    </div>
   );
 }
 

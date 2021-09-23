@@ -19,7 +19,6 @@ function PaymentMetaMask() {
   const classes = useStyle()
   const allProductsCart = useSelector(state => state.shoppingCartPayment)
   const userLogged= useSelector((state) => state.userLogged);
-  console.log("Productos para metaMask: ", allProductsCart)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -43,7 +42,7 @@ function PaymentMetaMask() {
       }
 
       for(let data of allProductsCart) {
-        let transactionTo = data.tokenId;
+        let transactionTo = data.address;
         let moneyAmount = data.price;
   
         dataMetaMask.push(transactionTo)
@@ -52,14 +51,19 @@ function PaymentMetaMask() {
 
       console.log("array con datos del carrito", dataMetaMask)
 
+      const weiValue = await  web3.utils.toWei(web3.utils.toBN(dataMetaMask[2]));
+      console.log("wei value", weiValue)
+      
     return web3.eth.sendTransaction({
       from: dataMetaMask[0],
       to: dataMetaMask[1],
-      value: dataMetaMask[2],
+      value: weiValue,
     })
   } 
 
   const [metaMaskOption, setMetaMaskOption] = useState(true);
+
+
 
   return (
     <div>
@@ -72,12 +76,14 @@ function PaymentMetaMask() {
 
         </div>
       ) : (
+
             <Button onClick={() => dispatch(pay)}
                     color='primary'
                     variant='contained'>
                 Enviar
             </Button>
       )}
+
   </div>
   );
 }
