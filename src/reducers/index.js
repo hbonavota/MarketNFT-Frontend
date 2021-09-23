@@ -317,11 +317,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingTrolley: action.payload,
       };
-    case DB_SHOPPING_HISTORY:
-      return {
-        ...state,
-        shoppingHistoryDB: action.payload,
-      };
 
     case UPDATE_PROFILE:
       return {
