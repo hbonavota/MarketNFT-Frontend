@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AlertTitle, Alert } from '@mui/material'
 import alert from '../../actions/alert'
 import SliderCategory from '../slider/slidercategory'
+import Footer from '../footer/footer';
 
 export default function Home() {
   const alertGlobal = useSelector((state) => state.alert)
@@ -37,6 +38,7 @@ export default function Home() {
       <Typography variant="h5">Find Different Categories</Typography>
       </div>
       <SliderCategory></SliderCategory>
+      <Footer></Footer>
     </React.Fragment>
   )
 }

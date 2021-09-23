@@ -15,13 +15,21 @@ const Container = styled.div``;
 const Wrapper = styled.div`
 padding: 50px;
 display: flex;
+@media (max-width: 750px) {
+    flex-direction: column
+}
+
 `;
 const ImgContainer = styled.div`
-flex: 0.7;
+flex: 0,7;
+@media (max-width: 700px) {
+    flex: 1;
+}
 `;
 
 const Image = styled.img`
 width: 94%;
+border-radius: 5%;
 height: 90vh;
 object-fit: cover;
 `;

@@ -116,7 +116,7 @@ export default function Cards({ ele }) {
           title={ele.name}
           />
         <CardContent className={classes.cardContent}>
-          <Typography variant="h6" color="primary">{ele.name}</Typography>
+          <Typography variant="body" color="primary">{ele.name}</Typography>
           <Typography>Price: {ele.price}ETH</Typography>
           <IconButton className={classes.IconButton}>
           <AddShoppingCartIcon className={classes.cart} onClick={() => handleClick(ele)} />
