@@ -37,8 +37,8 @@ function MercadoPago() {
 
     return (
             <div>
-                <Button className={classes.button} onClick={() => CheckOutMP(purchaseOrder)}
-                    color='primary' variant='contained'> Mp
+                <Button className={classes.button} disabled={!userLogged} onClick={() => CheckOutMP(purchaseOrder)}
+                    color='primary' variant='contained' > Mp
                 </Button>
             </div>
     )

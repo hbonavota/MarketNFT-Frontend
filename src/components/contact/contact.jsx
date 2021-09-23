@@ -2,6 +2,7 @@
 import { Button, TextField } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import emailjs from 'emailjs-com'
+import "../contact/contact.css"
 
 export default function Contact() {
   function sendEmail(e) {
@@ -24,7 +25,7 @@ export default function Contact() {
     e.target.reset()
   }
   return (
-    <div>
+    // <div className="main">
       <Box
         display='flex'
         flexDirection='column'
@@ -67,6 +68,6 @@ export default function Contact() {
           </Box>
         </form>
       </Box>
-    </div>
+    // </div>
   )
 }

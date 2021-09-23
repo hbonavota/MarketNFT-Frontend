@@ -42,12 +42,13 @@ export default function All() {
 
   useEffect(() => {
     dispatch(getNFTs());
+    setloading(false)
   }, [dispatch]);
  
     const classes = useStyles();
     return(
         <React.Fragment>
-          <Search></Search>
+          <Search props={"allnfts"}></Search>
           <SortBy></SortBy>
           <Grid container spacing={6} justify="center"  className={classes.gridContainer}>
               {

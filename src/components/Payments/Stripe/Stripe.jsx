@@ -72,7 +72,7 @@ const CheckoutForm = () => {
  
   return (
     <div>
-      <Button className={classes.button} type="button" onClick={() => setStripeOption(!StripeOption)} 
+      <Button className={classes.button} type="button" disabled={!userLogged} onClick={() => setStripeOption(!StripeOption)} 
                     color='primary' variant='contained'> {StripeOption ? 'Stripe' : 'Stripe'}
       </Button>
 

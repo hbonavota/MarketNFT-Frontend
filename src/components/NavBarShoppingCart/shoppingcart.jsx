@@ -13,6 +13,19 @@ import removeItem from "../../actions/shoppingCart/removeItem";
 import ShoppingCartPayment from "../../actions/ShoppingCartPayment";
 import { alertDeleted } from "../../actions/sweetAlert/alerts";
 import Cookies from "js-cookie";
+import Payments from '../Payments/PaymentsButton/PaymentsButton'
+import { IconButton, Grid } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import cartDB  from '../../actions/shoppingCart/cartDB.js';
+import { getNFTs } from '../../actions/getNFTs';
+import removeItem from '../../actions/shoppingCart/removeItem'
+import ShoppingCartPayment from '../../actions/ShoppingCartPayment'; 
+import joinTrolley from '../../actions/shoppingCart/joinTrolley'
+import { alertDeleted } from '../../actions/sweetAlert/alerts';
+import Cookies from 'js-cookie'
+
 
 const useStyle = makeStyles({
   div: {
@@ -46,6 +59,7 @@ const useStyle = makeStyles({
 });
 
 export default function NavBarShoppingCart() {
+
   var NftShoppingCart = [];
   const classes = useStyle();
   const dispatch = useDispatch();
@@ -75,6 +89,45 @@ export default function NavBarShoppingCart() {
       allNfts.filter((e) => {
         if (e._id === ids[i]) return cartNfts.push(e);
       });
+
+    var NftShoppingCart = [];
+    const classes = useStyle()
+    const dispatch = useDispatch();
+    const userLogged = Cookies.get('token');
+
+    useEffect(() => {
+        if(!userLogged){
+            dispatch(getLS())
+            dispatch(getNFTs())
+        }else{           
+            dispatch(cartDB({user:userLogged}))
+            dispatch(getNFTs())
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(ShoppingCartPayment(NftShoppingCart))
+    }, [dispatch ,NftShoppingCart]);
+
+    const allNfts= useSelector(state => state.allNFTs)
+    const allProductsCart = useSelector(state => state.shoppingTrolley)
+    let carrito = JSON.parse(window.localStorage.getItem('user'));
+
+    if(userLogged && carrito) {
+        dispatch(joinTrolley({user: userLogged, cart: carrito}))
+        .then(e=> {
+            carrito = window.localStorage.removeItem('user')
+
+        })
+    }
+ 
+    function userCartNfts(allNfts,ids){
+        var cartNfts=[]       
+        for (let i=0; i <=ids.length; i++){
+          allNfts.filter((e)=>{if(e._id === ids[i])return cartNfts.push(e)})
+          
+        }
+        return cartNfts
     }
     return cartNfts;
   }
