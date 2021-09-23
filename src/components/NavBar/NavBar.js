@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './NavBar.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { getNFTs } from "../../actions/getNFTs.js";
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import logout from '../../actions/logout'
@@ -36,6 +37,8 @@ import Collapse from '@material-ui/core/Collapse'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import alert from '../../actions/alert'
+import blueligth from "../images/blueligth.jpg"
+import Search from "../Search/Search.jsx"
 
 function ElevationScroll(props) {
   const { children } = props
@@ -157,6 +160,7 @@ export default function NavBar() {
   }
 
   const handleClose = (e) => {
+    dispatch(getNFTs())
     setanchorEl(null)
     setopen(false)
     setValue(1)
@@ -384,6 +388,8 @@ export default function NavBar() {
           aria-owns={anchorEl ? 'profileMenu' : undefined}
           aria-haspopup={anchorEl ? true : undefined}
           onMouseOver={(e) => handleclickprofile(e)}
+          
+          
         >
           <AccountCircleOutlinedIcon
             fontSize='large'
@@ -476,8 +482,8 @@ export default function NavBar() {
               {categories.length > 0 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -496,8 +502,8 @@ export default function NavBar() {
               {categories.length > 1 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -516,8 +522,8 @@ export default function NavBar() {
               {categories.length > 2 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -536,8 +542,8 @@ export default function NavBar() {
               {categories.length > 3 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -556,8 +562,8 @@ export default function NavBar() {
               {categories.length > 4 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -576,8 +582,8 @@ export default function NavBar() {
               {categories.length > 0 && (
                 <ListItem
                   onClick={() => {
+                    handleClose()
                     setopenDrawer(false)
-                    setValue(1)
                   }}
                   selected={value === 1}
                   divider
@@ -744,12 +750,20 @@ export default function NavBar() {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position='fixed'>
-          <div className='navbar'>
-            <Typography className='title' color='white' variant='h5'>
+        <AppBar position='fixed' onClick={handleCloseProfile}>
+            <div className="navbar">
+            
+              <div width="200px" height="4.5rem" className="imagecontainer" component={Link} to="/">
+                <Link to={`/`} style={{ textDecoration: "none" }}>
+              <img className="image" width="200px" height="75px" src={blueligth} alt="" />
+            <Typography className="title" color='white' variant='h5'>
               NFT MARKET
-            </Typography>
-            <div className='toolbar'>{matches ? drawer : tabs}</div>
+            </Typography></Link>
+              </div>
+           
+            <div className="toolbar">
+            {matches ? drawer : tabs}
+          </div>
           </div>
         </AppBar>
       </ElevationScroll>

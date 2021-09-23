@@ -12,11 +12,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "230px",
     position: 'absolute',
     right: "25px",
+    top: "5rem",
     marginRight: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
+    width: 'auto',
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down(600)]: {
+     minWidth: "160px",
+     right: "5px",
     },
   },
   searchIcon: {
@@ -40,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Search() {
+export default function Search({props}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const allCategoriesNFTs = useSelector((state) => state.Nfts);
@@ -52,6 +55,17 @@ export default function Search() {
       return 1;
     return -1;
   });
+
+  const allNFTs = useSelector((state) => state.allNFTs);
+  const allNFTssorted = allNFTs.sort((a, b) => {
+    if (
+      a.name?.charAt(0).toLowerCase() >
+      b.name?.charAt(0).toLowerCase()
+    )
+      return 1;
+    return -1;
+  });
+
   const [inputName, setInputName] = useState("")
 
   function handleSubmit(e) {
@@ -67,7 +81,7 @@ export default function Search() {
         <SearchIcon fontSize="small" />
       </div>
       <div className={classes.inputInput} >
-        <Autocomplete
+        {props === "allnfts"? <Autocomplete
           value={inputName}
           onChange={(e, newValue) => {
             setInputName(newValue);
@@ -83,7 +97,25 @@ export default function Search() {
           renderInput={(params) => (
             <TextField className={classes.inputRoot}{...params} label="Search..." margin="dense" variant="outlined" />
           )}
-        />
+        />:
+        <Autocomplete
+          value={inputName}
+          onChange={(e, newValue) => {
+            setInputName(newValue);
+          }}
+          onKeyPress={(e, newValue) => {
+            handleSubmit(e);
+            setInputName(newValue);
+          }}
+          id="free-solo-demo"
+          freeSolo
+          selectOnFocus={true}
+          options={allNFTssorted?.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField className={classes.inputRoot}{...params} label="Search..." margin="dense" variant="outlined" />
+          )}
+        />}
+        
       </div>
     </div>
   )
