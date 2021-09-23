@@ -22,17 +22,10 @@ import {
   SHOPPING_CART_PAYMENT,
   POST_PROFILE_USER,
   GET_PROFILE_USER,
-  GET_USERS,
-
-  DB_SHOPPING_HISTORY,
-} from "../actions/constants";
-
-import { alertOk, alertError } from "../actions/sweetAlert/alerts";
-import Cookies from "js-cookie";
-
+  GET_USERS,  
   UPDATE_PROFILE,
   DB_SHOPPING_HISTORY
-} from '../actions/constants'
+} from "../actions/constants";
 
 import { alertOk, alertError } from '../actions/sweetAlert/alerts'
 import Cookies from 'js-cookie'
@@ -53,15 +46,12 @@ const initialState = {
   shoppingCartPayment: [],
   profileUserData: [],
   allUsers: [],
-
   role: "",
   shoppingHistoryDB: [],
   favorites: [],
-
   role: '',
   shoppingHistoryDB:[],
   alert: false,
-
 };
 
 
@@ -178,9 +168,6 @@ function rootReducer(state = initialState, action) {
     case "USER_SESSION":
       // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
       let token = Cookies.get("token");
-
-      }
-
       if (token) {
         return {
           ...state,
@@ -191,12 +178,10 @@ function rootReducer(state = initialState, action) {
           role: Cookies.get("role"),
         };
 
-          role: Cookies.get('role'),
-        }
-
-      } else {
+      }else {
         return state;
       }
+
     case LOGOUT:
       // window.sessionStorage.removeItem('userLogged')
       // window.sessionStorage.removeItem('role')
@@ -210,7 +195,6 @@ function rootReducer(state = initialState, action) {
 
       };
 
-      }
     case SIGNUP_SUCCESS:
       return {
         ...state,
@@ -218,11 +202,7 @@ function rootReducer(state = initialState, action) {
           email: action.payload.email,
           firstName: action.payload.firstName,
         },
-
       };
-
-      }
-
     case SIGNUP_ERROR:
       return {
         ...state,
@@ -263,11 +243,7 @@ function rootReducer(state = initialState, action) {
       if (parsLocal) {
 
         let productAction = action.payload;
-        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null;
-
-        let productAction = action.payload
-        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null
-
+        let isrepeat = parsLocal? parsLocal.includes(productAction) : null;
         if (isrepeat) {
           alertError();
           return {
@@ -351,17 +327,12 @@ function rootReducer(state = initialState, action) {
         shoppingHistoryDB: action.payload,
       };
 
-      }
     case UPDATE_PROFILE:
       return {
         ...state, 
         profileUserData: action.payload,
       }
 
-      case "CLICK_USER_LOGGED":
-        action.payload.forEach(e => {
-          state.shoppingTrolley.includes(e)? alertError() : alertOk()
-        })
     case 'DB_SHOPPING_CART':
       return {
         ...state,
