@@ -1,0 +1,17 @@
+.send {
+    width: 65px;
+    height: 35px;
+    border-radius: 10%;
+    color: white;
+    opacity: 80%;
+    background-color: #368B85;
+}
+
+.input {
+    height: 35px;
+    width: 300px;
+}
+.passcontainer {
+    margin-top: 200px;
+    margin-left: 25px;
+}
