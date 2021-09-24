@@ -27,7 +27,7 @@ function PaymentMetaMask() {
         dispatch(getLS())
     }else{
         
-        dispatch (cartDB(userLogged))
+        dispatch (cartDB({user:userLogged}))
     }
   }, [dispatch])
 

@@ -221,49 +221,42 @@ function rootReducer(state = initialState, action) {
         ...state,
         favorites: action.payload,
       };
-    case ADD_SHOPPING_TROLLEY:
-      const myStorage = window.localStorage;
-      let getmyStorage = myStorage.getItem("user");
-      let parsLocal = JSON.parse(getmyStorage);
-      alertOk();
-      if (!parsLocal) {
-        myStorage.setItem(
-          "user",
-          JSON.stringify(state.shoppingTrolley.concat(action.payload))
-        );
-        return {
-          ...state,
-          shoppingTrolley: state.shoppingTrolley.concat(
-            JSON.parse(myStorage.getItem("user"))
-          ),
-        };
-      }
-      if (parsLocal) {
-        let productAction = action.payload;
-        let isrepeat = parsLocal ? parsLocal.includes(productAction) : null;
-        if (isrepeat) {
-          alertError();
-          return {
-            ...state,
-          };
-        } else {
-          let local = JSON.parse(
-            myStorage.setItem(
-              "user",
-              JSON.stringify(
-                JSON.parse(window.localStorage.getItem("user")).concat(
-                  action.payload
-                )
-              )
-            )
-          );
-          return {
-            ...state,
-            shoppingTrolley: local,
-          };
+      case ADD_SHOPPING_TROLLEY:
+        const myStorage = window.localStorage;
+        let getmyStorage = myStorage.getItem("user");
+        let parsLocal = JSON.parse(getmyStorage);
+        alertOk();
+  /*       console.log("entre a add, parsLocal", parsLocal) */
+        if (!parsLocal) {
+          myStorage.setItem(
+            "user",
+            JSON.stringify(state.shoppingTrolley.concat(action.payload))
+            );
+            let infoLocalS = state.shoppingTrolley.concat(JSON.parse(myStorage.getItem("user")))
+            console.log("infoLocalS",infoLocalS)
+            return {
+              ...state,
+              shoppingTrolley: infoLocalS,
+            };
+          }
+          if (parsLocal) {
+          let productAction = action.payload;
+          let isrepeat = parsLocal ? parsLocal.includes(productAction) : null;
+          if (isrepeat) {
+            alertError();
+            return {
+              ...state,
+            };
+          } else {
+            let cart = state.shoppingTrolley.concat(action.payload);
+            myStorage.setItem("user",JSON.stringify(JSON.parse(window.localStorage.getItem("user")).concat(action.payload)));
+                    return {
+              ...state,
+              shoppingTrolley: cart,
+            };
+          }
         }
-      }
-      break;
+        break;
     case CONECT_LS:
       if (!window.localStorage.getItem("user")) {
         return {
@@ -309,15 +302,6 @@ function rootReducer(state = initialState, action) {
         allUsers: action.payload,
       };
 
-    case "CLICK_USER_LOGGED":
-      action.payload.forEach((e) => {
-        state.shoppingTrolley.includes(e) ? alertError() : alertOk();
-      });
-      return {
-        ...state,
-        shoppingTrolley: action.payload,
-      };
-
     case UPDATE_PROFILE:
       return {
         ...state,
@@ -354,6 +338,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingHistoryDB: action.payload,
       };
+      case 'SUCCESS_PURCHASE':
+        return{
+          ...state,
+          shoppingTrolley:[],
+          shoppingHistoryDB:action.payload
+        }
+      case "UPDATE_NFTS":
+        return{
+          ...state,
+          allNFTs:action.payload
+        }
 
     default:
       return state;
