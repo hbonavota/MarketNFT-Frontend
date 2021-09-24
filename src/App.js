@@ -68,7 +68,7 @@ function App() {
         ></PrivateRoute>
         <PrivateRoute
           exact
-          path="/admin/categories"
+          path="/admin/category"
           component={AdminCategories}
         ></PrivateRoute>
 

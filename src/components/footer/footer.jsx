@@ -4,6 +4,8 @@ import blueligth from "../images/blueligth.jpg"
 // import Contact from "../contact/contact"
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Hidden } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
     footer: {
         display: "flex",
@@ -27,6 +29,14 @@ const useStyles = makeStyles(theme => ({
         fontWeight: "bold",
         textDecoration: "none"
     },
+    link2: {
+        color: "white",
+        fontFamily: "Arial",
+        fontSize: "1rem",
+        marginTop: "5rem",
+        fontWeight: "bold",
+        textDecoration: "none"
+    },
     item: {
         margin: "3em"
     }
@@ -34,10 +44,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Footer() {
     const classes = useStyles();
+    const userLogged = useSelector((state) => state.userLogged)
 
     return (
         <footer className={classes.footer} >
+          
             <Grid container justifyContent="center" className={classes.mainContainer}>
+            <Hidden smDown>
             <Grid item className={classes.item}>
                 <Grid container direction="column" spacing={2}>
                 <Grid item className={classes.link} component={Link} to="/">Home</Grid>
@@ -63,14 +76,20 @@ export default function Footer() {
             </Grid>
             <Grid item className={classes.item}>
                 <Grid container direction="column" spacing={2}>
-                <Grid item className={classes.link} component={Link} to="/profile/configuration">My Account</Grid>
-                <Grid item className={classes.link} component={Link} to="/profile">Profile</Grid>
-                <Grid item className={classes.link} component={Link} to="profile/createNFT">Create NFT</Grid>
-                <Grid item className={classes.link}component={Link} to="/favorites">Favorites</Grid>
+                <Grid item className={classes.link} component={Link} to={userLogged?"/profile/configuration":"/login"}>My Account</Grid>
+                <Grid item className={classes.link} component={Link} to={userLogged?"/profile":"/login"}>Profile</Grid>
+                <Grid item className={classes.link} component={Link} to={userLogged?"profile/createNFT":"/login"}>Create NFT</Grid>
+                <Grid item className={classes.link}component={Link} to={userLogged?"/favorites":"/login"}>Favorites</Grid>
                 </Grid>
             </Grid>
-
+            </Hidden>
+            <Hidden mdUp>
+            <Grid item className={classes.link2}>All rights reserved by © NFT MARKET</Grid>
+            </Hidden>
             </Grid>
+           
+           
+            
             <img className={classes.image} width="300em" height="200px" src={blueligth} alt="" />
         </footer>
 

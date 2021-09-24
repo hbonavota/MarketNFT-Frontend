@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
@@ -28,7 +29,7 @@ import Ethereum_logo from "../images/Ethereum_logo.png"
 const useStyles = makeStyles({
   card: {
     margin: "10px",
-    minHeight: "30rem",
+    minHeight: "31.5rem",
     Width: "310px",
     maxWidth: "310px",
     "&:hover": {
@@ -57,10 +58,17 @@ const useStyles = makeStyles({
     top: "0px",
     right: "5px",
     opacity: 0.7,
-    color: "error",
     "&:hover": {
       color: "#FF0000",
     },
+  },
+  favoritered: {
+    padding: 0,
+    position: "absolute",
+    top: "0px",
+    right: "5px",
+    opacity: 0.7,
+    color: "#FF0000",
   },
   cart: {
     "&:hover": {
@@ -82,7 +90,7 @@ export default function Cards({ ele }) {
   const classes = useStyles();
   const userLogged = useSelector((state) => state.userLogged);
   const favorites = useSelector((state)=> state.favorites);
-  console.log(favorites)
+  const isfavorite = favorites.includes(ele._id);
   const dispatch = useDispatch();
 
   const handleFav = (ele) => {
@@ -123,20 +131,34 @@ const onMouseOut = () => {
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       component={Paper} elevation={elevation} className={classes.card}>
-        {}
+        {isfavorite?
         <CardHeader
-          className={classes.head}
-          action={
-            <IconButton disableRipple="true" className={classes.IconButton}>
-              {userLogged ? (
-                <FavoriteBorderIcon
-                  onClick={() => handleFav(ele)}
-                  className={classes.favorite}
-                />
-              ) : null}
-            </IconButton>
-          }
-        />
+        className={classes.head}
+        action={
+          <IconButton disableRipple="true" className={classes.IconButton}>
+            {userLogged ? (
+              <FavoriteIcon
+                onClick={() => handleFav(ele)}
+                className={classes.favoritered}
+              />
+            ) : null}
+          </IconButton>
+        }
+      />
+        :<CardHeader
+        className={classes.head}
+        action={
+          <IconButton disableRipple="true" className={classes.IconButton}>
+            {userLogged ? (
+              <FavoriteBorderIcon
+                onClick={() => handleFav(ele)}
+                className={classes.favorite}
+              />
+            ) : null}
+          </IconButton>
+        }
+      />}
+        
         <CardMedia
           component={Link}
           to={`nft/${ele._id}`}
