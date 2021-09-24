@@ -44,7 +44,7 @@ function Payments() {
           <MetaMask />
         </>
       ) : (
-        <Button small variant='contained' color='primary' href='/login'>
+        <Button small variant='outlined' color='primary' href='/login'>
           Please log in to make the purchase
         </Button>
       )}
