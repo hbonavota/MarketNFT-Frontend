@@ -13,6 +13,7 @@ import { Elements, CardElement, useStripe, useElements } from "@stripe/react-str
 
 const useStyle = makeStyles({
   button: {
+    minWidth: "300px",
     margin: '5px',
   }
 })
@@ -96,8 +97,10 @@ const CheckoutForm = () => {
 };
 
   return (
-    <Elements stripe={stripePromise}>
-            <CheckoutForm />
+    <Elements  stripe={stripePromise}>
+      <div >
+            <CheckoutForm/>
+            </div>
     </Elements>
   );
 }
