@@ -36,12 +36,12 @@ function Payments() {
   }, [dispatch])
 
   return (
-        <div className={classes.pay}>
-            <Stripe />
-            <MercadoPago />
-            <MetaMask />
-        </div>
-  );
+    <div className={classes.pay}>
+      {/* <Stripe /> */}
+      <MercadoPago />
+      <MetaMask />
+    </div>
+  )
 }
 
 export default Payments

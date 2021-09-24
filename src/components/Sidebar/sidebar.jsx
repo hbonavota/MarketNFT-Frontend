@@ -101,14 +101,11 @@ export default function Profile() {
               <Link className={classes.link} to='/profile/history'>
                   <Button className={classes.button} size="small" color="primary" variant="contained">Shopping History</Button>
               </Link>
-              <Link className={classes.link} to='/profile/reviews'>
-                  <Button className={classes.button} size="small" color="primary" variant="contained">Reviews</Button>
-              </Link>
               <Link className={classes.link} to='/profile/createNFT'>
                   <Button className={classes.button} size="small" color="primary" variant="contained">Publish a new NFT</Button >
               </Link>
               <Link className={classes.link} to='/profile/configuration'>
-                  <Button className={classes.button} size="small" color="primary" variant="contained">Configuration</Button>
+                  <Button className={classes.button} size="small" color="primary" variant="contained">Settings</Button>
               </Link>
           
             <div>
