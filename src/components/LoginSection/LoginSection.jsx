@@ -27,7 +27,7 @@ export default function LoginSection() {
     dispatch(action(state))
 
     if (!userLogged) {
-      dispatch(alert(true))
+      setTimeout(dispatch(alert(true)), 2000)
     } else {
       dispatch(alert(false))
       history.push('/')
