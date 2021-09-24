@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import getNftDetail from "../../actions/getNftDetail";
-import { useSelector, useDispatch } from "react-redux";
-import getClean from "../../actions/getClean";
-import styled from "styled-components";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
-import addFavorite from "../../actions/favorite/addFavorite";
-import { conectLS } from "../../actions/conectLS";
-
+import { useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import getNftDetail from '../../actions/getNftDetail'
+import { useSelector, useDispatch } from 'react-redux'
+import getClean from '../../actions/getClean'
+import styled from 'styled-components'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import IconButton from '@material-ui/core/IconButton'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import { addShoppingTrolley } from '../../actions/addShoppingTrolley'
+import addFavorite from '../../actions/favorite/addFavorite'
+import { conectLS } from '../../actions/conectLS'
 
 import Review from '../Reviews/Reviews'
+import { Typography } from '@material-ui/core'
 const Container = styled.div``
 
 const Wrapper = styled.div`
@@ -76,22 +76,22 @@ const useStyles = makeStyles({
       color: '#FF0000',
     },
   },
-  
+
   favoritered: {
     opacity: 0.7,
-    color: "#FF0000",
+    color: '#FF0000',
   },
-});
+})
 export default function NftDetail() {
-  const nftDetail = useSelector((state) => state.nftDetail);
-  const favorites = useSelector((state)=> state.favorites);
-  const isfavorite = nftDetail?favorites.includes(nftDetail._id): false;
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const userLogged = useSelector((state) => state.userLogged);
-  const classes = useStyles();
+  const nftDetail = useSelector((state) => state.nftDetail)
+  const favorites = useSelector((state) => state.favorites)
+  const isfavorite = nftDetail ? favorites.includes(nftDetail._id) : false
+  const { id } = useParams()
+  const dispatch = useDispatch()
+  const userLogged = useSelector((state) => state.userLogged)
+  const classes = useStyles()
   useEffect(() => {
-    dispatch(getNftDetail(id));
+    dispatch(getNftDetail(id))
 
     return () => {
       dispatch(getClean())
@@ -105,8 +105,7 @@ export default function NftDetail() {
   const handleClick = (ele) => {
     dispatch(addShoppingTrolley(ele._id))
     dispatch(conectLS())
-  };
- 
+  }
 
   return (
     <Container>
@@ -117,25 +116,26 @@ export default function NftDetail() {
           </ImgContainer>
           <InfoContainer>
             <TitleContainer>
-              <Title>{nftDetail.name}</Title>
-              {isfavorite? 
-              <IconButton>
-                {userLogged ? (
-                  <FavoriteIcon
-                    onClick={() => handleFav(nftDetail)}
-                    className={classes.favoritered}
-                  />
-                ) : null}
-              </IconButton>
-              :
-             <IconButton>
-                {userLogged ? (
-                  <FavoriteBorderIcon
-                    onClick={() => handleFav(nftDetail)}
-                    className={classes.favorite}
-                  />
-                ) : null}
-              </IconButton>}
+              <Typography variant='h3'>{nftDetail.name}</Typography>
+              {isfavorite ? (
+                <IconButton>
+                  {userLogged ? (
+                    <FavoriteIcon
+                      onClick={() => handleFav(nftDetail)}
+                      className={classes.favoritered}
+                    />
+                  ) : null}
+                </IconButton>
+              ) : (
+                <IconButton>
+                  {userLogged ? (
+                    <FavoriteBorderIcon
+                      onClick={() => handleFav(nftDetail)}
+                      className={classes.favorite}
+                    />
+                  ) : null}
+                </IconButton>
+              )}
             </TitleContainer>
             <Owner>Owned by: {nftDetail.owner}</Owner>
             <Description>{nftDetail.description}</Description>
