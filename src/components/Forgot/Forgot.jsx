@@ -20,7 +20,7 @@ import "./forgot.css"
         <div>
         <form action="submit" onSubmit={handleForgot}>
             <label htmlFor="pass">Reset Password</label>
-            <input type="text" name='elinput' className="input"/>
+            <input placeholder="Insert your e-mail" type="text" name='elinput' className="input"/>
             <button className="send">SEND</button>
         </form>
         </div>

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Sidebar from '../Sidebar/sidebar.jsx'
 import PutProfileUser from "../../actions/putProfileUser"
+import getProfileUser from "../../actions/getProfileUser"
 
 const useStyle = makeStyles({
   contentSection: {
@@ -47,6 +48,7 @@ const useStyle = makeStyles({
      console.log("soy el input", e.target.value)
    }
    
+   
    async function handleSubmit(e) {
      console.log(profile, token)
      e.preventDefault()
@@ -56,7 +58,8 @@ const useStyle = makeStyles({
        artist: '',
        description: '',
        profilePic: '',
-     })
+      })
+     dispatch(getProfileUser(token))
    }
    
   return (
