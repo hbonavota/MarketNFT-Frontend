@@ -37,7 +37,7 @@ function Payments() {
 
   return (
     <div className={classes.pay}>
-      {/* <Stripe /> */}
+      <Stripe />
       <MercadoPago />
       <MetaMask />
     </div>
