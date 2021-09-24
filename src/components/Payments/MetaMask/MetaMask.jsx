@@ -43,11 +43,12 @@ function PaymentMetaMask() {
       }
 
       for(let data of allProductsCart) {
-        let transactionTo = data.tokenId;
+        let transactionTo = data.ownerAddress;
         let moneyAmount = data.price;
-  
+        moneyAmount = moneyAmount * 1e18
         dataMetaMask.push(transactionTo)
         dataMetaMask.push(moneyAmount)
+        console.log('TRANSACTION TO', transactionTo)
       }
 
       console.log("array con datos del carrito", dataMetaMask)
