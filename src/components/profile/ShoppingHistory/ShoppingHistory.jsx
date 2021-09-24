@@ -92,19 +92,19 @@ function ShoppingHistory() {
                             <Grid className={classes.data} marginLeft="20px" item xs={12} sm={12} md={12} lg={12} xl={12}>
 
                                 <Grid item xs={0} sm={0} md={3} lg={3} xl={3} className="content">
-                                    <Typography color="white" variant='h6'>Nombre</Typography>
+                                    <Typography color="white" variant='h6'>Name</Typography>
                                 </Grid>
 
                                 <Grid item xs={0} sm={0} md={3} lg={3} xl={3} className="content">
-                                    <Typography color="white" variant='h6'>Dueño</Typography>
+                                    <Typography color="white" variant='h6'>Owner</Typography>
                                 </Grid>
 
                                 <Grid item xs={4} sm={0} md={4} lg={3} xl={3} className="content">
-                                    <Typography color="white" variant='h6'>Producto</Typography>
+                                    <Typography color="white" variant='h6'>Products</Typography>
                                 </Grid>
 
                                 <Grid item xs={4} sm={0} md={1} lg={3} xl={3} className="content">
-                                    <Typography color="white" variant='h6'>Precio</Typography>
+                                    <Typography color="white" variant='h6'>Price</Typography>
                                 </Grid>
 
                             </Grid>
