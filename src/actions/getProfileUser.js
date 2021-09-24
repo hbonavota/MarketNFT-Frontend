@@ -6,7 +6,7 @@ export default function getProfileUser(token) {
     return async function(dispatch) {
          try {
 
-           const response = await axios.get(`/profile`)
+           const response = await axios.get(`/profile/${token}`)
 
            console.log("Action GET_PROFILE_USER: ",response.data)
 

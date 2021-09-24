@@ -26,6 +26,7 @@ import AdminCategories from "./components/Admin/AdminCategories";
 import ShoppingHistory from "./components/profile/ShoppingHistory/ShoppingHistory.jsx";
 import Forgot from "./components/Forgot/Forgot";
 import ResetPass from "./components/ResetPass/ResetPass";
+import Configuration from './components/configuration/configuration'
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
         <Route path="/profile/history" component={ShoppingHistory}></Route>
         <Route path="/profile/reviews" component={Profile}></Route>
         <Route path="/profile/createNFT" component={Create}></Route>
-        <Route path="/profile/configuration" component={Profile}></Route>
+        <Route path="/profile/configuration" component={Configuration}></Route>
         <Route exact path="/contact" component={Contact}></Route>
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/favorites" component={Favorites}></Route>
