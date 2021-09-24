@@ -60,15 +60,14 @@ const useStyle = makeStyles({
 
 
 export default function Profile() {
+  const token = useSelector((state) => state.userLogged)
   const classes = useStyle()
     const Web3 = require('web3');
     const web3 = new Web3(window.ethereum);
-    const { id } = useParams();
-    console.log("id desde useParams en profile", id)
     const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(getProfileUser())
+    dispatch(getProfileUser(token))
     return () => {
       dispatch(getClean())
     }
@@ -76,7 +75,7 @@ export default function Profile() {
   
   
   const getProfile = useSelector((state) => state.profileUserData)
-  console.log("Información del perfil desded el Reducer:", getProfile[0])
+  console.log("Información del perfil desded el Reducer:", getProfile)
 
 
   const connect = async function () {
@@ -94,10 +93,10 @@ export default function Profile() {
   return (
       <Grid container>
           <Grid className={classes.infoProfile}>
-              <h1>{getProfile[0]?.name}</h1>
+              <h1>{getProfile.artist}</h1>
               
-              <img className={classes.img} src={getProfile[0]? getProfile[0].image : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1024px-Imagen_no_disponible.svg.png"} alt="Not Found" />
-              <Typography className={classes.description} variant='subtitle1'>{getProfile[0]?.description}</Typography>
+              <img className={classes.img} src={getProfile? getProfile.profilePic : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1024px-Imagen_no_disponible.svg.png"} alt="Not Found" />
+              <Typography className={classes.description} variant='subtitle1'>{getProfile?.description}</Typography>
               <hr />
               <Link className={classes.link} to='/profile/history'>
                   <Button className={classes.button} size="small" color="primary" variant="contained">Shopping History</Button>

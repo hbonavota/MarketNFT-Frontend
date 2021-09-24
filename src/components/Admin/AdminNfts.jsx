@@ -3,9 +3,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getNFTs } from '../../actions/getNFTs'
 import { deleteNFT } from '../../actions/admin/deleteNFT'
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
+import Footer from '../footer/footer'
+import Search from '../Search/Search'
+import { Card } from '@mui/material'
+import { makeStyles } from "@material-ui/core";
+import { minHeight } from '@mui/system'
+
+const useStyles = makeStyles(theme => ({
+ card: {
+   margin: "15px",
+   minHeight: "100px",
+  
+ },
+ Button: {
+   marginTop: "3rem",
+   marginLeft: "3rem"
+ }
+  
+
+}))
 
 export default function Admi0Nfts() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const nfts = useSelector(state => state.allNFTs)
 
@@ -38,15 +58,16 @@ export default function Admi0Nfts() {
 
   return (<div>
     <Link to='/admin'>
-      <Button variant='contained' size='large'>Back</Button>
+      <Button className={classes.Button} color="primary" variant='contained' size='large'>Back</Button>
     </Link>
-    <h2>NFTs</h2>
+    <Search/>
     <form name="deleteNFT" onSubmit={(e) => handleDeleteNFT(e)}>
-      <h3>Delete NFT</h3>
-      <label htmlFor="">NFTs</label>
+      <h2>Chose the NFTs and press Delete</h2>
+      {/* <label htmlFor="">NFTs</label> */}
       <div>
+      <Grid container spacing={6} justify="center" >
         {nfts.map((n) => (
-          <div key={n._id}>
+          <Card key={n._id} className={classes.card}>
             <input
               type="checkbox"
               name="deleteNFT"
@@ -54,14 +75,15 @@ export default function Admi0Nfts() {
               onChange={(e) => onInputChange(e)}
             ></input>
             <div>
-              <label name={n.name}> {n.name} </label>
+              <label name={n.name}> {n.name.slice(0,10)} </label>
               <img src={n.image} alt="NFT image" width="60" height="60" />
             </div>
-          </div>
-        ))}
+          </Card>
+        ))}</Grid>
       </div>
-      <Button variant='contained' size='large' type="submit">Delete!</Button>
+      <Button className={classes.Button} variant='contained' color="primary" size='large' type="submit">Delete!</Button>
     </form>
+    <Footer></Footer>
   </div>
   )
 }

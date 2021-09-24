@@ -3,6 +3,7 @@ import { Button, TextField } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import emailjs from 'emailjs-com'
 import "../contact/contact.css"
+import Footer from '../footer/footer'
 
 export default function Contact() {
   function sendEmail(e) {
@@ -25,12 +26,13 @@ export default function Contact() {
     e.target.reset()
   }
   return (
-    // <div className="main">
+    <div>
       <Box
         display='flex'
         flexDirection='column'
         justifyContent='center'
         alignItems='center'
+        className="main"
       >
         <h3>Contact us!</h3>
         <form onSubmit={sendEmail}>
@@ -68,6 +70,7 @@ export default function Contact() {
           </Box>
         </form>
       </Box>
-    // </div>
+      <Footer className="main"></Footer>
+    </div>
   )
 }
