@@ -28,10 +28,8 @@ export default function Reviews() {
         <div>
           <p>Leave a review</p>
           <form
-            onSubmit={(e) => {
-              e.preventDefault()
+            onSubmit={() => {
               dispatch(postReview({ ...input, id: nftdetalle._id }))
-
               setInput({ review: '' })
             }}
           >
