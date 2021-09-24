@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useParams } from 'react-router'
+import "./ResetPass.css"
 
 
 function ResetPass() {
@@ -11,17 +12,17 @@ function ResetPass() {
         // console.log(e.target[0].value)
         try {
             await axios.post('http://localhost:8001/reset/'+token, {password : e.target[0].value})
-            alert('todo listo intenta no olvidarte de nuevo boludit@')
+            alert('Your Password Was Modified Successfully')
         } catch (error) {
-            alert('qsy anda todo mal')
+            alert('something go wrong')
         }
     }
     return (
-        <div>
+        <div className="passcontainer">
         <form action="submit" onSubmit={handleForgot}>
-            <label htmlFor="pass">nueva pass del boludo</label>
-            <input type="text" name='elinput'/>
-            <button>SEND</button>
+            <label htmlFor="pass">Insert Your New Password</label>
+            <input type="text" name='elinput' className="input"/>
+            <button className="send">SEND</button>
         </form>
         </div>
     )
