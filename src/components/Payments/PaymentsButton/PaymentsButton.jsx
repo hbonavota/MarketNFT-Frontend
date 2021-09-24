@@ -1,15 +1,15 @@
-import React,{ useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import MercadoPago from '../MercadoPago/MercadoPago';
-import MetaMask from '../MetaMask/MetaMask';
-import Stripe from '../Stripe/Stripe';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import MercadoPago from '../MercadoPago/MercadoPago'
+import MetaMask from '../MetaMask/MetaMask'
+import Stripe from '../Stripe/Stripe'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
-import {getLS} from '../../../actions/getLS'
+import { getLS } from '../../../actions/getLS'
 import cartDB from '../../../actions/shoppingCart/cartDB.js'
-import  { useEffect } from 'react'
+import { useEffect } from 'react'
+import { Button } from '@material-ui/core'
 
-  const useStyle = makeStyles({
+const useStyle = makeStyles({
   pay: {
     display: 'flex',
     flexDirection: 'row',
@@ -20,19 +20,18 @@ import  { useEffect } from 'react'
   button: {
     margin: '10px',
     width: '50px',
-  }
- })
+  },
+})
 
 function Payments() {
   const classes = useStyle()
   const dispatch = useDispatch()
-  const userLogged= useSelector((state) => state.userLogged);
+  const userLogged = useSelector((state) => state.userLogged)
   useEffect(() => {
-    if(!userLogged){
-        dispatch(getLS())
-    }else{
-        
-        dispatch (cartDB(userLogged))
+    if (!userLogged) {
+      dispatch(getLS())
+    } else {
+      dispatch(cartDB(userLogged))
     }
   }, [dispatch])
 
@@ -45,4 +44,4 @@ function Payments() {
   );
 }
 
-export default Payments;
+export default Payments
