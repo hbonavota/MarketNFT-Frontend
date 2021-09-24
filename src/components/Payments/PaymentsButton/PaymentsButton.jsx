@@ -36,20 +36,12 @@ function Payments() {
   }, [dispatch])
 
   return (
-    <div className={classes.pay}>
-      {userLogged ? (
-        <>
-          <Stripe />
-          <MercadoPago />
-          <MetaMask />
-        </>
-      ) : (
-        <Button small variant='outlined' color='primary' href='/login'>
-          Please log in to make the purchase
-        </Button>
-      )}
-    </div>
-  )
+        <div className={classes.pay}>
+            <Stripe />
+            <MercadoPago />
+            <MetaMask />
+        </div>
+  );
 }
 
 export default Payments
