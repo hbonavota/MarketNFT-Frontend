@@ -20,7 +20,7 @@ import {
   POST_ORDER_SHOPPING_CART,
   GET_ORDER_SHOPPING_CART,
   SHOPPING_CART_PAYMENT,
-  POST_PROFILE_USER,
+  PUT_PROFILE_USER,
   GET_PROFILE_USER,
   GET_USERS,
   UPDATE_PROFILE,
@@ -291,7 +291,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingCartPayment: action.payload,
       };
-    case POST_PROFILE_USER:
+    case PUT_PROFILE_USER:
       return {
         ...state,
         profileUser: action.payload,
@@ -317,6 +317,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         shoppingTrolley: action.payload,
       };
+
     case UPDATE_PROFILE:
       return {
         ...state,

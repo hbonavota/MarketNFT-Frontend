@@ -41,9 +41,6 @@ function Payments() {
             <Stripe />
             <MercadoPago />
             <MetaMask />
-              <div disabled={!userLogged}>
-                Please log in to make the purchase
-              </div>
         </div>
   );
 }
