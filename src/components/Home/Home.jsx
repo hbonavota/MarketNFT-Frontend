@@ -9,10 +9,24 @@ import { AlertTitle, Alert } from '@mui/material'
 import alert from '../../actions/alert'
 import SliderCategory from '../slider/slidercategory'
 import Footer from '../footer/footer';
+import nftSold from '../../actions/shoppingHistory/nftSold';
+import purchase from '../../actions/shoppingHistory/purchase';
+
 
 export default function Home() {
   const alertGlobal = useSelector((state) => state.alert)
   const dispatch = useDispatch()
+  const userLogged= useSelector((state) => state.userLogged);
+  const cart = useSelector((state) => state.shoppingTrolley);
+
+  if (cart.length > 0 && window.location.href.includes('collection_status=approved')){
+    dispatch(purchase({user:userLogged,cart:cart}))
+    dispatch(nftSold(cart))
+    .then((e)=>{
+    window.location.href="http://localhost:3000/"
+    }) 
+  }
+
 
   return (
     <React.Fragment>

@@ -93,7 +93,7 @@ export default function Profile() {
   return (
       <Grid container>
           <Grid className={classes.infoProfile}>
-              <h1>{getProfile.artist}</h1>
+              <h1>{getProfile?.artist}</h1>
               
               <img className={classes.img} src={getProfile? getProfile.profilePic : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1024px-Imagen_no_disponible.svg.png"} alt="Not Found" />
               <Typography className={classes.description} variant='subtitle1'>{getProfile?.description}</Typography>

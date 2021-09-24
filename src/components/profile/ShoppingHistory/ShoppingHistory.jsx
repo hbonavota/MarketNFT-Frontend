@@ -68,11 +68,7 @@ function ShoppingHistory() {
 
     const shoppingHistoryDB = useSelector(state => state.shoppingHistoryDB)
     const allNfts = useSelector(state => state.allNFTs)
-    const nftsPurchase = identifyById(allNfts,shoppingHistoryDB)
-
-
-
-
+    // const nftsPurchase = identifyById(allNfts,shoppingHistoryDB)
     return (
         <div>
             <Grid container>
@@ -114,7 +110,7 @@ function ShoppingHistory() {
                             </Grid>
 
                     {
-                        nftsPurchase?.map(e => (
+                        shoppingHistoryDB?.map(e => (
 
                             <Grid className={classes.data} item xs={12} sm={12} md={12} lg={12} xl={12}>
 

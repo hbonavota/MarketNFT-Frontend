@@ -107,8 +107,6 @@ const onMouseOut = () => {
   const handleClick = (ele) => {
     if (!userLogged) {
       dispatch(addShoppingTrolley(ele._id));
-      dispatch(conectLS());
-
     } else {
       dispatch(addToDB({ id: ele._id, user: userLogged }));
     }
