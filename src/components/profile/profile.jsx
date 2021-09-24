@@ -37,7 +37,6 @@ export default function Profile() {
           </Grid>
           <Grid className={classes.contentSection} item xs={12} sm={12} md={9} lg={9} xl={9}>
             <Typography  variant='h4'>¡ Welcome {nameOfUser.firstName} !</Typography>
-            <p>Acá sería ideal que se vean las publicaciones (posteos de venta) del ususario (?)</p>
           </Grid>
         </Grid>
 
