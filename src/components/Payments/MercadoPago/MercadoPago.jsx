@@ -28,7 +28,7 @@ function MercadoPago() {
 
   const CheckOutMP = async function Redirect(pesos) {
     const response = await axios.post(
-      `http://localhost:8001/MercadoPagoTransaction`,
+      `/MercadoPagoTransaction`,
       pesos
     )
     console.log('response: MP: ', response.data)

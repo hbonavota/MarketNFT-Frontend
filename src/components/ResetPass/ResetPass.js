@@ -11,7 +11,7 @@ function ResetPass() {
         e.preventDefault()
         // console.log(e.target[0].value)
         try {
-            await axios.post('http://localhost:8001/reset/'+token, {password : e.target[0].value})
+            await axios.post('/reset/'+token, {password : e.target[0].value})
             alert('Your Password Was Modified Successfully')
         } catch (error) {
             alert('something go wrong')
