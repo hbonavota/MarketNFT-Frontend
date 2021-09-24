@@ -21,7 +21,7 @@ function ResetPass() {
         <div className="passcontainer">
         <form action="submit" onSubmit={handleForgot}>
             <label htmlFor="pass">Insert Your New Password</label>
-            <input type="text" name='elinput' className="input"/>
+            <input type="password" name='elinput' className="input"/>
             <button className="send">SEND</button>
         </form>
         </div>
