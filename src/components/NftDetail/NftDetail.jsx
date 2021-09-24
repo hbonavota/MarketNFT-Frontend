@@ -129,7 +129,7 @@ export default function NftDetail() {
               <AddShoppingCartIcon />
             </Button>
           </InfoContainer>
-          <Review />
+          <Review reviews={nftDetail.reviews}/>
         </Wrapper>
       ) : (
         <span>Loading...</span>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TextField, Button } from '@material-ui/core'
 
 import postReview from '../../actions/postReviews'
+// import getReviews from '../../actions/getReviews'
 
-export default function Reviews({ reviews, id }) {
+export default function Reviews({ reviews }) {
   const nftdetalle = useSelector((state) => state.nftDetail)
-  console.log("soy un detalle", nftdetalle._id)
   const userLogged = useSelector((state) => state.userLogged)
   const [input, setInput] = useState({ review: '' })
   const dispatch = useDispatch()
@@ -14,13 +14,16 @@ export default function Reviews({ reviews, id }) {
     setInput({ review: e.target.value })
   }
   //En el back llega como review
+  // useEffect(() => {
+  //   dispatch(getReviews())
+  // }, [dispatch])
   return (
     <div>
       <h1>REVIEWS</h1>
       {reviews &&
         reviews.map((review) => (
-          <div key={review.length}>
-            <p>{review}</p>
+          <div key={review._id}>
+            <p>{review.review}</p>
           </div>
         ))}
       {userLogged && (
@@ -31,7 +34,7 @@ export default function Reviews({ reviews, id }) {
               e.preventDefault()
               console.log('HANDLE SUBMIT--------- INPUT', input)
               // console.log("", id:idDetail._id)
-              dispatch(postReview({...input, id:nftdetalle._id}))
+              dispatch(postReview({ ...input, id: nftdetalle._id }))
 
               setInput({ review: '' })
             }}
