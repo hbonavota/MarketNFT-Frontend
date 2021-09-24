@@ -5,6 +5,7 @@ import { getUsers } from "../../actions/admin/getUsers";
 import { Link } from "react-router-dom";
 import { deleteUser } from "../../actions/admin/deleteNFT";
 import { Button } from "@material-ui/core";
+import Footer from "../footer/footer";
 
 export default function AdminUser() {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ export default function AdminUser() {
           Delete User!
         </Button>
       </form>
+      <Footer></Footer>
     </div>
   );
 }

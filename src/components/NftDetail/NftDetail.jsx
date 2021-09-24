@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import getClean from "../../actions/getClean";
 import styled from "styled-components";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -73,15 +74,24 @@ const useStyles = makeStyles({
       color: "#FF0000",
     },
   },
+  favoritered: {
+    padding: 0,
+    position: "absolute",
+    top: "0px",
+    right: "5px",
+    opacity: 0.7,
+    color: "#FF0000",
+  },
 });
 export default function NftDetail() {
-  const nftdetalle = useSelector((state) => state.nftDetail)
+  const nftDetail = useSelector((state) => state.nftDetail);
+  const favorites = useSelector((state)=> state.favorites);
+  const isfavorite = nftDetail?favorites.includes(nftDetail._id): false;
   const { id } = useParams();
   const dispatch = useDispatch();
   const userLogged = useSelector((state) => state.userLogged);
   const classes = useStyles();
   useEffect(() => {
-    console.log("soy un detalle", nftdetalle)
     dispatch(getNftDetail(id));
     return () => {
       dispatch(getClean());
@@ -96,7 +106,7 @@ export default function NftDetail() {
     dispatch(addShoppingTrolley(ele._id));
     dispatch(conectLS())
   };
-  const nftDetail = useSelector((state) => state.nftDetail);
+ 
 
   return (
     <Container>
@@ -108,14 +118,24 @@ export default function NftDetail() {
           <InfoContainer>
             <TitleContainer>
               <Title>{nftDetail.name}</Title>
+              {isfavorite? 
               <IconButton>
+                {userLogged ? (
+                  <FavoriteIcon
+                    onClick={() => handleFav(nftDetail)}
+                    className={classes.favoritered}
+                  />
+                ) : null}
+              </IconButton>
+              :
+             <IconButton>
                 {userLogged ? (
                   <FavoriteBorderIcon
                     onClick={() => handleFav(nftDetail)}
                     className={classes.favorite}
                   />
                 ) : null}
-              </IconButton>
+              </IconButton>}
             </TitleContainer>
             <Owner>Owned by: {nftDetail.owner}</Owner>
             <Description>{nftDetail.description}</Description>

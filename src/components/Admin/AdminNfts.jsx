@@ -4,6 +4,7 @@ import { getNFTs } from '../../actions/getNFTs'
 import { deleteNFT } from '../../actions/admin/deleteNFT'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
+import Footer from '../footer/footer'
 
 export default function Admi0Nfts() {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ export default function Admi0Nfts() {
       </div>
       <Button variant='contained' size='large' type="submit">Delete!</Button>
     </form>
+    <Footer></Footer>
   </div>
   )
 }

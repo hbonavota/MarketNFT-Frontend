@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import Footer from '../footer/footer'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
 
@@ -53,6 +54,7 @@ export default function LoginSection() {
           </Button> }
         />
       )}
+      <Footer></Footer>
     </div>
   )
 }

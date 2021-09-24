@@ -31,14 +31,13 @@ import CategoryIcon from '@material-ui/icons/Category'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import InfoIcon from '@material-ui/icons/Info'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
-import CreateIcon from '@material-ui/icons/Create'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import Collapse from '@material-ui/core/Collapse'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import alert from '../../actions/alert'
 import blueligth from "../images/blueligth.jpg"
-import Search from "../Search/Search.jsx"
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 function ElevationScroll(props) {
   const { children } = props
@@ -194,7 +193,7 @@ export default function NavBar() {
       setValue(3)
     } else if (window.location.pathname === '/admin' && value !== 4) {
       setValue(4)
-    } else if (window.location.pathname === '/create' && value !== 5) {
+    } else if (window.location.pathname === '/favorites' && value !== 5) {
       setValue(5)
     } else if (window.location.pathname === '/login' && value !== 6) {
       setValue(6)
@@ -678,12 +677,12 @@ export default function NavBar() {
               divider
               button
               component={Link}
-              to='/create'
+              to='/favorites'
             >
               {' '}
-              <CreateIcon color='primary' />
+              <FavoriteBorder color='primary' />
               <ListItemText className={classes.drawerText} disableTypography>
-                Create
+                Favorites
               </ListItemText>
             </ListItem>
           )}
