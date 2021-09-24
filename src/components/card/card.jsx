@@ -8,6 +8,7 @@ import {
   Paper,
   Avatar,
   Typography,
+  Grid,
 } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -20,6 +21,9 @@ import React, { useEffect } from "react";
 import addToDB from "../../actions/shoppingCart/addToDB";
 import cartDB from "../../actions/shoppingCart/cartDB.js";
 import addFavorite from "../../actions/favorite/addFavorite";
+import { useState } from "react";
+import Ethereum_logo from "../images/Ethereum_logo.png"
+
 
 const useStyles = makeStyles({
   card: {
@@ -68,16 +72,30 @@ const useStyles = makeStyles({
       backgroundColor: "transparent",
     },
   },
+  grid: {
+    marginTop: "8px"
+  }
 });
 
 export default function Cards({ ele }) {
+  const [elevation, setelevation] = useState(1);
   const classes = useStyles();
   const userLogged = useSelector((state) => state.userLogged);
+  const favorites = useSelector((state)=> state.favorites);
+  console.log(favorites)
   const dispatch = useDispatch();
 
   const handleFav = (ele) => {
     dispatch(addFavorite({ item: ele._id, user: userLogged }));
   };
+
+const onMouseOver = () => {
+  setelevation(10)
+}
+const onMouseOut = () => {
+  setelevation(1)
+}
+
   const handleClick = (ele) => {
     if (!userLogged) {
       dispatch(addShoppingTrolley(ele._id));
@@ -101,7 +119,11 @@ export default function Cards({ ele }) {
 
   return (
     <div>
-      <Card component={Paper} elevation={1} className={classes.card}>
+      <Card 
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      component={Paper} elevation={elevation} className={classes.card}>
+        {}
         <CardHeader
           className={classes.head}
           action={
@@ -125,8 +147,11 @@ export default function Cards({ ele }) {
         <CardContent className={classes.cardContent}>
 
           <Typography variant="body" color="primary">{ele.name}</Typography>
+          <Grid container className={classes.grid}> 
+            <Typography>Price: {ele.price}</Typography><img src={Ethereum_logo} width="20px" height="25px" alt="" />
+            </Grid>
 
-          <Typography>Price: {ele.price}ETH</Typography>
+
           <IconButton className={classes.IconButton}>
             <AddShoppingCartIcon
               className={classes.cart}
