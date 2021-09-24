@@ -13,72 +13,71 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
 import addFavorite from "../../actions/favorite/addFavorite";
 import { conectLS } from "../../actions/conectLS";
+
+
 import Review from '../Reviews/Reviews'
-const Container = styled.div``;
+const Container = styled.div``
 
 const Wrapper = styled.div`
-padding: 50px;
-display: flex;
-@media (max-width: 750px) {
-    flex-direction: column
-}
-`;
+  padding: 50px;
+  display: flex;
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
+`
 const ImgContainer = styled.div`
-flex: 0,7;
-@media (max-width: 700px) {
+  flex: 0, 7;
+  @media (max-width: 700px) {
     flex: 1;
-}
-`;
+  }
+`
 
 const Image = styled.img`
-width: 94%;
-border-radius: 5%;
-height: 90vh;
-object-fit: cover;
-`;
+  width: 94%;
+  border-radius: 5%;
+  height: 90vh;
+  object-fit: cover;
+`
 
 const InfoContainer = styled.div`
-flex: 1;
-padding: 0px 50px;
-`;
+  flex: 1;
+  padding: 0px 50px;
+`
 
 const TitleContainer = styled.div`
-display: flex;
-`;
+  display: flex;
+`
 
 const Title = styled.h1`
-font-weight: 100;
-`;
+  font-weight: 100;
+`
 
 const Owner = styled.h3`
-margin: 0px 2px;
-font-weight: 100;
-font-size: 18px;
-color: #368B85;
-`;
+  margin: 0px 2px;
+  font-weight: 100;
+  font-size: 18px;
+  color: #368b85;
+`
 
 const Description = styled.p`
-margin: 20px 0px;
-`;
+  margin: 20px 0px;
+`
 
 const Price = styled.h3`
-font-weight: 100;
-font-size: 30px;
-`;
+  font-weight: 100;
+  font-size: 30px;
+`
 
 const useStyles = makeStyles({
   favorite: {
     opacity: 0.7,
-    color: "error",
-    "&:hover": {
-      color: "#FF0000",
+    color: 'error',
+    '&:hover': {
+      color: '#FF0000',
     },
   },
+  
   favoritered: {
-    padding: 0,
-    position: "absolute",
-    top: "0px",
-    right: "5px",
     opacity: 0.7,
     color: "#FF0000",
   },
@@ -93,17 +92,18 @@ export default function NftDetail() {
   const classes = useStyles();
   useEffect(() => {
     dispatch(getNftDetail(id));
+
     return () => {
-      dispatch(getClean());
-    };
-  }, [id, dispatch]);
+      dispatch(getClean())
+    }
+  }, [id, dispatch])
 
   const handleFav = (ele) => {
-    dispatch(addFavorite({ item: ele._id, user: userLogged }));
-  };
+    dispatch(addFavorite({ item: ele._id, user: userLogged }))
+  }
 
   const handleClick = (ele) => {
-    dispatch(addShoppingTrolley(ele._id));
+    dispatch(addShoppingTrolley(ele._id))
     dispatch(conectLS())
   };
  
@@ -113,7 +113,7 @@ export default function NftDetail() {
       {nftDetail !== undefined ? (
         <Wrapper>
           <ImgContainer>
-            <Image src={nftDetail.image} alt="img" />
+            <Image src={nftDetail.image} alt='img' />
           </ImgContainer>
           <InfoContainer>
             <TitleContainer>
@@ -141,8 +141,8 @@ export default function NftDetail() {
             <Description>{nftDetail.description}</Description>
             <Price>{nftDetail.price} ETH</Price>
             <Button
-              variant="outlined"
-              color="primary"
+              variant='outlined'
+              color='primary'
               onClick={() => handleClick(nftDetail)}
             >
               Add To my Cart
@@ -155,5 +155,5 @@ export default function NftDetail() {
         <span>Loading...</span>
       )}
     </Container>
-  );
+  )
 }
