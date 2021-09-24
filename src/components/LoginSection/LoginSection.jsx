@@ -26,13 +26,7 @@ export default function LoginSection() {
   function handleSubmit(event, action, state) {
     event.preventDefault()
     dispatch(action(state))
-
-    if (!userLogged) {
-      setTimeout(() => dispatch(alert(true)), 2000)
-    } else {
-      dispatch(alert(false))
-      history.push('/')
-    }
+    history.push('/')
   }
 
   return (

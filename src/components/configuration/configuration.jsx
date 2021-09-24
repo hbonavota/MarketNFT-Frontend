@@ -86,7 +86,7 @@ const useStyle = makeStyles({
                       variant='contained'
                       type='submit'
                     >
-                      Actualiza tu perfil perri
+                     Update profile
                     </Button>
 
           </Box>
