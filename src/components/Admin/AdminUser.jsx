@@ -4,10 +4,27 @@ import usersToAdmin from "../../actions/admin/usersToAdmin";
 import { getUsers } from "../../actions/admin/getUsers";
 import { Link } from "react-router-dom";
 import { deleteUser } from "../../actions/admin/deleteNFT";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from '@material-ui/core'
+import {Paper, Typography } from '@mui/material'
 import Footer from "../footer/footer";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  maincontainer: {
+      marginTop: "100px",
+      maxWidth: "500px",
+      height: "50vh"
+  },
+  root: {
+      // marginTop: "100px"
+  },
+  button: {
+    
+  }
+  })
 
 export default function AdminUser() {
+  const classes = useStyles()
   const dispatch = useDispatch();
   const users = useSelector((state) => state.allUsers);
 
@@ -45,8 +62,10 @@ export default function AdminUser() {
 
   return (
     <div>
+    <Grid justifyContent="center" container className={classes.root}> 
+    <Grid component={Paper} spacing={2} elevation={5} alignItems="center" direction="column" container className={classes.maincontainer}>
       <Link to="/admin">
-        <Button variant="contained" size="large">
+        <Button color="primary" variant="contained" size="large">
           Back
         </Button>
       </Link>
@@ -55,7 +74,23 @@ export default function AdminUser() {
       <form name="users" onSubmit={(e) => handleRole(e)}>
         <h3>Change role</h3>
         <label htmlFor="">Users To Admin</label>
-        <div>
+
+        <select
+        className="input2" 
+          name="users"
+          onChange={(e) => onInputChange(e)}
+          defaultValue=""
+        >
+          <option value="">Choose User</option>
+          {users.map((u) => (
+            <option key={u._id} name={u._id} value={u.username}>
+              {" "}
+              {u.username}{" "}
+            </option>
+          ))}
+        </select>
+
+        {/* <div>
           {users?.map((u) => (
             <div key={u._id}>
               <input
@@ -72,8 +107,8 @@ export default function AdminUser() {
               </div>
             </div>
           ))}
-        </div>
-        <Button type="submit" variant="contained" size="large">
+        </div> */}
+        <Button type="submit" variant="contained" color="primary" size="large">
           Change!
         </Button>
       </form>
@@ -82,6 +117,7 @@ export default function AdminUser() {
         <h3>Delete User</h3>
         <label htmlFor="">Users</label>
         <select
+        className="input" 
           name="deleteUser"
           onChange={(e) => onInputChange(e)}
           defaultValue=""
@@ -94,10 +130,12 @@ export default function AdminUser() {
             </option>
           ))}
         </select>
-        <Button type="submit" variant="contained" size="large">
+        <Button color="primary" type="submit" variant="contained" size="large">
           Delete User!
         </Button>
       </form>
+      </Grid>
+    </Grid>
       <Footer></Footer>
     </div>
   );
