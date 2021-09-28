@@ -41,7 +41,6 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   const handleSubmit = async (e) => {
-    console.log('handleSubmit funciona');
     e.preventDefault();
 
     //Generar Payment
@@ -51,7 +50,6 @@ const CheckoutForm = () => {
     });
 
     if (!error) {
-      // console.log(paymentMethod)
       const { id } = paymentMethod;
 
       try {

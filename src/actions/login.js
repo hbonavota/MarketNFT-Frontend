@@ -4,8 +4,8 @@ export default function localLogin(payload) {
 
   return async function (dispatch) {
     const response = await loginUser(payload)
-    if (response==400) {
-      alert('CAGASTE 🤦🏽‍♂️')
+    if (response === 400) {
+      alert('Sorry, Error Login 🤦🏽‍♂️')
       return 
     }
      dispatch({

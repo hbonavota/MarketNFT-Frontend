@@ -6,7 +6,6 @@ export default function PutProfileUser(profile, token) {
          try {
 
            const response = await axios.put(`/profile/${token}`, profile)
-           console.log("Action PUT_PROFILE_USER: ",response.data)
             return dispatch({type: PUT_PROFILE_USER, payload: response.data})
 
          } catch(error) {

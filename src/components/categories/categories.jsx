@@ -65,7 +65,6 @@ export default function Categories() {
 
   const handleclick = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget)
     dispatch(filterByCategories(e.currentTarget.value))
   }
 

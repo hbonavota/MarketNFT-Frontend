@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import getNftDetail from '../../actions/getNftDetail'
 import { useSelector, useDispatch } from 'react-redux'
 import getClean from '../../actions/getClean'
@@ -47,11 +47,11 @@ const InfoContainer = styled.div`
 const TitleContainer = styled.div`
   display: flex;
 `
-
+/* 
 const Title = styled.h1`
   font-weight: 100;
 `
-
+ */
 const Owner = styled.h3`
   margin: 0px 2px;
   font-weight: 100;

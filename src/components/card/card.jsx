@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  Container,
-  Paper,
-  Avatar,
-  Typography,
-  Grid,
-} from "@material-ui/core";
+import { Card, CardHeader, CardMedia, Paper, Typography, Grid} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -18,11 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { addShoppingTrolley } from "../../actions/addShoppingTrolley";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { conectLS } from "../../actions/conectLS.js";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import addToDB from "../../actions/shoppingCart/addToDB";
 import cartDB from "../../actions/shoppingCart/cartDB.js";
 import addFavorite from "../../actions/favorite/addFavorite";
-import { useState } from "react";
 import Ethereum_logo from "../images/Ethereum_logo.png"
 
 
@@ -89,7 +79,7 @@ export default function Cards({ ele }) {
   const [elevation, setelevation] = useState(1);
   const classes = useStyles();
   const userLogged = useSelector((state) => state.userLogged);
-  const favorites = useSelector((state)=> state.favorites);
+  const favorites = useSelector((state) => state.favorites);
   const isfavorite = favorites.includes(ele._id);
   const dispatch = useDispatch();
 
@@ -97,12 +87,12 @@ export default function Cards({ ele }) {
     dispatch(addFavorite({ item: ele._id, user: userLogged }));
   };
 
-const onMouseOver = () => {
-  setelevation(10)
-}
-const onMouseOut = () => {
-  setelevation(1)
-}
+  const onMouseOver = () => {
+    setelevation(10)
+  }
+  const onMouseOut = () => {
+    setelevation(1)
+  }
 
   const handleClick = (ele) => {
     if (!userLogged) {
@@ -125,38 +115,38 @@ const onMouseOut = () => {
 
   return (
     <div>
-      <Card 
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-      component={Paper} elevation={elevation} className={classes.card}>
-        {isfavorite?
-        <CardHeader
-        className={classes.head}
-        action={
-          <IconButton disableRipple="true" className={classes.IconButton}>
-            {userLogged ? (
-              <FavoriteIcon
-                onClick={() => handleFav(ele)}
-                className={classes.favoritered}
-              />
-            ) : null}
-          </IconButton>
-        }
-      />
-        :<CardHeader
-        className={classes.head}
-        action={
-          <IconButton disableRipple="true" className={classes.IconButton}>
-            {userLogged ? (
-              <FavoriteBorderIcon
-                onClick={() => handleFav(ele)}
-                className={classes.favorite}
-              />
-            ) : null}
-          </IconButton>
-        }
-      />}
-        
+      <Card
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+        component={Paper} elevation={elevation} className={classes.card}>
+        {isfavorite ?
+          <CardHeader
+            className={classes.head}
+            action={
+              <IconButton disableRipple="true" className={classes.IconButton}>
+                {userLogged ? (
+                  <FavoriteIcon
+                    onClick={() => handleFav(ele)}
+                    className={classes.favoritered}
+                  />
+                ) : null}
+              </IconButton>
+            }
+          />
+          : <CardHeader
+            className={classes.head}
+            action={
+              <IconButton disableRipple="true" className={classes.IconButton}>
+                {userLogged ? (
+                  <FavoriteBorderIcon
+                    onClick={() => handleFav(ele)}
+                    className={classes.favorite}
+                  />
+                ) : null}
+              </IconButton>
+            }
+          />}
+
         <CardMedia
           component={Link}
           to={`nft/${ele._id}`}
@@ -167,9 +157,9 @@ const onMouseOut = () => {
         <CardContent className={classes.cardContent}>
 
           <Typography variant="body" color="primary">{ele.name}</Typography>
-          <Grid container className={classes.grid}> 
+          <Grid container className={classes.grid}>
             <Typography>Price: {ele.price}</Typography><img src={Ethereum_logo} width="20px" height="25px" alt="" />
-            </Grid>
+          </Grid>
 
 
           <IconButton className={classes.IconButton}>

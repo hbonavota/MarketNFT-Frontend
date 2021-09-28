@@ -2,7 +2,6 @@ import axios from "axios";
 
 //
 export function deleteNFT(ids) {
-  console.log("esto me llega como ids", ids);
   return function () {
     try {
       ids.map((id) => axios.delete("/admin/" + id));
@@ -15,8 +14,7 @@ export function deleteNFT(ids) {
 export function deleteUser(id) {
   return function () {
     try {
-      const users = id.map((id) => axios.delete("/deleteUser/" + id));
-      console.log(users.data, "ACA USERS");
+      /* const users = id.map((id) => axios.delete("/deleteUser/" + id)); */
     } catch (error) {
       console.log(error);
     }

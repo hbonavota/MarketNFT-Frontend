@@ -6,7 +6,6 @@ export function getProfileAdmin(profile) {
          try {
 
            const response = await axios.get(`/admin/profile`)
-           console.log(response.data,"admin")
             return dispatch({type: GET_PROFILE_ADMIN, payload: response.data})
 
          } catch(error) {

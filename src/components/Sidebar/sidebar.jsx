@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import getProfileUser from "../../actions/getProfileUser"
 import getClean from "../../actions/getClean"
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
 
 const useStyle = makeStyles({
     infoProfile: {
@@ -75,7 +74,6 @@ export default function Profile() {
   
   
   const getProfile = useSelector((state) => state.profileUserData)
-  console.log("Información del perfil desded el Reducer:", getProfile)
 
 
   const connect = async function () {

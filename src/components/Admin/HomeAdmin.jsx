@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
-import Box from '@material-ui/core/Box'
 import { makeStyles } from "@material-ui/core/styles";
 import {Grid,Paper, Typography } from '@mui/material'
 import Footer from '../footer/footer';

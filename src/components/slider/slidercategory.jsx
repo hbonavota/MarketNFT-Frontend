@@ -66,7 +66,7 @@ export default function SliderCategory() {
         <CardMedia
           component="img"
           height="240"
-          image={ele.image.image !=undefined? ele.image.image: null}
+          image={ele.image.image !==undefined? ele.image.image: null}
           alt={ele.name}
         />
         <CardContent>

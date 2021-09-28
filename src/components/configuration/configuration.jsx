@@ -45,12 +45,10 @@ const useStyle = makeStyles({
        ...profile,
        [e.target.name]: e.target.value,
      })
-     console.log("soy el input", e.target.value)
    }
    
    
    async function handleSubmit(e) {
-     console.log(profile, token)
      e.preventDefault()
      dispatch(PutProfileUser(profile, token))
      alert('Profile actualized')

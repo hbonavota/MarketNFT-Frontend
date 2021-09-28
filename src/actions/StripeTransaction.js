@@ -6,7 +6,6 @@ export function TransactionStripe(amount) {
          try {
 
             const response = await axios.post(`/transactionStripe`, amount)
-            console.log("Action Transaction Metamask:",response.data)
             return dispatch({type: TRANSACTION_STRIPE, payload: response.data})
 
          } catch(error) {

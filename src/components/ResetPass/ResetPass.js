@@ -9,7 +9,6 @@ function ResetPass() {
 
     let handleForgot = async(e) => {
         e.preventDefault()
-        // console.log(e.target[0].value)
         try {
             await axios.post('/reset/'+token, {password : e.target[0].value})
             alert('Your Password Was Modified Successfully')

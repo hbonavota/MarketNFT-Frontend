@@ -13,7 +13,7 @@ export default function LoginSection() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const userLogged = useSelector((state) => state.userLogged)
+  /* const userLogged = useSelector((state) => state.userLogged) */
   const alertGlobal = useSelector((state) => state.alert)
 
   const validateEmail = (input) => !/\S+@\S+\.\S+/.test(input)

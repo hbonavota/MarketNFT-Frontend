@@ -5,7 +5,7 @@ import { getUsers } from "../../actions/admin/getUsers";
 import { Link } from "react-router-dom";
 import { deleteUser } from "../../actions/admin/deleteNFT";
 import { Button, Grid } from '@material-ui/core'
-import {Paper, Typography } from '@mui/material'
+import { Paper } from '@mui/material'
 import Footer from "../footer/footer";
 import { makeStyles } from "@material-ui/core/styles";
 
