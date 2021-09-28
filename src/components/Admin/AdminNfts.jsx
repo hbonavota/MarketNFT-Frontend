@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getNFTs } from '../../actions/getNFTs'
 import { deleteNFT } from '../../actions/admin/deleteNFT'
 import { Link } from 'react-router-dom'
-import { Button, Grid } from '@material-ui/core'
+import { Button, Grid, makeStyles } from '@material-ui/core'
 import Footer from '../footer/footer'
 import Search from '../Search/Search'
 import { Card } from '@mui/material'
-import { makeStyles } from "@material-ui/core";
-import { minHeight } from '@mui/system'
+/* import { minHeight } from '@mui/system' */
 
 const useStyles = makeStyles(theme => ({
  card: {

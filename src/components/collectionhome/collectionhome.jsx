@@ -10,7 +10,6 @@ import { useTheme } from '@material-ui/core/styles';
 export default function ColectionHome() {
 
     const stateAllNFTs = useSelector((state) => state.allNFTs);
-    const selected = stateAllNFTs.slice(14, 20)
     const dispatch = useDispatch();
     const theme = useTheme();
     const fullsize = useMediaQuery(theme.breakpoints.up(1220));
@@ -32,7 +31,7 @@ export default function ColectionHome() {
                     <Link to={`nft/${ele._id}`} style={{ textDecoration: "none" }}>
                         <div className={style.house} >
 
-                            <img src={ele.image} className={style.image} />
+                            <img src={ele.image} className={style.image} alt={ele.name}/>
 
                             <div class={style.house_name}>{ele.name.slice(0, 17)}</div>
 
@@ -48,7 +47,7 @@ export default function ColectionHome() {
                     <Link to={`nft/${ele._id}`} style={{ textDecoration: "none" }}>
                         <div className={style.house} >
 
-                            <img src={ele.image} className={style.image} />
+                            <img src={ele.image} className={style.image} alt={ele.name}/>
 
                             <div class={style.house_name}>{ele.name.slice(0, 17)}</div>
 
@@ -64,7 +63,7 @@ export default function ColectionHome() {
                     <Link to={`nft/${ele._id}`} style={{ textDecoration: "none" }}>
                         <div className={style.house} >
 
-                            <img src={ele.image} className={style.image} />
+                            <img src={ele.image} className={style.image} alt={ele.name} />
 
                             <div class={style.house_name}>{ele.name.slice(0, 17)}</div>
 
@@ -80,7 +79,7 @@ export default function ColectionHome() {
                     <Link to={`nft/${ele._id}`} style={{ textDecoration: "none" }}>
                         <div className={style.house} >
 
-                            <img src={ele.image} className={style.image} />
+                            <img src={ele.image} className={style.image} alt={ele.name}/>
 
                             <div className={style.house_name}>{ele.name.slice(0, 17)}</div>
 
@@ -94,7 +93,7 @@ export default function ColectionHome() {
                 <Link to={`nft/${stateAllNFTs[15]._id}`} style={{ textDecoration: "none" }}>
                     <div className={style.imagecontainer}>
 
-                        <img src={stateAllNFTs[15].image} className={style.imagesmall} />
+                        <img src={stateAllNFTs[15].image} className={style.imagesmall} alt="imagesNFTs"/>
 
                         <div className={style.name}> {stateAllNFTs[15].name.slice(0, 17)}</div>
 

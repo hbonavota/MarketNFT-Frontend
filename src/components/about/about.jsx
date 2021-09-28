@@ -27,6 +27,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/agustina-corbalan-b0b8561b6/"
               >
@@ -37,7 +38,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/tinicorb">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/tinicorb">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -53,7 +54,7 @@ export default function About() {
           </Content>
           <ul>
             <li>
-              <a target="_blank" href="https://www.linkedin.com/in/bonavota/">
+              <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/bonavota/">
                 <img
                   src="https://icongr.am/entypo/linkedin.svg?size=128&color=000000"
                   alt="icon"
@@ -61,7 +62,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/hbonavota">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/hbonavota">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -78,6 +79,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/joeldurand0/"
               >
@@ -88,7 +90,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/mar156">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/mar156">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -105,6 +107,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/danielrmojica/"
               >
@@ -115,7 +118,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/drmc47">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/drmc47">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -132,6 +135,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/fernando-schulz-zismann-39892216a"
               >
@@ -142,7 +146,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/fernandoschulzz">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/fernandoschulzz">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -159,6 +163,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/sofia-inchausti/"
               >
@@ -169,7 +174,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/SofiaInchausti">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/SofiaInchausti">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -186,6 +191,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/ruben-emanuel-aranda-0b60a3133/"
               >
@@ -196,7 +202,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://github.com/rubengithubarg">
+              <a rel="noopener noreferrer" target="_blank" href="https://github.com/rubengithubarg">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"
@@ -213,6 +219,7 @@ export default function About() {
           <ul>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="_blank"
                 href="https://www.linkedin.com/in/ana-harrington/"
               >
@@ -223,7 +230,7 @@ export default function About() {
               </a>
             </li>
             <li>
-              <a target="_blank" href="github.com/anaharri">
+              <a rel="noopener noreferrer" target="_blank" href="github.com/anaharri">
                 <img
                   src="https://imjosehidalgo.netlify.app/static/media/github.e0df113a.svg"
                   alt="icon"

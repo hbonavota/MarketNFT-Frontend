@@ -3,11 +3,10 @@ import Sidebar from '../../Sidebar/sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import { Box, Button, Checkbox, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import getShoppingHistoryDB from '../../../actions/shoppingHistory/getShoppingHistoryDB';
 import { getNFTs } from '../../../actions/getNFTs';
 import Cookies from 'js-cookie'
-import { identifyById } from '../../../actions/functionIdentifyId'
 
 const useStyle = makeStyles({
     div: {
@@ -67,8 +66,7 @@ function ShoppingHistory() {
     }, [dispatch]);
 
     const shoppingHistoryDB = useSelector(state => state.shoppingHistoryDB)
-    const allNfts = useSelector(state => state.allNFTs)
-    // const nftsPurchase = identifyById(allNfts,shoppingHistoryDB)
+
     return (
         <div>
             <Grid container>
@@ -123,7 +121,7 @@ function ShoppingHistory() {
                                 </Grid>
 
                                 <Grid item xs={6} sm={3} md={3} lg={3} xl={3} className="content">
-                                    <img src={e ? e.image : null} width="75px" height="75px" />
+                                    <img src={e ? e.image : null} width="75px" height="75px" alt="productBDHistory" />
                                 </Grid >
 
                                 <Grid item xs={3} sm={2} md={3} lg={3} xl={3} className="content">

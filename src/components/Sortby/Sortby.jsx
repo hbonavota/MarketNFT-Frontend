@@ -51,13 +51,10 @@ export default function SortBy() {
   const handleClick = () => {
 
 
-    console.log(`You clicked ${options[selectedIndex]}`);
   };
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-
-    console.log(event.target.innerText)
     setOpen(false);
     if (event.target.innerText === 'Alphabetical order: A-Z') {
       dispatch(sortByAbc("az"))

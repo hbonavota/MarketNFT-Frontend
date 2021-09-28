@@ -6,7 +6,6 @@ export function TransactionMetaMask(eth) {
          try {
 
            const response = await axios.post(`/transactionMetamask`, eth)
-           console.log("Action Transaction Metamask:",response.data)
             return dispatch({type: TRANSACTION_METAMASK, payload: response.data})
 
          } catch(error) {

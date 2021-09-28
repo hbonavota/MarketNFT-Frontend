@@ -53,8 +53,6 @@ const initialState = {
   role: "",
   shoppingHistoryDB: [],
   favorites: [],
-  role: "",
-  shoppingHistoryDB: [],
   alert: false,
 };
 
@@ -121,12 +119,10 @@ function rootReducer(state = initialState, action) {
           : [...state.Nfts].sort(
               (b, a) => b.price - a.price
             );
-      // console.log(priceFilter, priceFilter.length);
 
       // action.payload === "max"
       //   ? [...state.allNFTs].sort((b, a) => a.price - b.price)
       //   : [...state.allNFTs].sort((b, a) => b.price - a.price);
-      // console.log(priceFilter, priceFilter.length);
 
       return {
         ...state,
@@ -152,26 +148,19 @@ function rootReducer(state = initialState, action) {
     case TRANSACTION_STRIPE:
       return state;
     case LOGIN_SUCCESS:
-      // let role= JSON.parse(window.sessionStorage.getItem('role'))
       let role = Cookies.get("role");
-      // let islogged = JSON.parse(window.sessionStorage.getItem('userLogged'))
       let islogged = Cookies.get("token");
       return {
         ...state,
         role: role,
         userLogged: islogged,
-        // shoppingTrolley:action.payload[2]
       };
     case "USER_SESSION":
-      // if (window.sessionStorage.getItem('userLogged') && window.sessionStorage.getItem('role')) {
       let token = Cookies.get("token");
       if (token) {
         return {
           ...state,
-          // userLogged: JSON.parse(window.sessionStorage.getItem('userLogged')),
           userLogged: Cookies.get("token"),
-          // role: JSON.parse(window.sessionStorage.getItem('role')),
-
           role: Cookies.get("role"),
         };
       } else {
@@ -179,8 +168,6 @@ function rootReducer(state = initialState, action) {
       }
 
     case LOGOUT:
-      // window.sessionStorage.removeItem('userLogged')
-      // window.sessionStorage.removeItem('role')
       Cookies.remove("token");
       Cookies.remove("role");
       return {
@@ -226,14 +213,12 @@ function rootReducer(state = initialState, action) {
         let getmyStorage = myStorage.getItem("user");
         let parsLocal = JSON.parse(getmyStorage);
         alertOk();
-  /*       console.log("entre a add, parsLocal", parsLocal) */
         if (!parsLocal) {
           myStorage.setItem(
             "user",
             JSON.stringify(state.shoppingTrolley.concat(action.payload))
             );
             let infoLocalS = state.shoppingTrolley.concat(JSON.parse(myStorage.getItem("user")))
-            console.log("infoLocalS",infoLocalS)
             return {
               ...state,
               shoppingTrolley: infoLocalS,
@@ -291,7 +276,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_PROFILE_USER:
-      console.log(action.payload);
       return {
         ...state,
         profileUserData: action.payload,

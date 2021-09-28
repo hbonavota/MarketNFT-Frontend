@@ -19,7 +19,6 @@ function PaymentMetaMask() {
   const classes = useStyle()
   const allProductsCart = useSelector(state => state.shoppingCartPayment)
   const userLogged= useSelector((state) => state.userLogged);
-  console.log("Productos para metaMask: ", allProductsCart)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -48,10 +47,7 @@ function PaymentMetaMask() {
         moneyAmount = moneyAmount * 1e18
         dataMetaMask.push(transactionTo)
         dataMetaMask.push(moneyAmount)
-        console.log('TRANSACTION TO', transactionTo)
       }
-
-      console.log("array con datos del carrito", dataMetaMask)
 
     return web3.eth.sendTransaction({
       from: dataMetaMask[0],

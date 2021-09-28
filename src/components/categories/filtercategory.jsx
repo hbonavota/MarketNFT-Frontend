@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     right: "25px",
     top: "5rem",
     marginRight: 0,
-    width: '100%',
+/*     width: '100%', */
     width: 'auto',
     marginLeft: theme.spacing(1),
     [theme.breakpoints.down(600)]: {

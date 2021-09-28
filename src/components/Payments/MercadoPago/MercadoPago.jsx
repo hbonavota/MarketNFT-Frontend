@@ -24,14 +24,12 @@ function MercadoPago() {
       dispatch(cartDB({ user: userLogged }))
     }
   }, [dispatch])
-  console.log('purchaseOrder MercadoPagoFront: ', purchaseOrder)
 
   const CheckOutMP = async function Redirect(pesos) {
     const response = await axios.post(
       `/MercadoPagoTransaction`,
       pesos
     )
-    console.log('response: MP: ', response.data)
     window.location.href = response.data
   }
 

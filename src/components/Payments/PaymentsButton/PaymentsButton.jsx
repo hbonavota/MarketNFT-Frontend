@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import MercadoPago from '../MercadoPago/MercadoPago'
 import MetaMask from '../MetaMask/MetaMask'
@@ -6,8 +6,7 @@ import Stripe from '../Stripe/Stripe'
 import { makeStyles } from '@material-ui/core/styles'
 import { getLS } from '../../../actions/getLS'
 import cartDB from '../../../actions/shoppingCart/cartDB.js'
-import { useEffect } from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 
 const useStyle = makeStyles({
   pay: {
