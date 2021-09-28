@@ -23,7 +23,7 @@ export default function Home() {
     dispatch(purchase({user:userLogged,cart:cart}))
     dispatch(nftSold(cart))
     .then((e)=>{
-    window.location.href="http://localhost:3000/"
+    window.location.href="https://project-nft-s-frontend.vercel.app"
     }) 
   }
 

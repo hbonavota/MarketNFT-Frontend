@@ -4,7 +4,6 @@ export default function removeItem(payload) {
     return async function (dispatch) {
       try {
         let response = await axios.post("/deleteItem/",payload);
-        console.log(response,'delete')
          return dispatch({
             type: "DB_SHOPPING_CART",
             payload: response.data,

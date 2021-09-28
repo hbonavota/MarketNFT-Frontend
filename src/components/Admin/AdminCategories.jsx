@@ -5,7 +5,7 @@ import { getCategories } from '../../actions/getCategories'
 import { deleteCategory } from '../../actions/admin/deleteCategory'
 import { Link } from 'react-router-dom'
 import { Button, Grid } from '@material-ui/core'
-import {Paper, Typography } from '@mui/material'
+import { Paper } from '@mui/material'
 import { makeStyles } from "@material-ui/core/styles";
 import Footer from '../footer/footer'
 /* import { Box } from '@mui/material'; */

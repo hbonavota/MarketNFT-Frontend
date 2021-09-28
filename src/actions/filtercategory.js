@@ -7,7 +7,6 @@ export function filterByCategories(payload) {
       const filterCat = await response.data.filter((i) =>
         i.categories.includes(payload)
       );
-      console.log(filterCat, "FILTEEER");
       return dispatch({
         type: "FILTER_BY_CATEGORY",
         payload: filterCat,

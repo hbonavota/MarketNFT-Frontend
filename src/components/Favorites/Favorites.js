@@ -63,7 +63,6 @@ export default function Favorites() {
   // let fav = JSON.parse(window.localStorage.getItem("user"));
 
   // // if (userLogged && fav) {
-  // //   console.log(allFavorites);
   // //   dispatch(joinTrolley({ user: userLogged, cart: allFavorites })).then(
   // //     (e) => {
   // //       fav = window.localStorage.removeItem("user");
@@ -157,7 +156,7 @@ export default function Favorites() {
               </Grid>
 
               <Grid item xs={6} sm={3} md={3} lg={3} xl={3} className="content">
-                <img src={e ? e.image : null} width="75px" height="75px" />
+                <img src={e ? e.image : null} width="75px" height="75px" alt="picfav"/>
               </Grid>
               <Grid item xs={3} sm={2} md={3} lg={3} xl={3} className="content">
                 <IconButton aria-label="delete">

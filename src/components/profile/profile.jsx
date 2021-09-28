@@ -1,10 +1,8 @@
 import './profile.css';
-import React, { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { Grid, Button } from '@material-ui/core';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
 import Sidebar from '../Sidebar/sidebar.jsx'
 
 const useStyle = makeStyles({
@@ -24,8 +22,6 @@ const useStyle = makeStyles({
 
 export default function Profile() {
   const classes = useStyle()
-    const { id } = useParams();
-    const dispatch = useDispatch();
     const nameOfUser = useSelector((state)=> state.profileUserData)
   
    

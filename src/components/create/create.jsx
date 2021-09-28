@@ -89,7 +89,6 @@ export default function Create() {
       collection: nft.collection,
     }
     e.preventDefault()
-    console.log('nft', newNft)
     dispatch(postNFT(newNft))
     alert('Nft created')
     dispatch(getNFTs())

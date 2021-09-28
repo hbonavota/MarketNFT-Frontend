@@ -24,7 +24,6 @@ import AdminUser from "./components/Admin/AdminUser";
 import AdminNfts from "./components/Admin/AdminNfts";
 import AdminCategories from "./components/Admin/AdminCategories";
 import ShoppingHistory from "./components/profile/ShoppingHistory/ShoppingHistory.jsx";
-import Forgot from "./components/Forgot/Forgot";
 import ResetPass from "./components/ResetPass/ResetPass";
 import Configuration from './components/configuration/configuration'
 
