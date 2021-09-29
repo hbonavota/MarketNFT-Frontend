@@ -42,9 +42,9 @@ function PaymentMetaMask() {
       }
 
       for(let data of allProductsCart) {
-        let transactionTo = data.ownerAddress;
-        let moneyAmount = data.price;
-        moneyAmount = moneyAmount * 1e18
+        let transactionTo = data.address;
+        let weiValue = data.price;
+        const moneyAmount = Web3.utils.toWei(weiValue, 'ether');
         dataMetaMask.push(transactionTo)
         dataMetaMask.push(moneyAmount)
       }

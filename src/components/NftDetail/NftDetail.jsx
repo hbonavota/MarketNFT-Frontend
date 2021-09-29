@@ -15,7 +15,7 @@ import addFavorite from '../../actions/favorite/addFavorite'
 import { conectLS } from '../../actions/conectLS'
 
 import Review from '../Reviews/Reviews'
-import { Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 const Container = styled.div``
 
 const Wrapper = styled.div`
@@ -40,11 +40,15 @@ const Image = styled.img`
 `
 
 const InfoContainer = styled.div`
+  background: white;
+  border-radius: 5%;
   flex: 1;
   padding: 0px 50px;
 `
 
 const TitleContainer = styled.div`
+  background: white;
+  border-radius: 5%;
   display: flex;
 `
 /* 
@@ -53,6 +57,8 @@ const Title = styled.h1`
 `
  */
 const Owner = styled.h3`
+  background: white;
+  border-radius: 5%;
   margin: 0px 2px;
   font-weight: 100;
   font-size: 18px;
@@ -141,15 +147,24 @@ export default function NftDetail() {
             <Description>{nftDetail.description}</Description>
             <Price>{nftDetail.price} ETH</Price>
             <Button
-              variant='outlined'
+              variant='contained'
               color='primary'
               onClick={() => handleClick(nftDetail)}
             >
               Add To my Cart
               <AddShoppingCartIcon />
             </Button>
-          </InfoContainer>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           <Review />
+          </InfoContainer>
         </Wrapper>
       ) : (
         <span>Loading...</span>
