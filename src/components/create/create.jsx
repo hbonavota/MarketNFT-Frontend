@@ -49,7 +49,7 @@ export default function Create() {
     image: '',
     categories: [],
     artist: '',
-    adress: '',
+    address: '',
     reviews: '',
     collection: '',
     currency: '',
@@ -83,7 +83,7 @@ export default function Create() {
       price: nft.price,
       reviews: nft.reviews,
       description: nft.description,
-      adress: nft.adress,
+      address: nft.address,
       currency: nft.currency,
       artist: nft.artist,
       collection: nft.collection,
@@ -99,7 +99,7 @@ export default function Create() {
       description: '',
       reviews: '',
       currency: '',
-      adress: '',
+      address: '',
       artist: '',
       price: '',
       collection: '',
@@ -212,8 +212,8 @@ export default function Create() {
             <input
               className={styles.input}
               type='text'
-              name='adress'
-              value={nft.adress}
+              name='address'
+              value={nft.address}
               placeholder='Address'
               onChange={(e) => onInputChange(e)}
             />
