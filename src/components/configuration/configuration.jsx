@@ -37,6 +37,7 @@ const useStyle = makeStyles({
       artist: '',
       description: '',
       profilePic: '',
+      address:''
    })
    
    
@@ -56,6 +57,7 @@ const useStyle = makeStyles({
        artist: '',
        description: '',
        profilePic: '',
+       addres:''
       })
      dispatch(getProfileUser(token))
    }
@@ -80,6 +82,9 @@ const useStyle = makeStyles({
 
                     <Typography  variant='h4'>Your description</Typography>
                     <input type="text" name="description" onChange={(e) => onInputChange(e)}/>
+
+                    <Typography  variant='h4'>Your address</Typography>
+                    <input type="text" name="address" onChange={(e) => onInputChange(e)}/>
 
                     <Button
                       size='large'

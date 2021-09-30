@@ -1,9 +1,11 @@
 import './profile.css';
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import Sidebar from '../Sidebar/sidebar.jsx'
+import getProfileUser from '../../actions/getProfileUser';
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const useStyle = makeStyles({
   contentSection: {
@@ -21,9 +23,19 @@ const useStyle = makeStyles({
  })
 
 export default function Profile() {
-  const classes = useStyle()
-    const nameOfUser = useSelector((state)=> state.profileUserData)
+
   
+  const classes = useStyle()
+  const token = useSelector((state) => state.userLogged)
+  useEffect(() => {
+    dispatch(getProfileUser(token))
+  },[])
+    const userData = useSelector((state)=> state.profileUserData)
+    const allNfts= useSelector((state)=> state.allNFTs)
+    const filter= allNfts.filter(nft=>nft.address===userData?.address)
+    console.log(filter, 'filtrado')
+    const dispatch = useDispatch();
+
    
   return (
 
@@ -32,7 +44,17 @@ export default function Profile() {
             <Sidebar item xs={12} sm={12} md={3} lg={3} xl={3}/>
           </Grid>
           <Grid className={classes.contentSection} item xs={12} sm={12} md={9} lg={9} xl={9}>
-            <Typography  variant='h4'>¡ Welcome {nameOfUser.firstName} !</Typography>
+            <Typography  variant='h4'>¡ Welcome {userData?.firstName} !</Typography>
+           
+            {filter?.map(e=> (
+              <Grid>
+              <p>{e.name}</p>
+              <img src={e.image}></img>
+              </Grid>
+              
+              )
+
+            )}
           </Grid>
         </Grid>
 
