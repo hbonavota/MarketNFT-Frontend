@@ -49,10 +49,9 @@ function PaymentMetaMask() {
       }
 
       for(let data of allProductsCart) {
-        console.log(data)
         let transactionTo = data.address;
         let moneyAmount = data.price;
-        moneyAmount = moneyAmount * 1e8
+        moneyAmount = moneyAmount * 1e18
         dataMetaMask.push(transactionTo)
         dataMetaMask.push(moneyAmount)
       }

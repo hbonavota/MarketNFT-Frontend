@@ -6,7 +6,7 @@ import Stripe from '../Stripe/Stripe'
 import { makeStyles } from '@material-ui/core/styles'
 import { getLS } from '../../../actions/getLS'
 import cartDB from '../../../actions/shoppingCart/cartDB.js'
-import { Grid } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 
 const useStyle = makeStyles({
   pay: {
@@ -35,13 +35,11 @@ function Payments() {
   }, [dispatch])
 
   return (
-    <div className={classes.pay}>
-      <Grid container direction="column">
-      <Stripe />
-      <MercadoPago />
-      <MetaMask />
-      </Grid>
-    </div>
+    <Grid container direction="column">
+    <Stripe />
+    <MercadoPago />
+    <MetaMask />
+    </Grid>
   )
 }
 

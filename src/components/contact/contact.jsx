@@ -47,6 +47,7 @@ export default function Contact() {
           </Box>
           <Box mb='1rem'>
             <TextField
+              background="white"
               name='email'
               type='email'
               variant='outlined'
@@ -64,7 +65,8 @@ export default function Contact() {
             />
           </Box>
           <Box mb='1rem'>
-            <Button type='submit' variant='outlined' size='large' fullWidth>
+            <Button type='submit'               variant='contained'
+              color='primary' size='large' fullWidth>
               Send
             </Button>
           </Box>
