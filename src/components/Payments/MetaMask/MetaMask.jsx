@@ -73,12 +73,13 @@ function PaymentMetaMask() {
         let prueba = [];
         prueba.push(allProductsCart[0]._id)
         alert('la compra fue realizada con exito')
+        console.log('la compra fue realizada con exito')
         console.log('ALLPRODUCTS',allProductsCart[0])
         dispatch(purchase({user:userLogged,cart:prueba}))
         dispatch(nftSold(cart))
     
         dispatch(removeItem({ user: userLogged, item: allProductsCart[0]._id }))
-        .then(e => console.log(allProductsCart))
+        .then(e => console.log(allProductsCart[0]._id))
         console.log(transactionHash);
     }
 })
