@@ -182,19 +182,17 @@ export default function NavBarShoppingCart() {
           ))}
         </Grid>
         {!userLogged ? (
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert
-              severity='info'
-              action={
-                <Button color='inherit' size='small' href='/login'>
-                  LOGIN
-                </Button>
-              }
-            >
-              If you want to buy any NFTs, please login with your account,
-              thanks
-            </Alert>
-          </Stack>
+         <Stack sx={{ width: "100%" }} spacing={2}>
+         <Alert severity="info">
+           If you want to buy any NFTs, please login with your account,
+           thanks!
+           {
+             <Button color="inherit" size="small" href="/login">
+               LOGIN
+             </Button>
+           }
+         </Alert>
+       </Stack>
         ) : (
           <Grid
             className={classes.cart}
