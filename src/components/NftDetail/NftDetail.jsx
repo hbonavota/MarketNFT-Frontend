@@ -37,16 +37,18 @@ const Image = styled.img`
   border-radius: 5%;
   height: 90vh;
   object-fit: cover;
-`
-
-const InfoContainer = styled.div`
+  `
+  
+  const InfoContainer = styled.div`
   background: white;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5%;
   flex: 1;
   padding: 0px 50px;
 `
 
 const TitleContainer = styled.div`
+  padding-top: 13px;
   background: white;
   border-radius: 5%;
   display: flex;
