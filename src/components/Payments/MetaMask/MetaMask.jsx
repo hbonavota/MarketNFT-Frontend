@@ -5,8 +5,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import {getLS} from '../../../actions/getLS'
 import cartDB from '../../../actions/shoppingCart/cartDB.js'
 import  { useEffect } from 'react'
+import { useHistory } from 'react-router'
+import removeItem from '../../../actions/shoppingCart/removeItem';
+import purchase from '../../../actions/shoppingHistory/purchase';
+import nftSold from '../../../actions/shoppingHistory/nftSold';
 const Web3 = require('web3');
 const web3 = new Web3(window.ethereum);
+
 
 const useStyle = makeStyles({
   button: {
@@ -20,6 +25,7 @@ function PaymentMetaMask() {
   const allProductsCart = useSelector(state => state.shoppingCartPayment)
   const userLogged= useSelector((state) => state.userLogged);
   const dispatch = useDispatch()
+  const cart = useSelector((state) => state.shoppingTrolley);
 
   useEffect(() => {
     if(!userLogged){
@@ -29,6 +35,7 @@ function PaymentMetaMask() {
         dispatch (cartDB({user:userLogged}))
     }
   }, [dispatch])
+  const history = useHistory()
 
     const dataMetaMask = []
     const pay = async function () {
@@ -42,19 +49,40 @@ function PaymentMetaMask() {
       }
 
       for(let data of allProductsCart) {
-        let transactionTo = data.ownerAddress;
+        let transactionTo = data.address;
         let moneyAmount = data.price;
         moneyAmount = moneyAmount * 1e18
         dataMetaMask.push(transactionTo)
         dataMetaMask.push(moneyAmount)
       }
 
-    return web3.eth.sendTransaction({
-      from: dataMetaMask[0],
-      to: dataMetaMask[1],
-      value: dataMetaMask[2],
-    })
-  } 
+
+
+  return web3.eth.sendTransaction({
+    from: dataMetaMask[0],
+    to: dataMetaMask[1],
+    value: dataMetaMask[2],
+  }, function(error, transactionHash) {
+    if (error) { 
+      alert('tx rechazada')
+      history.push('/shoppingcart')
+
+        console.log(error); 
+    } else {
+        let prueba = [];
+        prueba.push(allProductsCart[0]._id)
+        alert('la compra fue realizada con exito')
+        console.log('la compra fue realizada con exito')
+        console.log('ALLPRODUCTS',allProductsCart[0])
+        dispatch(purchase({user:userLogged,cart:prueba}))
+        dispatch(nftSold(cart))
+    
+        dispatch(removeItem({ user: userLogged, item: allProductsCart[0]._id }))
+        .then(e => console.log(allProductsCart[0]._id))
+        console.log(transactionHash);
+    }
+})
+} 
 
   const [metaMaskOption, setMetaMaskOption] = useState(true);
 

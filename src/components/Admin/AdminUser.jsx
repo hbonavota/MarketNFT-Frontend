@@ -41,7 +41,7 @@ export default function AdminUser() {
     e.preventDefault();
     setInputs({
       ...inputs,
-      [e.target.name]: inputs[e.target.name].concat(e.target.value),
+      [e.target.name]: e.target.value,
     });
   }
   async function handleDeleteUser(e) {
