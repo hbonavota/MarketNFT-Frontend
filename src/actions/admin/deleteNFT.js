@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//
+
 export function deleteNFT(ids) {
   return function () {
     try {
@@ -14,7 +14,7 @@ export function deleteNFT(ids) {
 export function deleteUser(id) {
   return function () {
     try {
-      /* const users = id.map((id) => axios.delete("/deleteUser/" + id)); */
+      const users = axios.delete("/deleteUser/" + id);
     } catch (error) {
       console.log(error);
     }
