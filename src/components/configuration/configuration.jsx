@@ -26,6 +26,19 @@ const useStyle = makeStyles({
     border: '1px solid rgb(133, 133, 133)',
     borderRadius: '100px',
   },
+  box: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "400px",
+    padding: "15px",
+    boxShadow: "0px 1px 7px rgb(0 0 0 / 10%)",
+    borderRadius: "20px",
+  },
+  button: {
+    marginTop: "15px",
+    width: "180px"
+  },
  })
  
  export default function Configuration() {
@@ -69,24 +82,26 @@ const useStyle = makeStyles({
             <Sidebar item xs={12} sm={12} md={3} lg={3} xl={3}/>
           </Grid>
           <Grid className={classes.contentSection} item xs={12} sm={12} md={9} lg={9} xl={9}>
+
           <Box
             component='form'
             onSubmit={(e) => handleSubmit(e)}
           >
-
-                    <Typography  variant='h4'>Your artist name</Typography>
+            <Box className={classes.box}>
+            <Typography  variant='h4'>Edit your profile</Typography>
+                    <Typography  variant='h6'>Artist name</Typography>
                     <input type="text" name="artist"  onChange={(e) => onInputChange(e)}/>
 
-                    <Typography  variant='h4'>Your profile pic</Typography>
+                    <Typography  variant='h6'>Image</Typography>
                     <input name="profilePic" src="" alt="" onChange={(e) => onInputChange(e)}/>
 
-                    <Typography  variant='h4'>Your description</Typography>
+                    <Typography  variant='h6'>Description</Typography>
                     <input type="text" name="description" onChange={(e) => onInputChange(e)}/>
 
-                    <Typography  variant='h4'>Your address</Typography>
+                    <Typography  variant='h6'>Wallet Address</Typography>
                     <input type="text" name="address" onChange={(e) => onInputChange(e)}/>
 
-                    <Button
+                    <Button className={classes.button}
                       size='large'
                       color='primary'
                       variant='contained'
@@ -94,6 +109,7 @@ const useStyle = makeStyles({
                     >
                      Update profile
                     </Button>
+            </Box>
 
           </Box>
           </Grid>
