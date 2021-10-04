@@ -7,7 +7,7 @@ export const AboutContainer = styled.section`
   h1 {
     font-size: 3rem;
     /* color: #75BA93; */
-    color: #36825b;
+    color: #2940D3;
   }
   p {
     width: 80%;
@@ -37,7 +37,7 @@ export const Card = styled.div`
   position: relative;
   width: 100%;
   height: 400px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   display: flex;

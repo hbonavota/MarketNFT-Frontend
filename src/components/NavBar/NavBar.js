@@ -25,7 +25,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { SwipeableDrawer } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemText, Grid } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home'
 import CategoryIcon from '@material-ui/icons/Category'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menu: {
     backgroundColor: theme.palette.common.green,
-    color: 'white',
+    color: 'black',
   },
   menuItem: {
     ...theme.typography.tab,
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   shoppingcart: {
-    color: 'white',
+    color: 'black',
   },
   profileMenu: {
     marginTop: '2.6rem',
@@ -103,14 +103,14 @@ const useStyles = makeStyles((theme) => ({
   drawerIcon: {
     height: '40px',
     width: '40px',
-    color: 'white',
+    color: 'black',
   },
   drawer: {
     backgroundColor: theme.palette.secondary.main,
   },
   drawerText: {
     ...theme.typography.tab,
-    color: 'white',
+    color: 'black',
     opacity: 0.7,
   },
   drawerTextSelected: {
@@ -120,6 +120,15 @@ const useStyles = makeStyles((theme) => ({
   },
   loginbutton: {
     backgroundColor: theme.palette.primary.main,
+  },
+  iconNavBar: {
+    color: '#185ADB',
+  },
+  drawerTextCategories: {
+    ...theme.typography.tab,
+    color: 'black',
+    opacity: 0.5,
+
   },
 }))
 
@@ -388,8 +397,8 @@ export default function NavBar() {
           aria-owns={anchorEl ? 'profileMenu' : undefined}
           aria-haspopup={anchorEl ? true : undefined}
           onMouseOver={(e) => handleclickprofile(e)}
-          
-          
+
+
         >
           <AccountCircleOutlinedIcon
             fontSize='large'
@@ -414,22 +423,22 @@ export default function NavBar() {
     <React.Fragment>
       <IconButton component={Link} to='/shoppingcart'>
         {
-          userLogged?<Badge badgeContent={numberOfItems} color='error'>
-          <ShoppingCartIcon className={classes.shoppingcart} />
-        </Badge> 
-        :
-        <Badge badgeContent={numberOfItemsLC} color='error'>
-          <ShoppingCartIcon className={classes.shoppingcart} />
-        </Badge> 
-        
+          userLogged ? <Badge badgeContent={numberOfItems} color='error'>
+            <ShoppingCartIcon className={classes.shoppingcart} />
+          </Badge>
+            :
+            <Badge badgeContent={numberOfItemsLC} color='error'>
+              <ShoppingCartIcon className={classes.shoppingcart} />
+            </Badge>
+
         }
         {/* <Badge badgeContent={numberOfItems} color='error'>
           <ShoppingCartIcon className={classes.shoppingcart} />
         </Badge> */}
       </IconButton>
-      <SwipeableDrawer anchor="right" disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} 
-      onClose={()=> setopenDrawer(false)} onOpen={()=> setopenDrawer(true)}
-      classes={{paper: classes.drawer}}>
+      <SwipeableDrawer anchor="right" disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer}
+        onClose={() => setopenDrawer(false)} onOpen={() => setopenDrawer(true)}
+        classes={{ paper: classes.drawer }}>
 
         <List disablePadding>
           <ListItem
@@ -445,7 +454,7 @@ export default function NavBar() {
             to='/'
           >
             {' '}
-            <HomeIcon color='primary' />
+            <HomeIcon className={classes.iconNavBar} />
             <ListItemText
               className={classes.drawerText}
               divider
@@ -466,12 +475,13 @@ export default function NavBar() {
             button
           >
             {' '}
-            <CategoryIcon color='primary' />
+            <CategoryIcon className={classes.iconNavBar} />
             <ListItemText className={classes.drawerText} disableTypography>
               Categories{' '}
             </ListItemText>
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
+          <Grid container justify="flex-end">
           <Collapse in={open} timeout='auto' unmountOnExit>
             <List component='div' disablePadding>
               <ListItem
@@ -611,6 +621,7 @@ export default function NavBar() {
               )}
             </List>
           </Collapse>
+          </Grid>
           <ListItem
             onClick={() => {
               setopenDrawer(false)
@@ -623,7 +634,7 @@ export default function NavBar() {
             component={Link}
             to='/contact'
           >
-            <ContactMailIcon color='primary' />
+            <ContactMailIcon className={classes.iconNavBar} />
             <ListItemText className={classes.drawerText} disableTypography>
               Contact
             </ListItemText>
@@ -641,7 +652,7 @@ export default function NavBar() {
             to='/about'
           >
             {' '}
-            <InfoIcon color='primary' />
+            <InfoIcon className={classes.iconNavBar} />
             <ListItemText className={classes.drawerText} disableTypography>
               About us
             </ListItemText>
@@ -660,7 +671,7 @@ export default function NavBar() {
               to='/admin'
             >
               {' '}
-              <SupervisorAccountIcon color='primary' />
+              <SupervisorAccountIcon className={classes.iconNavBar} />
               <ListItemText className={classes.drawerText} disableTypography>
                 Admin
               </ListItemText>
@@ -680,7 +691,7 @@ export default function NavBar() {
               to='/favorites'
             >
               {' '}
-              <FavoriteBorder color='primary' />
+              <FavoriteBorder className={classes.iconNavBar} />
               <ListItemText className={classes.drawerText} disableTypography>
                 Favorites
               </ListItemText>
@@ -700,7 +711,7 @@ export default function NavBar() {
               to='/profile'
             >
               {' '}
-              <AccountCircleOutlinedIcon color='primary' />
+              <AccountCircleOutlinedIcon className={classes.iconNavBar} />
               <ListItemText className={classes.drawerText} disableTypography>
                 My Profile
               </ListItemText>
@@ -761,19 +772,19 @@ export default function NavBar() {
     <React.Fragment>
       <ElevationScroll>
         <AppBar position='fixed' onClick={handleCloseProfile}>
-            <div className="navbar">
-            
-              <div width="200px" height="4.5rem" className="imagecontainer" component={Link} to="/">
-                <Link to={`/`} style={{ textDecoration: "none" }}>
-              <img className="image" width="200px" height="75px" src={blueligth} alt="" />
-            <Typography className="title" color='white' variant='h5'>
-              NFT MARKET
-            </Typography></Link>
-              </div>
-           
+          <div className="navbar">
+
+            <div width="200px" height="4.5rem" className="imagecontainer" component={Link} to="/">
+              <Link to={`/`} style={{ textDecoration: "none" }}>
+                <img className="image" width="200px" height="75px" src={blueligth} alt="" />
+                <Typography className="title" color='white' variant='h5'>
+                  NFT MARKET
+                </Typography></Link>
+            </div>
+
             <div className="toolbar">
-            {matches ? drawer : tabs}
-          </div>
+              {matches ? drawer : tabs}
+            </div>
           </div>
         </AppBar>
       </ElevationScroll>

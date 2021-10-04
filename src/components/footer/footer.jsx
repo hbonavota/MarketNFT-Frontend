@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         position: "absolute"
     },
     link: {
-        color: "white",
+        color: "black",
         fontFamily: "Arial",
         fontSize: "0.75rem",
         fontWeight: "bold",
