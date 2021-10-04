@@ -1,7 +1,7 @@
 import { createTheme } from '@material-ui/core/styles';
 
-const emeraldgreen = "#368B85";
-const lightgray = "#93B5C6";
+const emeraldgreen = "#A2DBFA";
+const lightgray = "#E8F0F2";
 
 export default createTheme({
     palette: {

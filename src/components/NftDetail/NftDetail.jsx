@@ -64,7 +64,7 @@ const Owner = styled.h3`
   margin: 0px 2px;
   font-weight: 100;
   font-size: 18px;
-  color: #368b85;
+  color: #A2DBFA;
 `
 
 const Description = styled.p`
