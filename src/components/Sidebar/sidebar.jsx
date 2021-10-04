@@ -33,7 +33,7 @@ const useStyle = makeStyles({
       fontSize: '14px',
       textTransform: 'none',
       height: '32px',
-      color: 'white',
+      color: 'black',
     },
     blue: {
       borderRadius: '5px',

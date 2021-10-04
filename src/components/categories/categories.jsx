@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     borderRadius: "8%",
     maxWidth: "200px",
-    backgroundColor: "rgba(199, 248, 237, 0.5)",
+    backgroundColor: "#A2DBFA",
     "&:hover": {
-      backgroundColor: "rgba(199, 248, 237, 0.9)"
+      backgroundColor: "#185ADB"
     },
 
 
