@@ -75,11 +75,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     textTransform: 'none',
     height: '35px',
-    color: 'white',
+    color: 'black',
+    '&:hover': {
+      backgroundColor: 'rgba(230, 227, 227, 0.904)',
+    },
   },
   menu: {
     backgroundColor: theme.palette.common.green,
-    color: 'black',
+    color: 'white',
   },
   menuItem: {
     ...theme.typography.tab,
@@ -89,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   shoppingcart: {
-    color: 'black',
+    color: 'white',
   },
   profileMenu: {
     marginTop: '2.6rem',
@@ -103,10 +106,10 @@ const useStyles = makeStyles((theme) => ({
   drawerIcon: {
     height: '40px',
     width: '40px',
-    color: 'black',
+    color: 'white',
   },
   drawer: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: 'white',
   },
   drawerText: {
     ...theme.typography.tab,
@@ -119,14 +122,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   loginbutton: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'white',
   },
   iconNavBar: {
     color: '#185ADB',
+    marginRight: '5px',
   },
   drawerTextCategories: {
     ...theme.typography.tab,
-    color: 'black',
+    color: 'white',
     opacity: 0.5,
 
   },
@@ -776,7 +780,7 @@ export default function NavBar() {
 
             <div width="200px" height="4.5rem" className="imagecontainer" component={Link} to="/">
               <Link to={`/`} style={{ textDecoration: "none" }}>
-                <img className="image" width="200px" height="75px" src={blueligth} alt="" />
+                {/* <img className="image" width="200px" height="75px" src={blueligth} alt="" /> */}
                 <Typography className="title" color='white' variant='h5'>
                   NFT MARKET
                 </Typography></Link>
