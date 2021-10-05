@@ -6,6 +6,7 @@ import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Hidden } from "@material-ui/core";
+
 const useStyles = makeStyles(theme => ({
     footer: {
         display: "flex",
@@ -17,17 +18,17 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down(600)]: 
         {
             width: "100%",
-        }
+        },
     },
     mainContainer: {
         position: "absolute"
     },
     link: {
-        color: "black",
+        color: "white",
         fontFamily: "Arial",
         fontSize: "0.75rem",
         fontWeight: "bold",
-        textDecoration: "none"
+        textDecoration: "none",
     },
     link2: {
         color: "white",
@@ -39,6 +40,13 @@ const useStyles = makeStyles(theme => ({
     },
     item: {
         margin: "3em"
+    },
+    nftMarket: {
+        fontFamily: "Arial",
+        color:'white',
+        marginLeft: '3em',
+        marginTop: "5rem",
+
     }
 }))
 
@@ -87,10 +95,11 @@ export default function Footer() {
             <Grid item className={classes.link2}>All rights reserved by © NFT MARKET</Grid>
             </Hidden>
             </Grid>
-           
+            <Hidden mdDown>
+            <Grid item className={classes.nftMarket}>All rights reserved by © NFT MARKET</Grid>
+            </Hidden>
            
             
-            <img className={classes.image} width="300em" height="200px" src={blueligth} alt="" />
         </footer>
 
     )
