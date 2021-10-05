@@ -14,16 +14,17 @@ import "./categories.css"
 const useStyles = makeStyles((theme) => ({
 
   gridContainer: {
-    marginTop: "30px"
+    marginTop: "30px",
   },
   button0: {
+    marginRight:'5px',
     display: "flex",
     alignContent: "center",
     justifyContent: "center",
     height: "50px",
-    borderRadius: "8%",
-    maxWidth: "200px",
-    backgroundColor: "#A2DBFA",
+    borderRadius: "15px",
+    maxWidth: "150px",
+    backgroundColor: "white",
     "&:hover": {
       backgroundColor: "#185ADB"
     },
@@ -122,7 +123,7 @@ export default function Categories() {
       <Slider {...settings} className="slider">
         {stateCategories.length > 0
           ? stateCategories.map((ele) => (
-            <Button key={ele._id} variant="outlined" onClick={(e) => handleclick(e)} value={ele._id}
+            <Button key={ele._id} onClick={(e) => handleclick(e)} value={ele._id}
               className={classes.button0}
             //  className={`color${Math.floor(Math.random() * 10)}` }
             >
