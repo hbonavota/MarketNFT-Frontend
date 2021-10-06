@@ -417,7 +417,7 @@ export default function NavBar() {
           color='secondary'
           className={classes.button}
         >
-          Login
+          <Typography variant='subtitle1'>Login</Typography>
         </Button>
       )}
     </React.Fragment>

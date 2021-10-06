@@ -47,6 +47,8 @@ export const Card = styled.div`
   transition: 0.1s;
   &:hover {
     box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background: white;
   }
   ul {
     position: absolute;
@@ -76,6 +78,8 @@ export const Card = styled.div`
     width: 30px;
   }
   &:hover .content {
+    cursor: pointer;
+    background: white;
     opacity: 1;
     transform: translateY(-30px);
   }
