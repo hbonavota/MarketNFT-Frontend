@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft:'180px',
   },
   inputRoot: {
     marginLeft: "17.5px"
