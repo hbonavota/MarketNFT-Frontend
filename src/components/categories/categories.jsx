@@ -22,14 +22,15 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
     justifyContent: "center",
     height: "50px",
-    borderRadius: "15px",
+    borderRadius: "13px",
     maxWidth: "150px",
     backgroundColor: "white",
     "&:hover": {
-      backgroundColor: "#185ADB"
+      transition: "700ms",
+      boxShadow: '4px 4px 20px 10px rgba(10,30,50,0.16)',
+      backgroundColor: "#1D7BDA",
+      color: "white",
     },
-
-
   },
   insidetext: {
     marginTop: "5%"
